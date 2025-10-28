@@ -207,30 +207,6 @@ struct SettingsView: View {
                                 .cornerRadius(12)
                             }
                             
-                            // Data Management Section
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text("Data Management")
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                
-                                VStack(spacing: 12) {
-                                    NavigationLink("Event History") {
-                                        EventHistoryView()
-                                    }
-                                    
-                                    Button("Export Data") {
-                                        exportData()
-                                    }
-                                    
-                                    Button("Clear All Data", role: .destructive) {
-                                        clearAllData()
-                                    }
-                                }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
-                            }
-                            
                             // About Section
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("About")
@@ -284,18 +260,6 @@ struct SettingsView: View {
     
     private func setupEventStore() {
         // Set up event store reference
-    }
-    
-    private func exportData() {
-        // Implement data export functionality
-        if let eventsJSON = eventStore.exportEventsToJSON() {
-            // Present share sheet or save to files
-            print("Events exported: \(eventsJSON)")
-        }
-    }
-    
-    private func clearAllData() {
-        eventStore.clearAllData()
     }
 }
 
