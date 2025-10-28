@@ -227,13 +227,24 @@ struct SettingsView: View {
                                     HStack {
                                         Text("Version")
                                         Spacer()
-                                        Text("1.0.0")
+                                        Text(AppMetadata.appVersion)
                                             .foregroundColor(.secondary)
                                     }
                                     
-                                    NavigationLink("Privacy Policy") {
-                                        PrivacyPolicyView()
+                                    Button("Privacy Policy") {
+                                        AppMetadata.openPrivacyPolicyURL()
                                     }
+                                    .foregroundColor(.blue)
+                                    
+                                    Button("Contact Support") {
+                                        AppMetadata.openContactURL()
+                                    }
+                                    .foregroundColor(.blue)
+                                    
+                                    Button("Visit Website") {
+                                        AppMetadata.openSupportURL()
+                                    }
+                                    .foregroundColor(.blue)
                                     
                                     NavigationLink("Terms of Service") {
                                         TermsOfServiceView()

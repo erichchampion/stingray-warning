@@ -19,6 +19,7 @@
 		77474D472EB121EE0077B6C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474D462EB121EE0077B6C0 /* Constants.swift */; };
 		77474D492EB1221B0077B6C0 /* SharedUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474D482EB1221B0077B6C0 /* SharedUIComponents.swift */; };
 		77474D4E2EB122540077B6C0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474D4C2EB122540077B6C0 /* UserDefaultsManager.swift */; };
+		77474D502EB12BE90077B6C0 /* AppMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474D4F2EB12BE90077B6C0 /* AppMetadata.swift */; };
 		80334BF9458D9AEA0B419E1C /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42C53F47CA932FFB613CAD /* BackgroundTaskManager.swift */; };
 		9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */; };
 		ACDA759DCBF9E2EF1A3F9393 /* NetworkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD088A9D4AFD3A1D849E5743 /* NetworkEvent.swift */; };
@@ -47,6 +48,7 @@
 		77474D462EB121EE0077B6C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		77474D482EB1221B0077B6C0 /* SharedUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUIComponents.swift; sourceTree = "<group>"; };
 		77474D4C2EB122540077B6C0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		77474D4F2EB12BE90077B6C0 /* AppMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadata.swift; sourceTree = "<group>"; };
 		821B9B6F1E8047E663AB18D8 /* NetworkThreatLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkThreatLevel.swift; sourceTree = "<group>"; };
 		907DFC29C03779BCD772FE12 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B31D16F1756C4DC9C0DE53A5 /* NetworkAnomaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAnomaly.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		77474D4D2EB122540077B6C0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				77474D4F2EB12BE90077B6C0 /* AppMetadata.swift */,
 				77474D4C2EB122540077B6C0 /* UserDefaultsManager.swift */,
 			);
 			path = Utilities;
@@ -277,6 +280,7 @@
 				77474D4E2EB122540077B6C0 /* UserDefaultsManager.swift in Sources */,
 				05E1D5BB097802013D03402A /* NotificationManager.swift in Sources */,
 				EBD6DD41655DE568B8B8BF5F /* SettingsView.swift in Sources */,
+				77474D502EB12BE90077B6C0 /* AppMetadata.swift in Sources */,
 				9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
