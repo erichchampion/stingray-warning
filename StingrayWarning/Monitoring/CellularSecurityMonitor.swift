@@ -212,8 +212,20 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     private func hasRapidTechnologyChanges() -> Bool {
         let recentWindow = Date().addingTimeInterval(-anomalyDetectionWindow)
-        let recentChanges = recentEvents.filter { $0.timestamp >= recentWindow }
-        return recentChanges.count >= rapidChangeThreshold
+        let recentEventsInWindow = recentEvents.filter { $0.timestamp >= recentWindow }
+        
+        // Count only events where the technology actually changed from the previous event
+        var technologyChanges = 0
+        var previousTechnology: String? = nil
+        
+        for event in recentEventsInWindow {
+            if let currentTech = event.radioTechnology, currentTech != previousTechnology {
+                technologyChanges += 1
+                previousTechnology = currentTech
+            }
+        }
+        
+        return technologyChanges >= rapidChangeThreshold
     }
     
     private func matchesBaseline(radioTechnology: String?) -> Bool {
