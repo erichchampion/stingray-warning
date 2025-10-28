@@ -4,7 +4,7 @@ struct EducationView: View {
     @State private var selectedSection: EducationSection = .whatIsIMSI
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Section Picker
                 Picker("Education Section", selection: $selectedSection) {

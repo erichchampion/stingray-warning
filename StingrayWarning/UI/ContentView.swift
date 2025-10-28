@@ -64,7 +64,7 @@ struct DashboardView: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
                     // Current Status Card

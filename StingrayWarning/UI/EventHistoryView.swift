@@ -8,7 +8,7 @@ struct EventHistoryView: View {
     @State private var showingClearAlert = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Filter Controls
                 VStack(spacing: 12) {
@@ -324,7 +324,7 @@ struct ExportDataView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Export Options")

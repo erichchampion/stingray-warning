@@ -17,7 +17,7 @@ struct SettingsView: View {
     @AppStorage("dataRetentionDays") private var dataRetentionDays = 7.0
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 // Monitoring Section
                 Section("Monitoring") {
