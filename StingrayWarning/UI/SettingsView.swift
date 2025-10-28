@@ -19,17 +19,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Settings Heading (fixed at top)
-                HStack {
-                    Text("Settings")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                    Spacer()
-                }
-                .padding()
-                .background(Color(.systemBackground))
-                
                 // Main Content
                 GeometryReader { geometry in
                     ScrollView {
