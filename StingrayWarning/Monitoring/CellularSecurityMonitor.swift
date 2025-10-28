@@ -108,45 +108,32 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         let serviceCurrentRadioAccessTechnology = networkInfo.serviceCurrentRadioAccessTechnology
         
         var radioTechnology: String?
-        var carrierName: String?
-        var carrierCountryCode: String?
-        var carrierMobileCountryCode: String?
-        var carrierMobileNetworkCode: String?
         
         if let serviceRadioAccessTechnology = serviceCurrentRadioAccessTechnology {
             radioTechnology = serviceRadioAccessTechnology.first?.value
         }
         
-        if let carrierInfo = networkInfo.serviceSubscriberCellularProviders?.first?.value {
-            carrierName = carrierInfo.carrierName
-            carrierCountryCode = carrierInfo.isoCountryCode
-            carrierMobileCountryCode = carrierInfo.mobileCountryCode
-            carrierMobileNetworkCode = carrierInfo.mobileNetworkCode
-        }
-        
-        let threatLevel = evaluateThreatLevel(
-            radioTechnology: radioTechnology,
-            carrierInfo: networkInfo.serviceSubscriberCellularProviders?.first?.value
-        )
+        // Note: Carrier information APIs are deprecated in iOS 16+ and return placeholder values
+        // Focus on radio technology detection which is still functional
+        let threatLevel = evaluateThreatLevel(radioTechnology: radioTechnology)
         
         let description = generateEventDescription(
             radioTechnology: radioTechnology,
-            carrierName: carrierName,
             threatLevel: threatLevel
         )
         
         return NetworkEvent(
             radioTechnology: radioTechnology,
-            carrierName: carrierName,
-            carrierCountryCode: carrierCountryCode,
-            carrierMobileCountryCode: carrierMobileCountryCode,
-            carrierMobileNetworkCode: carrierMobileNetworkCode,
+            carrierName: nil, // Deprecated API
+            carrierCountryCode: nil, // Deprecated API
+            carrierMobileCountryCode: nil, // Deprecated API
+            carrierMobileNetworkCode: nil, // Deprecated API
             threatLevel: threatLevel,
             description: description
         )
     }
     
-    private func evaluateThreatLevel(radioTechnology: String?, carrierInfo: CTCarrier?) -> NetworkThreatLevel {
+    private func evaluateThreatLevel(radioTechnology: String?) -> NetworkThreatLevel {
         var threatScore = 0
         
         // Check for 2G connection
@@ -154,10 +141,8 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
             threatScore += 3
         }
         
-        // Check for unknown carrier
-        if carrierInfo?.carrierName == nil || carrierInfo?.carrierName?.isEmpty == true {
-            threatScore += 2
-        }
+        // Note: Carrier validation removed due to deprecated APIs in iOS 16+
+        // Carrier information APIs now return placeholder values
         
         // Check for rapid technology changes
         if hasRapidTechnologyChanges() {
@@ -165,7 +150,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         }
         
         // Check against baseline
-        if baselineData != nil, !matchesBaseline(radioTechnology: radioTechnology, carrierInfo: carrierInfo) {
+        if baselineData != nil, !matchesBaseline(radioTechnology: radioTechnology) {
             threatScore += 1
         }
         
@@ -190,33 +175,27 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         return recentChanges.count >= rapidChangeThreshold
     }
     
-    private func matchesBaseline(radioTechnology: String?, carrierInfo: CTCarrier?) -> Bool {
+    private func matchesBaseline(radioTechnology: String?) -> Bool {
         guard let baseline = baselineData else { return true }
         
         if let tech = radioTechnology, let baselineTech = baseline.expectedRadioTechnology {
             return tech == baselineTech
         }
         
-        if let carrier = carrierInfo?.carrierName, let baselineCarrier = baseline.expectedCarrierName {
-            return carrier == baselineCarrier
-        }
-        
+        // Note: Carrier matching removed due to deprecated APIs
         return true
     }
     
-    private func generateEventDescription(radioTechnology: String?, carrierName: String?, threatLevel: NetworkThreatLevel) -> String {
+    private func generateEventDescription(radioTechnology: String?, threatLevel: NetworkThreatLevel) -> String {
         var components: [String] = []
         
         if let tech = radioTechnology {
             components.append("Radio: \(tech)")
-        }
-        
-        if let carrier = carrierName {
-            components.append("Carrier: \(carrier)")
         } else {
-            components.append("Unknown carrier")
+            components.append("Radio: Unknown")
         }
         
+        // Note: Carrier information removed due to deprecated APIs in iOS 16+
         components.append("Threat: \(threatLevel.description)")
         
         return components.joined(separator: " • ")

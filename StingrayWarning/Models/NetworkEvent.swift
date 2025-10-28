@@ -65,8 +65,9 @@ struct NetworkEvent: Codable, Identifiable {
     
     /// Whether this event represents a suspicious carrier
     var isSuspiciousCarrier: Bool {
-        // This would be expanded with carrier validation logic
-        return carrierName == nil || carrierName?.isEmpty == true
+        // Note: Carrier validation removed due to deprecated APIs in iOS 16+
+        // Carrier information APIs now return placeholder values
+        return false
     }
 }
 

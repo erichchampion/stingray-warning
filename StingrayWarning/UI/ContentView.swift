@@ -113,11 +113,8 @@ struct CurrentStatusCard: View {
             if let networkInfo = cellularMonitor.currentNetworkInfo {
                 VStack(alignment: .leading, spacing: 8) {
                     StatusRow(label: "Technology", value: networkInfo.radioTechnology ?? "Unknown")
-                    StatusRow(label: "Carrier", value: networkInfo.carrierName ?? "Unknown")
-                    if let mcc = networkInfo.carrierMobileCountryCode,
-                       let mnc = networkInfo.carrierMobileNetworkCode {
-                        StatusRow(label: "MCC/MNC", value: "\(mcc)/\(mnc)")
-                    }
+                    StatusRow(label: "Carrier", value: "Not Available (iOS 16+)")
+                    StatusRow(label: "MCC/MNC", value: "Not Available (iOS 16+)")
                 }
             } else {
                 Text("No network information available")

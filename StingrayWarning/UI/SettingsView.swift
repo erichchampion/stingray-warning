@@ -82,28 +82,26 @@ struct SettingsView: View {
                 // Expected Carrier Section
                 Section("Expected Carrier") {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Configure your expected carrier information to improve threat detection accuracy.")
-                            .font(.caption)
+                        Text("⚠️ Carrier information is not available in iOS 16+")
+                            .font(.headline)
+                            .foregroundColor(.orange)
+                        
+                        Text("Apple has deprecated carrier information APIs in iOS 16+. The app now focuses on radio technology detection (2G/3G/4G/5G) which is still functional for security monitoring.")
+                            .font(.body)
                             .foregroundColor(.secondary)
                         
-                        TextField("Carrier Name (e.g., Verizon)", text: $expectedCarrierName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("The app will still detect:")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
                         
-                        HStack {
-                            TextField("MCC", text: $expectedMCC)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numberPad)
-                            
-                            TextField("MNC", text: $expectedMNC)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numberPad)
-                        }
-                        
-                        Button("Auto-Detect Current Carrier") {
-                            autoDetectCarrier()
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("• 2G network connections (high risk)")
+                            Text("• Rapid technology changes")
+                            Text("• Network downgrades")
+                            Text("• Unusual connection patterns")
                         }
                         .font(.caption)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.secondary)
                     }
                 }
                 
@@ -210,15 +208,6 @@ struct SettingsView: View {
         case 4: return "Alerts for low, medium, high, and critical threats"
         case 5: return "Alerts for all detected threats"
         default: return "Standard sensitivity"
-        }
-    }
-    
-    private func autoDetectCarrier() {
-        // This would use the cellular monitor to detect current carrier
-        if let networkInfo = cellularMonitor.currentNetworkInfo {
-            expectedCarrierName = networkInfo.carrierName ?? ""
-            expectedMCC = networkInfo.carrierMobileCountryCode ?? ""
-            expectedMNC = networkInfo.carrierMobileNetworkCode ?? ""
         }
     }
     
