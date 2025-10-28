@@ -24,9 +24,9 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     private weak var backgroundTaskManager: BackgroundTaskManager?
     private var hasStartedMonitoring = false // Track if monitoring has actually been started
     
-    private let maxRecentEvents = 100
-    private let anomalyDetectionWindow: TimeInterval = 300 // 5 minutes
-    private let rapidChangeThreshold = 3 // changes per window
+    private let maxRecentEvents = AppConstants.Limits.maxRecentEvents
+    private let anomalyDetectionWindow = AppConstants.TimeIntervals.anomalyDetectionWindow
+    private let rapidChangeThreshold = AppConstants.Limits.rapidChangeThreshold
     
     // MARK: - Initialization
     override init() {
@@ -35,6 +35,10 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         loadBaselineData()
         setupNotificationObserver()
         restoreMonitoringState()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     /// Set the event store reference
@@ -80,7 +84,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     /// Check if monitoring should be automatically started based on persistent state
     func shouldAutoStartMonitoring() -> Bool {
-        return UserDefaults.standard.bool(forKey: "monitoringEnabled")
+        return UserDefaultsManager.getMonitoringEnabled()
     }
     
     /// Perform an immediate security check
@@ -94,7 +98,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     private func setupLocationManager() {
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = AppConstants.LocationSettings.desiredAccuracy
     }
     
     private func setupNotificationObserver() {
@@ -108,25 +112,30 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     private func loadBaselineData() {
         // Load baseline data from UserDefaults
-        if let data = UserDefaults.standard.data(forKey: "NetworkBaseline"),
-           let baseline = try? JSONDecoder().decode(NetworkBaseline.self, from: data) {
-            self.baselineData = baseline
+        do {
+            if let baseline = try UserDefaultsManager.getCodable(NetworkBaseline.self, forKey: AppConstants.UserDefaultsKeys.networkBaseline) {
+                self.baselineData = baseline
+            }
+        } catch {
+            // Handle error silently - baseline will be established on next check
         }
     }
     
     private func saveBaselineData() {
         guard let baseline = baselineData else { return }
-        if let data = try? JSONEncoder().encode(baseline) {
-            UserDefaults.standard.set(data, forKey: "NetworkBaseline")
+        do {
+            try UserDefaultsManager.setCodable(baseline, forKey: AppConstants.UserDefaultsKeys.networkBaseline)
+        } catch {
+            // Handle error silently
         }
     }
     
     private func saveMonitoringState() {
-        UserDefaults.standard.set(isMonitoring, forKey: "monitoringEnabled")
+        UserDefaultsManager.setMonitoringEnabled(isMonitoring)
     }
     
     private func restoreMonitoringState() {
-        let wasMonitoring = UserDefaults.standard.bool(forKey: "monitoringEnabled")
+        let wasMonitoring = UserDefaultsManager.getMonitoringEnabled()
         isMonitoring = wasMonitoring
         // Don't set hasStartedMonitoring here - that will be set when startMonitoring() actually runs
     }
@@ -177,7 +186,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         
         // Check for 2G connection
         if let tech = radioTechnology, is2GTechnology(tech) {
-            threatScore += 3
+            threatScore += AppConstants.ThreatScoring.twoGConnectionScore
         }
         
         // Note: Carrier validation removed due to deprecated APIs in iOS 16+
@@ -185,19 +194,19 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         
         // Check for rapid technology changes
         if hasRapidTechnologyChanges() {
-            threatScore += 2
+            threatScore += AppConstants.ThreatScoring.rapidChangeScore
         }
         
         // Check against baseline
         if baselineData != nil, !matchesBaseline(radioTechnology: radioTechnology) {
-            threatScore += 1
+            threatScore += AppConstants.ThreatScoring.baselineMismatchScore
         }
         
         // Convert score to threat level
         switch threatScore {
-        case 0: return .none
-        case 1: return .low
-        case 2...3: return .medium
+        case AppConstants.ThreatScoring.noneThreshold: return .none
+        case AppConstants.ThreatScoring.lowThreshold: return .low
+        case AppConstants.ThreatScoring.mediumThreshold...3: return .medium
         case 4...5: return .high
         default: return .critical
         }

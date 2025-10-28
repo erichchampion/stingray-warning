@@ -55,7 +55,7 @@ struct EventHistoryView: View {
                             
                             // Events List
                             if filteredEvents.isEmpty {
-                                EmptyStateView()
+                                SharedUIComponents.EmptyStateView()
                             } else {
                                 LazyVStack(spacing: 8) {
                                     ForEach(filteredEvents) { event in
@@ -101,11 +101,11 @@ struct EventHistoryView: View {
         
         switch selectedTimeRange {
         case .hour:
-            startDate = now.addingTimeInterval(-3600)
+            startDate = now.addingTimeInterval(-AppConstants.TimeIntervals.hour)
         case .day:
-            startDate = now.addingTimeInterval(-86400)
+            startDate = now.addingTimeInterval(-AppConstants.TimeIntervals.day)
         case .week:
-            startDate = now.addingTimeInterval(-604800)
+            startDate = now.addingTimeInterval(-AppConstants.TimeIntervals.week)
         case .all:
             startDate = Date.distantPast
         }
@@ -226,7 +226,7 @@ struct EventRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                ThreatLevelBadge(level: event.threatLevel)
+                                        SharedUIComponents.ThreatLevelBadge(level: event.threatLevel)
                 Spacer()
                 Text(event.timestamp, style: .relative)
                     .font(.caption)
@@ -263,28 +263,6 @@ struct EventRowView: View {
             }
         }
         .padding(.vertical, 4)
-    }
-}
-
-struct EmptyStateView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "clock")
-                .font(.system(size: 50))
-                .foregroundColor(.secondary)
-            
-            Text("No Events Found")
-                .font(.title2)
-                .fontWeight(.semibold)
-            
-            Text("No events match your current filters. Try adjusting the time range or threat level filter.")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemBackground))
     }
 }
 

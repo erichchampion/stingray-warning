@@ -5,8 +5,8 @@ import UIKit
 /// Manages background tasks for continuous security monitoring
 class BackgroundTaskManager: ObservableObject {
     
-    private let backgroundTaskIdentifier = "us.defroster.stingraywarning.security-monitoring"
-    private let backgroundRefreshIdentifier = "us.defroster.stingraywarning.background-refresh"
+    private let backgroundTaskIdentifier = AppConstants.BackgroundTaskIdentifiers.securityMonitoring
+    private let backgroundRefreshIdentifier = AppConstants.BackgroundTaskIdentifiers.backgroundRefresh
     
     @Published var isBackgroundTaskRegistered = false
     @Published var lastBackgroundExecution: Date?
@@ -48,7 +48,7 @@ class BackgroundTaskManager: ObservableObject {
         let request = BGProcessingTaskRequest(identifier: backgroundTaskIdentifier)
         request.requiresNetworkConnectivity = true
         request.requiresExternalPower = false
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60) // 15 minutes from now
+        request.earliestBeginDate = Date(timeIntervalSinceNow: AppConstants.TimeIntervals.backgroundProcessingDelay)
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -60,7 +60,7 @@ class BackgroundTaskManager: ObservableObject {
     /// Schedule the next background app refresh
     func scheduleBackgroundRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: backgroundRefreshIdentifier)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 5 * 60) // 5 minutes from now
+        request.earliestBeginDate = Date(timeIntervalSinceNow: AppConstants.TimeIntervals.backgroundRefreshDelay)
         
         do {
             try BGTaskScheduler.shared.submit(request)

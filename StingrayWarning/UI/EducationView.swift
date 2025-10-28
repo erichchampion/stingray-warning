@@ -58,13 +58,13 @@ enum EducationSection: CaseIterable {
 struct WhatIsIMSICatcherView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "What is an IMSI Catcher?",
                 icon: "antenna.radiowaves.left.and.right",
                 color: .red
             )
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("IMSI Catcher Definition")
                         .font(.headline)
@@ -72,7 +72,7 @@ struct WhatIsIMSICatcherView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("How They Work")
                         .font(.headline)
@@ -85,7 +85,7 @@ struct WhatIsIMSICatcherView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Common Uses")
                         .font(.headline)
@@ -98,7 +98,7 @@ struct WhatIsIMSICatcherView: View {
                 }
             }
             
-            WarningCard {
+            SharedUIComponents.WarningCard {
                 Text("IMSI Catchers can intercept your communications, track your location, and compromise your privacy without your knowledge.")
             }
         }
@@ -115,7 +115,7 @@ struct ProtectionView: View {
                 color: .blue
             )
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Real-Time Monitoring")
                         .font(.headline)
@@ -123,7 +123,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("2G Detection")
                         .font(.headline)
@@ -131,7 +131,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Carrier Validation")
                         .font(.headline)
@@ -139,7 +139,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Pattern Analysis")
                         .font(.headline)
@@ -147,7 +147,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Background Monitoring")
                         .font(.headline)
@@ -155,7 +155,7 @@ struct ProtectionView: View {
                 }
             }
             
-            SuccessCard {
+            SharedUIComponents.SuccessCard {
                 Text("All analysis is performed locally on your device - no data is sent to external servers.")
             }
             
@@ -167,7 +167,7 @@ struct ProtectionView: View {
             )
             
             ForEach(AnomalyType.allCases, id: \.self) { anomalyType in
-                EducationCard {
+                SharedUIComponents.EducationCard {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(anomalyType.description)
                             .font(.headline)
@@ -194,7 +194,7 @@ struct ProtectionView: View {
                 color: .orange
             )
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Detection Capabilities")
                         .font(.headline)
@@ -202,7 +202,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Sophisticated Attacks")
                         .font(.headline)
@@ -210,7 +210,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("False Positives")
                         .font(.headline)
@@ -218,7 +218,7 @@ struct ProtectionView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("iOS Limitations")
                         .font(.headline)
@@ -226,7 +226,7 @@ struct ProtectionView: View {
                 }
             }
             
-            WarningCard {
+            SharedUIComponents.WarningCard {
                 Text("This app should be used as a security awareness tool, not as your sole protection against surveillance.")
             }
         }
@@ -244,7 +244,7 @@ struct BestPracticesView: View {
                 color: .green
             )
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("General Security")
                         .font(.headline)
@@ -258,7 +258,7 @@ struct BestPracticesView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("When Alerts Occur")
                         .font(.headline)
@@ -272,7 +272,7 @@ struct BestPracticesView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Physical Security")
                         .font(.headline)
@@ -285,7 +285,7 @@ struct BestPracticesView: View {
                 }
             }
             
-            SuccessCard {
+            SharedUIComponents.SuccessCard {
                 Text("Remember: Security is about layers of protection, not relying on any single tool.")
             }
             
@@ -296,7 +296,7 @@ struct BestPracticesView: View {
                 color: .blue
             )
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Technical Resources")
                         .font(.headline)
@@ -309,7 +309,7 @@ struct BestPracticesView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Professional Tools")
                         .font(.headline)
@@ -322,7 +322,7 @@ struct BestPracticesView: View {
                 }
             }
             
-            EducationCard {
+            SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Legal Considerations")
                         .font(.headline)
@@ -333,93 +333,6 @@ struct BestPracticesView: View {
     }
 }
 
-
-// MARK: - Supporting UI Components
-
-struct EducationHeader: View {
-    let title: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
-            Text(title)
-                .font(.title2)
-                .fontWeight(.bold)
-            Spacer()
-        }
-    }
-}
-
-struct EducationCard<Content: View>: View {
-    let content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            content
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-}
-
-struct WarningCard<Content: View>: View {
-    let content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.orange)
-            content
-                .font(.body)
-                .fontWeight(.medium)
-        }
-        .padding()
-        .background(Color.orange.opacity(0.1))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
-        )
-    }
-}
-
-struct SuccessCard<Content: View>: View {
-    let content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.green)
-            content
-                .font(.body)
-                .fontWeight(.medium)
-        }
-        .padding()
-        .background(Color.green.opacity(0.1))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.green.opacity(0.3), lineWidth: 1)
-        )
-    }
-}
 
 #Preview {
     EducationView()

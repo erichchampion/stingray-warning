@@ -7,12 +7,12 @@ class EventStore: ObservableObject {
     @Published var events: [NetworkEvent] = []
     @Published var anomalies: [NetworkAnomaly] = []
     
-    private let maxStoredEvents = 1000
-    private let maxStoredAnomalies = 500
-    private let eventRetentionDays = 7
+    private let maxStoredEvents = AppConstants.Limits.maxStoredEvents
+    private let maxStoredAnomalies = AppConstants.Limits.maxStoredAnomalies
+    private let eventRetentionDays = AppConstants.Limits.eventRetentionDays
     
-    private let eventsKey = "StoredNetworkEvents"
-    private let anomaliesKey = "StoredNetworkAnomalies"
+    private let eventsKey = AppConstants.UserDefaultsKeys.storedNetworkEvents
+    private let anomaliesKey = AppConstants.UserDefaultsKeys.storedNetworkAnomalies
     
     init() {
         loadStoredData()
@@ -24,16 +24,14 @@ class EventStore: ObservableObject {
     func addEvent(_ event: NetworkEvent) {
         events.append(event)
         
-        // Trim to max size
-        if events.count > maxStoredEvents {
-            events.removeFirst(events.count - maxStoredEvents)
-        }
+        // Trim to max size using efficient operation
+        trimEvents()
         
         // Remove old events
         cleanupOldEvents()
         
-        // Save to persistent storage
-        saveEvents()
+        // Save to persistent storage asynchronously
+        saveEventsAsync()
     }
     
     /// Get events filtered by threat level
@@ -53,7 +51,7 @@ class EventStore: ObservableObject {
     
     /// Get recent events (last 24 hours)
     func getRecentEvents() -> [NetworkEvent] {
-        let oneDayAgo = Date().addingTimeInterval(-24 * 60 * 60)
+        let oneDayAgo = Date().addingTimeInterval(-AppConstants.TimeIntervals.day)
         return events.filter { $0.timestamp >= oneDayAgo }
     }
     
@@ -74,16 +72,14 @@ class EventStore: ObservableObject {
     func addAnomaly(_ anomaly: NetworkAnomaly) {
         anomalies.append(anomaly)
         
-        // Trim to max size
-        if anomalies.count > maxStoredAnomalies {
-            anomalies.removeFirst(anomalies.count - maxStoredAnomalies)
-        }
+        // Trim to max size using efficient operation
+        trimAnomalies()
         
         // Remove old anomalies
         cleanupOldAnomalies()
         
-        // Save to persistent storage
-        saveAnomalies()
+        // Save to persistent storage asynchronously
+        saveAnomaliesAsync()
     }
     
     /// Get anomalies filtered by type
@@ -193,8 +189,8 @@ class EventStore: ObservableObject {
     func clearAllData() {
         events.removeAll()
         anomalies.removeAll()
-        saveEvents()
-        saveAnomalies()
+        saveEventsAsync()
+        saveAnomaliesAsync()
     }
     
     // MARK: - Private Methods
@@ -205,16 +201,28 @@ class EventStore: ObservableObject {
     }
     
     private func loadEvents() {
-        if let data = UserDefaults.standard.data(forKey: eventsKey),
-           let decodedEvents = try? JSONDecoder().decode([NetworkEvent].self, from: data) {
-            events = decodedEvents
+        UserDefaultsManager.getCodableAsync([NetworkEvent].self, forKey: eventsKey) { result in
+            switch result {
+            case .success(let decodedEvents):
+                if let events = decodedEvents {
+                    self.events = events
+                }
+            case .failure(let error):
+                print("Failed to load events: \(error)")
+            }
         }
     }
     
     private func loadAnomalies() {
-        if let data = UserDefaults.standard.data(forKey: anomaliesKey),
-           let decodedAnomalies = try? JSONDecoder().decode([NetworkAnomaly].self, from: data) {
-            anomalies = decodedAnomalies
+        UserDefaultsManager.getCodableAsync([NetworkAnomaly].self, forKey: anomaliesKey) { result in
+            switch result {
+            case .success(let decodedAnomalies):
+                if let anomalies = decodedAnomalies {
+                    self.anomalies = anomalies
+                }
+            case .failure(let error):
+                print("Failed to load anomalies: \(error)")
+            }
         }
     }
     
@@ -231,13 +239,53 @@ class EventStore: ObservableObject {
     }
     
     private func cleanupOldEvents() {
-        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * 24 * 60 * 60))
+        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * AppConstants.TimeIntervals.day))
         events.removeAll { $0.timestamp < cutoffDate }
     }
     
     private func cleanupOldAnomalies() {
-        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * 24 * 60 * 60))
+        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * AppConstants.TimeIntervals.day))
         anomalies.removeAll { $0.startTime < cutoffDate }
+    }
+    
+    // MARK: - Optimized Array Operations
+    
+    private func trimEvents() {
+        if events.count > maxStoredEvents {
+            let removeCount = events.count - maxStoredEvents
+            events.removeSubrange(0..<removeCount)
+        }
+    }
+    
+    private func trimAnomalies() {
+        if anomalies.count > maxStoredAnomalies {
+            let removeCount = anomalies.count - maxStoredAnomalies
+            anomalies.removeSubrange(0..<removeCount)
+        }
+    }
+    
+    // MARK: - Async Storage Operations
+    
+    private func saveEventsAsync() {
+        UserDefaultsManager.setCodableAsync(events, forKey: eventsKey) { result in
+            switch result {
+            case .success:
+                break // Successfully saved
+            case .failure(let error):
+                print("Failed to save events asynchronously: \(error)")
+            }
+        }
+    }
+    
+    private func saveAnomaliesAsync() {
+        UserDefaultsManager.setCodableAsync(anomalies, forKey: anomaliesKey) { result in
+            switch result {
+            case .success:
+                break // Successfully saved
+            case .failure(let error):
+                print("Failed to save anomalies asynchronously: \(error)")
+            }
+        }
     }
     
     private func calculateAverageThreatLevel(events: [NetworkEvent]) -> Double {

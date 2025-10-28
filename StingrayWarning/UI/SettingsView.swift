@@ -7,14 +7,14 @@ struct SettingsView: View {
     @StateObject private var eventStore = EventStore()
     
     // monitoringEnabled is now managed by CellularSecurityMonitor
-    @AppStorage("notificationEnabled") private var notificationEnabled = true
-    @AppStorage("backgroundMonitoringEnabled") private var backgroundMonitoringEnabled = true
-    @AppStorage("sensitivityLevel") private var sensitivityLevel = 2.0 // 1-5 scale
-    @AppStorage("expectedCarrierName") private var expectedCarrierName = ""
-    @AppStorage("expectedMCC") private var expectedMCC = ""
-    @AppStorage("expectedMNC") private var expectedMNC = ""
-    @AppStorage("batteryOptimizationEnabled") private var batteryOptimizationEnabled = true
-    @AppStorage("dataRetentionDays") private var dataRetentionDays = 7.0
+    @AppStorage(AppConstants.UserDefaultsKeys.notificationEnabled) private var notificationEnabled = true
+    @AppStorage(AppConstants.UserDefaultsKeys.backgroundMonitoringEnabled) private var backgroundMonitoringEnabled = true
+    @AppStorage(AppConstants.UserDefaultsKeys.sensitivityLevel) private var sensitivityLevel = 2.0 // 1-5 scale
+    @AppStorage(AppConstants.UserDefaultsKeys.expectedCarrierName) private var expectedCarrierName = ""
+    @AppStorage(AppConstants.UserDefaultsKeys.expectedMCC) private var expectedMCC = ""
+    @AppStorage(AppConstants.UserDefaultsKeys.expectedMNC) private var expectedMNC = ""
+    @AppStorage(AppConstants.UserDefaultsKeys.batteryOptimizationEnabled) private var batteryOptimizationEnabled = true
+    @AppStorage(AppConstants.UserDefaultsKeys.dataRetentionDays) private var dataRetentionDays = 7.0
     
     var body: some View {
         NavigationStack {

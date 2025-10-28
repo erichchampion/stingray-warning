@@ -112,7 +112,7 @@ class NotificationManager: NSObject, ObservableObject {
         content.sound = .default
         
         // Schedule for 24 hours from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: AppConstants.TimeIntervals.statusNotificationInterval, repeats: true)
         
         let request = UNNotificationRequest(
             identifier: "STATUS_UPDATE",

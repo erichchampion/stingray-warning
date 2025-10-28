@@ -65,7 +65,7 @@ struct DashboardView: View {
                     
                     // Quick Actions Bar
                     HStack {
-                        ActionButton(
+                        SharedUIComponents.ActionButton(
                             title: cellularMonitor.isMonitoring ? "Stop" : "Start",
                             icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
                             color: cellularMonitor.isMonitoring ? .red : .green
@@ -79,7 +79,7 @@ struct DashboardView: View {
                         
                         Spacer()
                         
-                        ActionButton(
+                        SharedUIComponents.ActionButton(
                             title: "Check Now",
                             icon: "arrow.clockwise",
                             color: .blue
@@ -158,7 +158,7 @@ struct CurrentStatusCard: View {
                 Image(systemName: "antenna.radiowaves.left.and.right")
                     .foregroundColor(.blue)
                 Spacer()
-                StatusIndicator(isActive: cellularMonitor.isMonitoring)
+                SharedUIComponents.StatusIndicator(isActive: cellularMonitor.isMonitoring)
             }
             
             if let networkInfo = cellularMonitor.currentNetworkInfo {
@@ -274,21 +274,6 @@ struct RecentEventsCard: View {
 
 // MARK: - Supporting Views
 
-struct StatusIndicator: View {
-    let isActive: Bool
-    
-    var body: some View {
-        HStack(spacing: 4) {
-            Circle()
-                .fill(isActive ? .green : .red)
-                .frame(width: 8, height: 8)
-            Text(isActive ? "Active" : "Inactive")
-                .font(.caption)
-                .foregroundColor(isActive ? .green : .red)
-        }
-    }
-}
-
 struct StatusRow: View {
     let label: String
     let value: String
@@ -373,7 +358,7 @@ struct EventRow: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            ThreatLevelBadge(level: event.threatLevel)
+            SharedUIComponents.ThreatLevelBadge(level: event.threatLevel)
         }
         .padding(.vertical, 4)
     }
