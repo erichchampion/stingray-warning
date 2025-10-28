@@ -19,6 +19,16 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                // Fixed title section
+                VStack(spacing: 12) {
+                    Text("Settings")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding()
+                .background(Color(.systemGray6))
+                
                 // Main Content
                 GeometryReader { geometry in
                     ScrollView {
@@ -239,8 +249,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarHidden(true)
             .onAppear {
                 setupEventStore()
             }

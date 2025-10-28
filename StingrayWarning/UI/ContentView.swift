@@ -56,28 +56,36 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Quick Actions Bar (pinned at top)
-                HStack {
-                    ActionButton(
-                        title: cellularMonitor.isMonitoring ? "Stop" : "Start",
-                        icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
-                        color: cellularMonitor.isMonitoring ? .red : .green
-                    ) {
-                        if cellularMonitor.isMonitoring {
-                            cellularMonitor.stopMonitoring()
-                        } else {
-                            cellularMonitor.startMonitoring()
+                // Fixed title section
+                VStack(spacing: 12) {
+                    Text("Dashboard")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // Quick Actions Bar
+                    HStack {
+                        ActionButton(
+                            title: cellularMonitor.isMonitoring ? "Stop" : "Start",
+                            icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
+                            color: cellularMonitor.isMonitoring ? .red : .green
+                        ) {
+                            if cellularMonitor.isMonitoring {
+                                cellularMonitor.stopMonitoring()
+                            } else {
+                                cellularMonitor.startMonitoring()
+                            }
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    ActionButton(
-                        title: "Check Now",
-                        icon: "arrow.clockwise",
-                        color: .blue
-                    ) {
-                        cellularMonitor.performSecurityCheck()
+                        
+                        Spacer()
+                        
+                        ActionButton(
+                            title: "Check Now",
+                            icon: "arrow.clockwise",
+                            color: .blue
+                        ) {
+                            cellularMonitor.performSecurityCheck()
+                        }
                     }
                 }
                 .padding()
@@ -119,8 +127,7 @@ struct DashboardView: View {
                     }
                 }
             }
-            .navigationTitle("Dashboard")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarHidden(true)
         }
     }
 }
