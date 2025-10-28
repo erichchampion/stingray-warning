@@ -139,11 +139,11 @@ enum ThreatLevelFilter: CaseIterable {
     var threatLevel: NetworkThreatLevel? {
         switch self {
         case .all: return nil
-        case .none: return .none
-        case .low: return .low
-        case .medium: return .medium
-        case .high: return .high
-        case .critical: return .critical
+        case .none: return NetworkThreatLevel.none
+        case .low: return NetworkThreatLevel.low
+        case .medium: return NetworkThreatLevel.medium
+        case .high: return NetworkThreatLevel.high
+        case .critical: return NetworkThreatLevel.critical
         }
     }
 }

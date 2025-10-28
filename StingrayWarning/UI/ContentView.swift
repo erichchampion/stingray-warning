@@ -66,7 +66,7 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                LazyVStack(spacing: 20) {
                     // Current Status Card
                     CurrentStatusCard()
                     
@@ -81,6 +81,7 @@ struct DashboardView: View {
                 }
                 .padding()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("Stingray Warning")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {

@@ -17,7 +17,7 @@ struct EducationView: View {
                 
                 // Content
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 20) {
+                    LazyVStack(alignment: .leading, spacing: 20) {
                         switch selectedSection {
                         case .whatIsIMSI:
                             WhatIsIMSICatcherView()
@@ -35,6 +35,7 @@ struct EducationView: View {
                     }
                     .padding()
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("Learn")
             .navigationBarTitleDisplayMode(.large)
