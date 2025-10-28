@@ -95,7 +95,7 @@ class UserDefaultsManager {
                     }
                     return
                 }
-                let object = try JSONDecoder().decode(type, from: data)
+                let object = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(object))
                 }
