@@ -100,6 +100,23 @@ struct DashboardView: View {
 struct CurrentStatusCard: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
     
+    private func userFriendlyTechnologyName(_ technology: String?) -> String {
+        guard let tech = technology else { return "Unknown" }
+        
+        switch tech {
+        case "CTRadioAccessTechnologyGPRS", "CTRadioAccessTechnologyEdge":
+            return "2G"
+        case "CTRadioAccessTechnologyWCDMA", "CTRadioAccessTechnologyHSDPA", "CTRadioAccessTechnologyHSUPA", "CTRadioAccessTechnologyCDMA1x", "CTRadioAccessTechnologyCDMAEVDORev0", "CTRadioAccessTechnologyCDMAEVDORevA", "CTRadioAccessTechnologyCDMAEVDORevB", "CTRadioAccessTechnologyeHRPD":
+            return "3G"
+        case "CTRadioAccessTechnologyLTE":
+            return "4G LTE"
+        case "CTRadioAccessTechnologyNRNSA", "CTRadioAccessTechnologyNR":
+            return "5G"
+        default:
+            return tech.replacingOccurrences(of: "CTRadioAccessTechnology", with: "")
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -113,9 +130,19 @@ struct CurrentStatusCard: View {
             
             if let networkInfo = cellularMonitor.currentNetworkInfo {
                 VStack(alignment: .leading, spacing: 8) {
-                    StatusRow(label: "Technology", value: networkInfo.radioTechnology ?? "Unknown")
-                    StatusRow(label: "Carrier", value: "Not Available (iOS 16+)")
-                    StatusRow(label: "MCC/MNC", value: "Not Available (iOS 16+)")
+                    StatusRow(label: "Technology", value: userFriendlyTechnologyName(networkInfo.radioTechnology))
+                    
+                    // Full-width technical details row
+                    HStack {
+                        Text("Technical Details")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text(networkInfo.radioTechnology ?? "Unknown")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                    }
                 }
             } else {
                 Text("No network information available")
