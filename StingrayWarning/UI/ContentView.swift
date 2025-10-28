@@ -130,11 +130,11 @@ struct CurrentStatusCard: View {
             
             if let networkInfo = cellularMonitor.currentNetworkInfo {
                 VStack(alignment: .leading, spacing: 8) {
-                    StatusRow(label: "Technology", value: userFriendlyTechnologyName(networkInfo.radioTechnology))
+                    StatusRow(label: "Tech", value: userFriendlyTechnologyName(networkInfo.radioTechnology))
                     
                     // Full-width technical details row
                     HStack {
-                        Text("Technical Details")
+                        Text("Details")
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Spacer()
