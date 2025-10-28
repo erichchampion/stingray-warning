@@ -10,6 +10,23 @@ struct EventHistoryView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                // Export and Clear buttons (pinned at top)
+                HStack {
+                    Button("Export") {
+                        showingExportSheet = true
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Spacer()
+                    
+                    Button("Clear", role: .destructive) {
+                        showingClearAlert = true
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding()
+                .background(Color(.systemGray6))
+                
                 // Filter Controls
                 VStack(spacing: 12) {
                     // Threat Level Filter
@@ -31,40 +48,39 @@ struct EventHistoryView: View {
                 .padding()
                 .background(Color(.systemGray6))
                 
-                // Statistics Summary
-                StatisticsSummaryView(
-                    events: filteredEvents,
-                    timeRange: selectedTimeRange
-                )
-                .padding(.horizontal)
-                
-                // Events List
-                if filteredEvents.isEmpty {
-                    EmptyStateView()
-                } else {
-                    List(filteredEvents) { event in
-                        EventRowView(event: event)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button("Delete", role: .destructive) {
-                                    deleteEvent(event)
+                // Main Content
+                GeometryReader { geometry in
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            // Statistics Summary
+                            StatisticsSummaryView(
+                                events: filteredEvents,
+                                timeRange: selectedTimeRange
+                            )
+                            
+                            // Events List
+                            if filteredEvents.isEmpty {
+                                EmptyStateView()
+                            } else {
+                                LazyVStack(spacing: 8) {
+                                    ForEach(filteredEvents) { event in
+                                        EventRowView(event: event)
+                                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                                Button("Delete", role: .destructive) {
+                                                    deleteEvent(event)
+                                                }
+                                            }
+                                    }
                                 }
                             }
+                        }
+                        .padding()
+                        .frame(minHeight: geometry.size.height)
                     }
-                    .listStyle(PlainListStyle())
                 }
             }
             .navigationTitle("Event History")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button("Export") {
-                        showingExportSheet = true
-                    }
-                    
-                    Button("Clear", role: .destructive) {
-                        showingClearAlert = true
-                    }
-                }
-            }
+            .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingExportSheet) {
                 ExportDataView(eventStore: eventStore)
             }

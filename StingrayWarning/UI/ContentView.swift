@@ -65,36 +65,54 @@ struct DashboardView: View {
     
     var body: some View {
         NavigationStack {
-            GeometryReader { geometry in
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        // Current Status Card
-                        CurrentStatusCard()
-                        
-                        // Threat Level Indicator
-                        ThreatLevelCard()
-                        
-                        // Quick Actions
-                        QuickActionsCard()
-                        
-                        // Recent Events
-                        RecentEventsCard()
+            VStack(spacing: 0) {
+                // Quick Actions Bar (pinned at top)
+                HStack(spacing: 12) {
+                    ActionButton(
+                        title: cellularMonitor.isMonitoring ? "Stop" : "Start",
+                        icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
+                        color: cellularMonitor.isMonitoring ? .red : .green
+                    ) {
+                        if cellularMonitor.isMonitoring {
+                            cellularMonitor.stopMonitoring()
+                        } else {
+                            cellularMonitor.startMonitoring()
+                        }
                     }
-                    .padding()
-                    .frame(minHeight: geometry.size.height)
-                }
-            }
-            .navigationTitle("Stingray Warning")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    
+                    ActionButton(
+                        title: "Check Now",
+                        icon: "arrow.clockwise",
+                        color: .blue
+                    ) {
                         cellularMonitor.performSecurityCheck()
-                    }) {
-                        Image(systemName: "arrow.clockwise")
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
+                .background(Color(.systemGray6))
+                
+                // Main Content
+                GeometryReader { geometry in
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            // Current Status Card
+                            CurrentStatusCard()
+                            
+                            // Threat Level Indicator
+                            ThreatLevelCard()
+                            
+                            // Recent Events
+                            RecentEventsCard()
+                        }
+                        .padding()
+                        .frame(minHeight: geometry.size.height)
                     }
                 }
             }
+            .navigationTitle("Dashboard")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
@@ -216,55 +234,6 @@ struct ThreatLevelCard: View {
     }
 }
 
-struct QuickActionsCard: View {
-    @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
-    @EnvironmentObject var notificationManager: NotificationManager
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Image(systemName: "bolt")
-                    .foregroundColor(.blue)
-                Text("Quick Actions")
-                    .font(.headline)
-                Spacer()
-            }
-            
-            HStack(spacing: 12) {
-                ActionButton(
-                    title: cellularMonitor.isMonitoring ? "Stop" : "Start",
-                    icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
-                    color: cellularMonitor.isMonitoring ? .red : .green
-                ) {
-                    if cellularMonitor.isMonitoring {
-                        cellularMonitor.stopMonitoring()
-                    } else {
-                        cellularMonitor.startMonitoring()
-                    }
-                }
-                
-                ActionButton(
-                    title: "Check Now",
-                    icon: "arrow.clockwise",
-                    color: .blue
-                ) {
-                    cellularMonitor.performSecurityCheck()
-                }
-                
-                ActionButton(
-                    title: "Settings",
-                    icon: "gear",
-                    color: .gray
-                ) {
-                    // Navigate to settings
-                }
-            }
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-}
 
 struct RecentEventsCard: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
