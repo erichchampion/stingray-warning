@@ -21,6 +21,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     private var recentEvents: [NetworkEvent] = []
     private var activeAnomalies: [NetworkAnomaly] = []
     private weak var eventStore: EventStore?
+    private weak var backgroundTaskManager: BackgroundTaskManager?
     private var hasStartedMonitoring = false // Track if monitoring has actually been started
     
     private let maxRecentEvents = 100
@@ -39,6 +40,11 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     /// Set the event store reference
     func setEventStore(_ store: EventStore) {
         self.eventStore = store
+    }
+    
+    /// Set the background task manager reference
+    func setBackgroundTaskManager(_ manager: BackgroundTaskManager) {
+        self.backgroundTaskManager = manager
     }
     
     // MARK: - Public Methods
@@ -68,7 +74,8 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         isMonitoring = false
         hasStartedMonitoring = false
         saveMonitoringState()
-        // Cancel any scheduled checks
+        // Stop background monitoring
+        backgroundTaskManager?.stopBackgroundMonitoring()
     }
     
     /// Check if monitoring should be automatically started based on persistent state
@@ -131,7 +138,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     private func schedulePeriodicChecks() {
         // Schedule background task for periodic monitoring
-        // This would be implemented with BGTaskScheduler
+        backgroundTaskManager?.startBackgroundMonitoring()
     }
     
     private func createNetworkEvent() -> NetworkEvent {

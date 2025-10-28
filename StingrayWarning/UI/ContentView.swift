@@ -48,6 +48,7 @@ struct ContentView: View {
     private func setupApp() {
         // Set up background task manager
         backgroundTaskManager.setCellularMonitor(cellularMonitor)
+        cellularMonitor.setBackgroundTaskManager(backgroundTaskManager)
         
         // Set up event store
         cellularMonitor.setEventStore(eventStore)
