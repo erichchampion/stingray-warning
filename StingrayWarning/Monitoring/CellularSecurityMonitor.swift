@@ -107,8 +107,9 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     private func restoreMonitoringState() {
-        let wasMonitoring = UserDefaults.standard.bool(forKey: "monitoringEnabled")
-        isMonitoring = wasMonitoring
+        // Don't set isMonitoring here - let startMonitoring() handle it
+        // This just restores the preference, not the actual monitoring state
+        _ = UserDefaults.standard.bool(forKey: "monitoringEnabled")
     }
     
     private func performInitialCheck() {
