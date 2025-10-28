@@ -1,116 +1,110 @@
 {
   "images" : [
     {
-      "filename" : "20@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
-      "size" : "20x20"
+      "size" : "20x20",
+      "filename" : "stingray-warning-40x40.png"
     },
     {
-      "filename" : "20@3x.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "20x20"
-    },
-    {
-      "filename" : "29@2x.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "29x29"
-    },
-    {
-      "filename" : "29@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
-      "size" : "29x29"
+      "size" : "20x20",
+      "filename" : "stingray-warning-60x60.png"
     },
     {
-      "filename" : "40@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
-      "size" : "40x40"
+      "size" : "29x29",
+      "filename" : "stingray-warning-58x58.png"
     },
     {
-      "filename" : "40@3x.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "40x40"
-    },
-    {
-      "filename" : "60@2x.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "60x60"
-    },
-    {
-      "filename" : "60@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
-      "size" : "60x60"
+      "size" : "29x29",
+      "filename" : "stingray-warning-87x87.png"
     },
     {
-      "filename" : "20.png",
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "size" : "40x40",
+      "filename" : "stingray-warning-80x80.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "size" : "40x40",
+      "filename" : "stingray-warning-120x120.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "size" : "60x60",
+      "filename" : "stingray-warning-120x120.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "size" : "60x60",
+      "filename" : "stingray-warning-180x180.png"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
-      "size" : "20x20"
+      "size" : "20x20",
+      "filename" : "stingray-warning-20x20.png"
     },
     {
-      "filename" : "20@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
-      "size" : "20x20"
+      "size" : "20x20",
+      "filename" : "stingray-warning-40x40.png"
     },
     {
-      "filename" : "29.png",
       "idiom" : "ipad",
       "scale" : "1x",
-      "size" : "29x29"
+      "size" : "29x29",
+      "filename" : "stingray-warning-29x29.png"
     },
     {
-      "filename" : "29@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
-      "size" : "29x29"
+      "size" : "29x29",
+      "filename" : "stingray-warning-58x58.png"
     },
     {
-      "filename" : "40.png",
       "idiom" : "ipad",
       "scale" : "1x",
-      "size" : "40x40"
+      "size" : "40x40",
+      "filename" : "stingray-warning-40x40.png"
     },
     {
-      "filename" : "40@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
-      "size" : "40x40"
+      "size" : "40x40",
+      "filename" : "stingray-warning-80x80.png"
     },
     {
-      "filename" : "76.png",
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "76x76"
-    },
-    {
-      "filename" : "76@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
-      "size" : "76x76"
+      "size" : "76x76",
+      "filename" : "stingray-warning-152x152.png"
     },
     {
-      "filename" : "83.5@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
-      "size" : "83.5x83.5"
+      "size" : "83.5x83.5",
+      "filename" : "stingray-warning-167x167.png"
     },
     {
-      "filename" : "1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
-      "size" : "1024x1024"
+      "size" : "1024x1024",
+      "filename" : "stingray-warning-1024x1024.png"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
   }
-}
+} 
