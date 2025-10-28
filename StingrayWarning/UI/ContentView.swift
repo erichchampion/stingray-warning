@@ -56,6 +56,17 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                // Dashboard Heading (fixed at top)
+                HStack {
+                    Text("Dashboard")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                    Spacer()
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                
                 // Quick Actions Bar (pinned at top)
                 HStack {
                     ActionButton(
