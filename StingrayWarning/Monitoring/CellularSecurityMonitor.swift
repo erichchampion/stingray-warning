@@ -159,7 +159,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         }
         
         // Check against baseline
-        if let baseline = baselineData, !matchesBaseline(radioTechnology: radioTechnology, carrierInfo: carrierInfo) {
+        if baselineData != nil, !matchesBaseline(radioTechnology: radioTechnology, carrierInfo: carrierInfo) {
             threatScore += 1
         }
         

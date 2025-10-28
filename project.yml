@@ -1,6 +1,6 @@
 name: StingrayWarning
 options:
-  bundleIdPrefix: com.yourdomain
+  bundleIdPrefix: us.defroster
   deploymentTarget:
     iOS: "14.0"
   developmentLanguage: en
@@ -14,13 +14,17 @@ targets:
     sources:
       - StingrayWarning
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.stingraywarning
+      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarning
       PRODUCT_NAME: Stingray Warning
       DISPLAY_NAME: Stingray Warning
       INFOPLIST_FILE: StingrayWarning/Resources/Info.plist
       SWIFT_VERSION: "5.0"
       CODE_SIGN_STYLE: Automatic
       DEVELOPMENT_TEAM: ""
+      LSApplicationCategoryType: public.app-category.utilities
+      UISupportedInterfaceOrientations: ["UIInterfaceOrientationPortrait", "UIInterfaceOrientationLandscapeLeft", "UIInterfaceOrientationLandscapeRight"]
+      UISupportedInterfaceOrientations~ipad: ["UIInterfaceOrientationPortrait", "UIInterfaceOrientationPortraitUpsideDown", "UIInterfaceOrientationLandscapeLeft", "UIInterfaceOrientationLandscapeRight"]
+      UILaunchStoryboardName: LaunchScreen
     frameworks:
       - CoreTelephony
       - UserNotifications
