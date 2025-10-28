@@ -1,0 +1,53 @@
+name: StingrayWarning
+options:
+  bundleIdPrefix: com.yourdomain
+  deploymentTarget:
+    iOS: "14.0"
+  developmentLanguage: en
+  xcodeVersion: "15.0"
+
+targets:
+  StingrayWarning:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.0"
+    sources:
+      - StingrayWarning
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.stingraywarning
+      PRODUCT_NAME: Stingray Warning
+      DISPLAY_NAME: Stingray Warning
+      INFOPLIST_FILE: StingrayWarning/Resources/Info.plist
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: ""
+    frameworks:
+      - CoreTelephony
+      - UserNotifications
+      - CoreLocation
+      - BackgroundTasks
+    info:
+      path: StingrayWarning/Resources/Info.plist
+      properties:
+        UIBackgroundModes:
+          - processing
+          - fetch
+        NSUserTrackingUsageDescription: "This app monitors cellular network security to detect potential IMSI catchers and other threats."
+        NSLocationWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
+
+schemes:
+  StingrayWarning:
+    build:
+      targets:
+        StingrayWarning: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
