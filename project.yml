@@ -39,6 +39,16 @@ targets:
         UIBackgroundModes:
           - processing
           - fetch
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UILaunchStoryboardName: LaunchScreen
         NSUserTrackingUsageDescription: "This app monitors cellular network security to detect potential IMSI catchers and other threats."
         NSLocationWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
         NSLocationAlwaysAndWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
