@@ -1,0 +1,91 @@
+import Foundation
+import CoreTelephony
+
+/// Represents a network detection event
+struct NetworkEvent: Codable, Identifiable {
+    let id: UUID
+    let timestamp: Date
+    let radioTechnology: String?
+    let carrierName: String?
+    let carrierCountryCode: String?
+    let carrierMobileCountryCode: String?
+    let carrierMobileNetworkCode: String?
+    let threatLevel: NetworkThreatLevel
+    let description: String
+    let locationContext: LocationContext?
+    
+    init(
+        radioTechnology: String? = nil,
+        carrierName: String? = nil,
+        carrierCountryCode: String? = nil,
+        carrierMobileCountryCode: String? = nil,
+        carrierMobileNetworkCode: String? = nil,
+        threatLevel: NetworkThreatLevel,
+        description: String,
+        locationContext: LocationContext? = nil
+    ) {
+        self.id = UUID()
+        self.timestamp = Date()
+        self.radioTechnology = radioTechnology
+        self.carrierName = carrierName
+        self.carrierCountryCode = carrierCountryCode
+        self.carrierMobileCountryCode = carrierMobileCountryCode
+        self.carrierMobileNetworkCode = carrierMobileNetworkCode
+        self.threatLevel = threatLevel
+        self.description = description
+        self.locationContext = locationContext
+    }
+    
+    /// Human-readable summary of the event
+    var summary: String {
+        var components: [String] = []
+        
+        if let tech = radioTechnology {
+            components.append("Technology: \(tech)")
+        }
+        
+        if let carrier = carrierName {
+            components.append("Carrier: \(carrier)")
+        }
+        
+        if let mcc = carrierMobileCountryCode, let mnc = carrierMobileNetworkCode {
+            components.append("MCC/MNC: \(mcc)/\(mnc)")
+        }
+        
+        components.append("Threat: \(threatLevel.description)")
+        
+        return components.joined(separator: " • ")
+    }
+    
+    /// Whether this event represents a 2G connection
+    var is2GConnection: Bool {
+        guard let tech = radioTechnology else { return false }
+        return tech.contains("2G") || tech.contains("GSM") || tech.contains("EDGE")
+    }
+    
+    /// Whether this event represents a suspicious carrier
+    var isSuspiciousCarrier: Bool {
+        // This would be expanded with carrier validation logic
+        return carrierName == nil || carrierName?.isEmpty == true
+    }
+}
+
+/// Location context for network events
+struct LocationContext: Codable {
+    let latitude: Double?
+    let longitude: Double?
+    let accuracy: Double?
+    let timestamp: Date
+    
+    init(latitude: Double? = nil, longitude: Double? = nil, accuracy: Double? = nil) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.accuracy = accuracy
+        self.timestamp = Date()
+    }
+    
+    /// Whether location data is available
+    var hasLocation: Bool {
+        return latitude != nil && longitude != nil
+    }
+}
