@@ -70,15 +70,15 @@
   ```
 
 ### 2.3 Add Notification Observer
-- [ ] Register for `CTServiceRadioAccessTechnologyDidChangeNotification`
-- [ ] Implement notification handler to log changes
+- [x] Register for `CTServiceRadioAccessTechnologyDidChangeNotification`
+- [x] Implement notification handler to log changes
 - [ ] Add debouncing logic to prevent notification spam
 - [ ] Track change frequency (count changes per time window)
 
 ### 2.4 Implement Baseline Learning
-- [ ] Create method to establish normal network behavior
-- [ ] Store baseline data (expected carriers, typical tech changes)
-- [ ] Implement comparison logic for anomaly detection
+- [x] Create method to establish normal network behavior
+- [x] Store baseline data (expected carriers, typical tech changes)
+- [x] Implement comparison logic for anomaly detection
 - [ ] Add UserDefaults persistence for learned baselines
 
 ## Phase 3: Background Monitoring
@@ -105,39 +105,39 @@
 ## Phase 4: Alert System
 
 ### 4.1 Local Notifications
-- [ ] Create `NotificationManager.swift`
-- [ ] Request notification permissions on first launch
-- [ ] Implement notification templates for different threat levels
-- [ ] Add notification actions (Dismiss, View Details)
+- [x] Create `NotificationManager.swift`
+- [x] Request notification permissions on first launch
+- [x] Implement notification templates for different threat levels
+- [x] Add notification actions (Dismiss, View Details)
 - [ ] Implement notification throttling (max 1 per hour for Low, immediate for High)
 
 ### 4.2 Alert Content
-- [ ] Design notification text for 2G detection
-- [ ] Design notification text for rapid network changes
-- [ ] Design notification text for carrier anomalies
-- [ ] Add educational content explaining the threat
-- [ ] Include timestamp and location context
+- [x] Design notification text for 2G detection
+- [x] Design notification text for rapid network changes
+- [x] Design notification text for carrier anomalies
+- [x] Add educational content explaining the threat
+- [x] Include timestamp and location context
 
 ### 4.3 In-App Alerts
-- [ ] Create custom alert view controller
-- [ ] Show detailed threat information
+- [x] Create custom alert view controller
+- [x] Show detailed threat information
 - [ ] Add "Learn More" educational content
 - [ ] Implement alert history view
 
 ## Phase 5: User Interface
 
 ### 5.1 Main Dashboard
-- [ ] Create `DashboardViewController.swift`
-- [ ] Show current network status (carrier, technology, signal)
-- [ ] Display current threat level with color coding
-- [ ] Add "Last checked" timestamp
-- [ ] Show count of anomalies detected today/week
+- [x] Create `DashboardViewController.swift`
+- [x] Show current network status (carrier, technology, signal)
+- [x] Display current threat level with color coding
+- [x] Add "Last checked" timestamp
+- [x] Show count of anomalies detected today/week
 
 ### 5.2 Current Status View
-- [ ] Display current radio technology (2G/3G/4G/5G)
-- [ ] Show carrier name and MCC/MNC codes
-- [ ] Add visual indicator (green = safe, yellow = caution, red = threat)
-- [ ] Display real-time monitoring status (Active/Paused)
+- [x] Display current radio technology (2G/3G/4G/5G)
+- [x] Show carrier name and MCC/MNC codes
+- [x] Add visual indicator (green = safe, yellow = caution, red = threat)
+- [x] Display real-time monitoring status (Active/Paused)
 
 ### 5.3 Event History View
 - [ ] Create `EventHistoryViewController.swift`
