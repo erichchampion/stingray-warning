@@ -2,7 +2,7 @@ name: StingrayWarning
 options:
   bundleIdPrefix: us.defroster
   deploymentTarget:
-    iOS: "14.0"
+    iOS: "16.0"
   developmentLanguage: en
   xcodeVersion: "15.0"
 
@@ -10,7 +10,7 @@ targets:
   StingrayWarning:
     type: application
     platform: iOS
-    deploymentTarget: "14.0"
+    deploymentTarget: "16.0"
     sources:
       - StingrayWarning
     settings:

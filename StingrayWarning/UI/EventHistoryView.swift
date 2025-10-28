@@ -83,8 +83,8 @@ struct EventHistoryView: View {
         var events = eventStore.events
         
         // Filter by threat level
-        if selectedFilter != .all {
-            events = events.filter { $0.threatLevel == selectedFilter.threatLevel }
+        if selectedFilter != .all, let threatLevel = selectedFilter.threatLevel {
+            events = events.filter { $0.threatLevel == threatLevel }
         }
         
         // Filter by time range
@@ -251,11 +251,9 @@ struct EventRowView: View {
             Text(event.description)
                 .font(.body)
             
-            if let summary = event.summary {
-                Text(summary)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+            Text(event.summary)
+                .font(.caption)
+                .foregroundColor(.secondary)
             
             if event.is2GConnection {
                 HStack {
