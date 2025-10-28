@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 /// Centralized constants for the Stingray Warning app
 struct AppConstants {

@@ -24,22 +24,6 @@ enum NetworkThreatLevel: String, CaseIterable, Codable {
         }
     }
     
-    /// Color representation for UI display
-    var color: String {
-        switch self {
-        case .none:
-            return "green"
-        case .low:
-            return "yellow"
-        case .medium:
-            return "orange"
-        case .high:
-            return "red"
-        case .critical:
-            return "purple"
-        }
-    }
-    
     /// Priority score for sorting and alerting
     var priority: Int {
         switch self {

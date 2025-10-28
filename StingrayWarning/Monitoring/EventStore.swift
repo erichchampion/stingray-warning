@@ -239,12 +239,12 @@ class EventStore: ObservableObject {
     }
     
     private func cleanupOldEvents() {
-        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * AppConstants.TimeIntervals.day))
+        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays) * AppConstants.TimeIntervals.day)
         events.removeAll { $0.timestamp < cutoffDate }
     }
     
     private func cleanupOldAnomalies() {
-        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays * AppConstants.TimeIntervals.day))
+        let cutoffDate = Date().addingTimeInterval(-TimeInterval(eventRetentionDays) * AppConstants.TimeIntervals.day)
         anomalies.removeAll { $0.startTime < cutoffDate }
     }
     

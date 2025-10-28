@@ -109,7 +109,7 @@ struct ProtectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // How App Protects Section
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "How This App Protects You",
                 icon: "shield.checkered",
                 color: .blue
@@ -160,7 +160,7 @@ struct ProtectionView: View {
             }
             
             // Detection Types Section
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "Detection Types",
                 icon: "magnifyingglass",
                 color: .green
@@ -188,7 +188,7 @@ struct ProtectionView: View {
             }
             
             // Limitations Section
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "App Limitations",
                 icon: "exclamationmark.triangle",
                 color: .orange
@@ -238,7 +238,7 @@ struct BestPracticesView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Security Best Practices Section
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "Security Best Practices",
                 icon: "checkmark.shield",
                 color: .green
@@ -290,7 +290,7 @@ struct BestPracticesView: View {
             }
             
             // Additional Resources Section
-            EducationHeader(
+            SharedUIComponents.EducationHeader(
                 title: "Additional Resources",
                 icon: "book",
                 color: .blue

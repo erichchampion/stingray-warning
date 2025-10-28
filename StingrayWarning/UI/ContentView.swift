@@ -158,7 +158,7 @@ struct CurrentStatusCard: View {
                 Image(systemName: "antenna.radiowaves.left.and.right")
                     .foregroundColor(.blue)
                 Spacer()
-                SharedUIComponents.StatusIndicator(isActive: cellularMonitor.isMonitoring)
+                SharedUIComponents.StatusIndicator(isActive: cellularMonitor.isMonitoring, title: cellularMonitor.isMonitoring ? "Active" : "Inactive")
             }
             
             if let networkInfo = cellularMonitor.currentNetworkInfo {
