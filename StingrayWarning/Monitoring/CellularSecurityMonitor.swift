@@ -51,6 +51,18 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         self.backgroundTaskManager = manager
     }
     
+    // MARK: - Internal Methods (for testing)
+    
+    #if DEBUG
+    internal var testEventStore: EventStore? {
+        return self.eventStore
+    }
+    
+    internal var testBackgroundTaskManager: BackgroundTaskManager? {
+        return self.backgroundTaskManager
+    }
+    #endif
+    
     // MARK: - Public Methods
     
     /// Start monitoring cellular network security

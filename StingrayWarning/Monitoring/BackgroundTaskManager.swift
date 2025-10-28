@@ -14,7 +14,8 @@ class BackgroundTaskManager: ObservableObject {
     private weak var cellularMonitor: CellularSecurityMonitor?
     
     init() {
-        registerBackgroundTasks()
+        // Note: Background task registration is deferred until explicitly requested
+        // This allows the manager to be instantiated during tests without errors
     }
     
     /// Set the cellular monitor reference
@@ -22,8 +23,16 @@ class BackgroundTaskManager: ObservableObject {
         self.cellularMonitor = monitor
     }
     
+    // MARK: - Internal Methods (for testing)
+    
+    #if DEBUG
+    internal var testCellularMonitor: CellularSecurityMonitor? {
+        return self.cellularMonitor
+    }
+    #endif
+    
     /// Register background tasks with the system
-    private func registerBackgroundTasks() {
+    func registerBackgroundTasks() {
         // Register BGProcessingTask for periodic security checks
         BGTaskScheduler.shared.register(
             forTaskWithIdentifier: backgroundTaskIdentifier,

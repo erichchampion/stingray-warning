@@ -96,8 +96,8 @@ class CellularSecurityMonitorTests: XCTestCase {
         
         // Then: Both events should be stored (threat level changed)
         XCTAssertEqual(mockEventStore.addedEvents.count, 2, "Events with different threat levels should not be filtered")
-        XCTAssertEqual(mockEventStore.addedEvents[0].threatLevel, .none)
-        XCTAssertEqual(mockEventStore.addedEvents[1].threatLevel, .medium)
+        XCTAssertEqual(mockEventStore.addedEvents[0].threatLevel, NetworkThreatLevel.none)
+        XCTAssertEqual(mockEventStore.addedEvents[1].threatLevel, NetworkThreatLevel.medium)
     }
     
     func testShouldNotFilterEvent_WhenFirstEvent_ReturnsFalse() {
@@ -187,24 +187,5 @@ class CellularSecurityMonitorTests: XCTestCase {
             threatLevel: threatLevel,
             description: "Test event with \(radioTechnology ?? "nil") technology and \(threatLevel.description) threat level"
         )
-    }
-}
-
-// MARK: - Mock EventStore
-
-class MockEventStore: EventStore {
-    var addedEvents: [NetworkEvent] = []
-    
-    override func addEvent(_ event: NetworkEvent) {
-        addedEvents.append(event)
-        // Don't call super to avoid UserDefaults persistence in tests
-    }
-    
-    func getAllEvents() -> [NetworkEvent] {
-        return addedEvents
-    }
-    
-    func getEvents(limit: Int) -> [NetworkEvent] {
-        return Array(addedEvents.prefix(limit))
     }
 }

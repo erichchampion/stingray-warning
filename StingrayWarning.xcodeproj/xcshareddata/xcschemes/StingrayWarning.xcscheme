@@ -34,6 +34,20 @@
                ReferencedContainer = "container:StingrayWarning.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B714180062909A559A8F52F3"
+               BuildableName = "Stingray WarningUITests.xctest"
+               BlueprintName = "StingrayWarningUITests"
+               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -51,6 +65,27 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "60A3A4A143F9D28719B78DA4"
+               BuildableName = "Stingray WarningTests.xctest"
+               BlueprintName = "StingrayWarningTests"
+               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B714180062909A559A8F52F3"
+               BuildableName = "Stingray WarningUITests.xctest"
+               BlueprintName = "StingrayWarningUITests"
+               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

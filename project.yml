@@ -36,6 +36,9 @@ targets:
         UIBackgroundModes:
           - processing
           - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - us.defroster.stingraywarning.security-monitoring
+          - us.defroster.stingraywarning.background-refresh
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
@@ -68,16 +71,37 @@ targets:
     dependencies:
       - target: StingrayWarning
 
+  StingrayWarningUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - StingrayWarningUITests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarningUITests
+      PRODUCT_NAME: Stingray WarningUITests
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: KA5A6NN3PD
+      GENERATE_INFOPLIST_FILE: YES
+      TEST_TARGET_NAME: StingrayWarning
+    dependencies:
+      - target: StingrayWarning
+
 schemes:
   StingrayWarning:
     build:
       targets:
         StingrayWarning: all
         StingrayWarningTests: all
+        StingrayWarningUITests: all
     run:
       config: Debug
     test:
       config: Debug
+      targets:
+        - StingrayWarningTests
+        - StingrayWarningUITests
     profile:
       config: Release
     analyze:

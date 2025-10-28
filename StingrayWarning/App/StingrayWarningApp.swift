@@ -23,6 +23,7 @@ struct StingrayWarningApp: App {
     private func setupApp() {
         // Set up background task manager
         backgroundTaskManager.setCellularMonitor(cellularMonitor)
+        backgroundTaskManager.registerBackgroundTasks() // Register background tasks during app launch
         cellularMonitor.setBackgroundTaskManager(backgroundTaskManager)
         
         // Set up event store

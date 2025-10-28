@@ -44,6 +44,10 @@ struct AppConstants {
         static let dataRetentionDays = "dataRetentionDays"
         static let storedNetworkEvents = "StoredNetworkEvents"
         static let storedNetworkAnomalies = "StoredNetworkAnomalies"
+        
+        // Additional keys for testing
+        static let autoStartMonitoring = "autoStartMonitoring"
+        static let enableNotifications = "enableNotifications"
     }
     
     // MARK: - Background Task Identifiers
