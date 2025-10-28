@@ -6,7 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject var backgroundTaskManager: BackgroundTaskManager
     @StateObject private var eventStore = EventStore()
     
-    @AppStorage("monitoringEnabled") private var monitoringEnabled = true
+    // monitoringEnabled is now managed by CellularSecurityMonitor
     @AppStorage("notificationEnabled") private var notificationEnabled = true
     @AppStorage("backgroundMonitoringEnabled") private var backgroundMonitoringEnabled = true
     @AppStorage("sensitivityLevel") private var sensitivityLevel = 2.0 // 1-5 scale
@@ -30,14 +30,16 @@ struct SettingsView: View {
                                     .padding(.horizontal)
                                 
                                 VStack(spacing: 12) {
-                                    Toggle("Enable Monitoring", isOn: $monitoringEnabled)
-                                        .onChange(of: monitoringEnabled) { enabled in
+                                    Toggle("Enable Monitoring", isOn: Binding(
+                                        get: { cellularMonitor.isMonitoring },
+                                        set: { enabled in
                                             if enabled {
                                                 cellularMonitor.startMonitoring()
                                             } else {
                                                 cellularMonitor.stopMonitoring()
                                             }
                                         }
+                                    ))
                                     
                                     Toggle("Background Monitoring", isOn: $backgroundMonitoringEnabled)
                                         .onChange(of: backgroundMonitoringEnabled) { enabled in

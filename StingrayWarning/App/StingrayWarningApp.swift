@@ -20,8 +20,8 @@ struct StingrayWarningApp: App {
         // Request notification permissions
         notificationManager.requestPermissions()
         
-        // Start monitoring if user has granted permissions
-        if notificationManager.hasPermissions {
+        // Start monitoring if it was previously enabled and user has granted permissions
+        if cellularMonitor.shouldAutoStartMonitoring() && notificationManager.hasPermissions {
             cellularMonitor.startMonitoring()
         }
     }

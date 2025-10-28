@@ -32,6 +32,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         setupLocationManager()
         loadBaselineData()
         setupNotificationObserver()
+        restoreMonitoringState()
     }
     
     /// Set the event store reference
@@ -46,6 +47,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         guard !isMonitoring else { return }
         
         isMonitoring = true
+        saveMonitoringState()
         performInitialCheck()
         schedulePeriodicChecks()
     }
@@ -53,7 +55,13 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     /// Stop monitoring cellular network security
     func stopMonitoring() {
         isMonitoring = false
+        saveMonitoringState()
         // Cancel any scheduled checks
+    }
+    
+    /// Check if monitoring should be automatically started based on persistent state
+    func shouldAutoStartMonitoring() -> Bool {
+        return UserDefaults.standard.bool(forKey: "monitoringEnabled")
     }
     
     /// Perform an immediate security check
@@ -92,6 +100,15 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         if let data = try? JSONEncoder().encode(baseline) {
             UserDefaults.standard.set(data, forKey: "NetworkBaseline")
         }
+    }
+    
+    private func saveMonitoringState() {
+        UserDefaults.standard.set(isMonitoring, forKey: "monitoringEnabled")
+    }
+    
+    private func restoreMonitoringState() {
+        let wasMonitoring = UserDefaults.standard.bool(forKey: "monitoringEnabled")
+        isMonitoring = wasMonitoring
     }
     
     private func performInitialCheck() {
