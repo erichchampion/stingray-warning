@@ -1,0 +1,20 @@
+Stingray Warning - Cellular Security Monitor
+
+Protect yourself from cellular surveillance with real-time network monitoring.
+
+KEY FEATURES:
+• Real-time cellular network monitoring
+• 2G network detection and alerts
+• Anomaly detection for suspicious patterns
+• Background monitoring with battery optimization
+• Educational content about cellular security
+
+PRIVACY FIRST:
+• No personal data collection
+• All analysis performed locally
+• No tracking or analytics
+• Open source and transparent
+
+IMPORTANT: This app is designed as a security awareness tool with limitations. It should not be solely relied upon for protection against sophisticated cellular attacks.
+
+Perfect for security-conscious users, journalists, activists, and anyone concerned about cellular privacy.
