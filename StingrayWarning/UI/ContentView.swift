@@ -276,10 +276,6 @@ struct RecentEventsCard: View {
                 Image(systemName: "clock")
                     .foregroundColor(.blue)
                 Spacer()
-                Button("View All") {
-                    // Navigate to history
-                }
-                .font(.caption)
             }
             
             if cellularMonitor.currentNetworkInfo != nil {
