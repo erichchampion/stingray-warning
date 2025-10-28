@@ -52,7 +52,6 @@ class BackgroundTaskManager: ObservableObject {
         
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("Background processing task scheduled")
         } catch {
             print("Failed to schedule background processing: \(error)")
         }
@@ -65,7 +64,6 @@ class BackgroundTaskManager: ObservableObject {
         
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("Background refresh task scheduled")
         } catch {
             print("Failed to schedule background refresh: \(error)")
         }
@@ -73,14 +71,11 @@ class BackgroundTaskManager: ObservableObject {
     
     /// Handle background processing task
     private func handleBackgroundProcessing(task: BGProcessingTask) {
-        print("Background processing task started")
-        
         // Schedule the next task
         scheduleBackgroundProcessing()
         
         // Set expiration handler
         task.expirationHandler = {
-            print("Background processing task expired")
             task.setTaskCompleted(success: false)
         }
         
@@ -88,20 +83,16 @@ class BackgroundTaskManager: ObservableObject {
         performBackgroundSecurityCheck { [weak self] success in
             self?.lastBackgroundExecution = Date()
             task.setTaskCompleted(success: success)
-            print("Background processing task completed: \(success)")
         }
     }
     
     /// Handle background app refresh task
     private func handleBackgroundRefresh(task: BGAppRefreshTask) {
-        print("Background refresh task started")
-        
         // Schedule the next refresh
         scheduleBackgroundRefresh()
         
         // Set expiration handler
         task.expirationHandler = {
-            print("Background refresh task expired")
             task.setTaskCompleted(success: false)
         }
         
@@ -109,7 +100,6 @@ class BackgroundTaskManager: ObservableObject {
         performBackgroundSecurityCheck { [weak self] success in
             self?.lastBackgroundExecution = Date()
             task.setTaskCompleted(success: success)
-            print("Background refresh task completed: \(success)")
         }
     }
     
@@ -133,7 +123,6 @@ class BackgroundTaskManager: ObservableObject {
     func cancelAllBackgroundTasks() {
         BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: backgroundTaskIdentifier)
         BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: backgroundRefreshIdentifier)
-        print("All background tasks cancelled")
     }
     
     /// Check if background app refresh is enabled
@@ -162,19 +151,16 @@ extension BackgroundTaskManager {
     /// Start background monitoring
     func startBackgroundMonitoring() {
         guard isBackgroundAppRefreshEnabled else {
-            print("Background app refresh is not available")
             return
         }
         
         scheduleBackgroundProcessing()
         scheduleBackgroundRefresh()
-        print("Background monitoring started")
     }
     
     /// Stop background monitoring
     func stopBackgroundMonitoring() {
         cancelAllBackgroundTasks()
-        print("Background monitoring stopped")
     }
     
     /// Request background processing time for immediate execution

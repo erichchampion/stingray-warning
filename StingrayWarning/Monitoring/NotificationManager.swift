@@ -169,11 +169,9 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
     
     private func handleEventNotificationTap(eventId: String) {
         // Navigate to event details
-        print("Tapped notification for event: \(eventId)")
     }
     
     private func handleAnomalyNotificationTap(anomalyId: String) {
         // Navigate to anomaly details
-        print("Tapped notification for anomaly: \(anomalyId)")
     }
 }

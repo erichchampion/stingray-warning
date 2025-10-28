@@ -208,7 +208,7 @@ struct SettingsView: View {
                                     
                                     Button("Test Background Task") {
                                         backgroundTaskManager.requestBackgroundProcessingTime { success in
-                                            print("Background task test: \(success)")
+                                            // Background task test completed
                                         }
                                     }
                                 }

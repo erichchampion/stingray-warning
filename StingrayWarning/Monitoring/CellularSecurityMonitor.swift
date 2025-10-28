@@ -140,8 +140,6 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         // Schedule background task for periodic monitoring
         if let bgManager = backgroundTaskManager {
             bgManager.startBackgroundMonitoring()
-        } else {
-            print("Error: Background task manager not available for scheduling periodic checks")
         }
     }
     
