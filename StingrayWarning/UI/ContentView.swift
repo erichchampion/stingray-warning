@@ -3,8 +3,8 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
     @EnvironmentObject var notificationManager: NotificationManager
-    @StateObject private var backgroundTaskManager = BackgroundTaskManager()
-    @StateObject private var eventStore = EventStore()
+    @EnvironmentObject var backgroundTaskManager: BackgroundTaskManager
+    @EnvironmentObject var eventStore: EventStore
     @State private var selectedTab = 0
     
     var body: some View {
@@ -38,25 +38,14 @@ struct ContentView: View {
                 .tag(3)
         }
         .accentColor(.blue)
-        .environmentObject(backgroundTaskManager)
-        .environmentObject(eventStore)
         .onAppear {
             setupApp()
         }
     }
     
     private func setupApp() {
-        // Set up background task manager
-        backgroundTaskManager.setCellularMonitor(cellularMonitor)
-        cellularMonitor.setBackgroundTaskManager(backgroundTaskManager)
-        
-        // Set up event store
-        cellularMonitor.setEventStore(eventStore)
-        
-        // Start background monitoring if enabled
-        if UserDefaults.standard.bool(forKey: "backgroundMonitoringEnabled") {
-            backgroundTaskManager.startBackgroundMonitoring()
-        }
+        // All setup is now handled at the app level in StingrayWarningApp.setupApp()
+        // This method is kept for any future ContentView-specific setup
     }
 }
 
