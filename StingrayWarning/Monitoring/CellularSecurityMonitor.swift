@@ -255,6 +255,14 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     private func processNetworkEvent(_ event: NetworkEvent) {
+        // Check if this event should be filtered out to reduce noise
+        if shouldFilterEvent(event) {
+            // Still update current state for UI, but don't store the event
+            currentNetworkInfo = event
+            currentThreatLevel = event.threatLevel
+            return
+        }
+        
         // Add to recent events
         recentEvents.append(event)
         
@@ -277,6 +285,20 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         if event.threatLevel.requiresNotification {
             sendNotification(for: event)
         }
+    }
+    
+    private func shouldFilterEvent(_ event: NetworkEvent) -> Bool {
+        // Don't store events if they are the same as the previous event and threat level is none
+        guard let lastEvent = recentEvents.last else { return false }
+        
+        // Check if radio technology is the same
+        let sameTechnology = event.radioTechnology == lastEvent.radioTechnology
+        
+        // Check if threat level is none
+        let isNoThreat = event.threatLevel == .none
+        
+        // Filter out if both conditions are true
+        return sameTechnology && isNoThreat
     }
     
     private func detectAnomalies(for event: NetworkEvent) {
