@@ -19,20 +19,14 @@ struct EducationView: View {
                 GeometryReader { geometry in
                     ScrollView {
                         LazyVStack(alignment: .leading, spacing: 20) {
-                            switch selectedSection {
-                            case .whatIsIMSI:
-                                WhatIsIMSICatcherView()
-                            case .howAppProtects:
-                                HowAppProtectsView()
-                            case .limitations:
-                                LimitationsView()
-                            case .detectionTypes:
-                                DetectionTypesView()
-                            case .bestPractices:
-                                BestPracticesView()
-                            case .resources:
-                                ResourcesView()
-                            }
+                        switch selectedSection {
+                        case .whatIsIMSI:
+                            WhatIsIMSICatcherView()
+                        case .protection:
+                            ProtectionView()
+                        case .bestPractices:
+                            BestPracticesView()
+                        }
                         }
                         .padding()
                         .frame(minHeight: geometry.size.height)
@@ -47,20 +41,14 @@ struct EducationView: View {
 
 enum EducationSection: CaseIterable {
     case whatIsIMSI
-    case howAppProtects
-    case limitations
-    case detectionTypes
+    case protection
     case bestPractices
-    case resources
     
     var title: String {
         switch self {
         case .whatIsIMSI: return "IMSI Catchers"
-        case .howAppProtects: return "Protection"
-        case .limitations: return "Limitations"
-        case .detectionTypes: return "Detection"
+        case .protection: return "Protection"
         case .bestPractices: return "Best Practices"
-        case .resources: return "Resources"
         }
     }
 }
@@ -117,9 +105,10 @@ struct WhatIsIMSICatcherView: View {
     }
 }
 
-struct HowAppProtectsView: View {
+struct ProtectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
+            // How App Protects Section
             EducationHeader(
                 title: "How This App Protects You",
                 icon: "shield.checkered",
@@ -169,13 +158,36 @@ struct HowAppProtectsView: View {
             SuccessCard {
                 Text("All analysis is performed locally on your device - no data is sent to external servers.")
             }
-        }
-    }
-}
-
-struct LimitationsView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+            
+            // Detection Types Section
+            EducationHeader(
+                title: "Detection Types",
+                icon: "magnifyingglass",
+                color: .green
+            )
+            
+            ForEach(AnomalyType.allCases, id: \.self) { anomalyType in
+                EducationCard {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(anomalyType.description)
+                            .font(.headline)
+                        Text(anomalyType.detailedDescription)
+                            .font(.body)
+                        
+                        HStack {
+                            Text("Recommended Action:")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        Text(anomalyType.recommendedAction)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            
+            // Limitations Section
             EducationHeader(
                 title: "App Limitations",
                 icon: "exclamationmark.triangle",
@@ -221,42 +233,11 @@ struct LimitationsView: View {
     }
 }
 
-struct DetectionTypesView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            EducationHeader(
-                title: "Detection Types",
-                icon: "magnifyingglass",
-                color: .green
-            )
-            
-            ForEach(AnomalyType.allCases, id: \.self) { anomalyType in
-                EducationCard {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(anomalyType.description)
-                            .font(.headline)
-                        Text(anomalyType.detailedDescription)
-                            .font(.body)
-                        
-                        HStack {
-                            Text("Recommended Action:")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        Text(anomalyType.recommendedAction)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
-}
 
 struct BestPracticesView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
+            // Security Best Practices Section
             EducationHeader(
                 title: "Security Best Practices",
                 icon: "checkmark.shield",
@@ -307,13 +288,8 @@ struct BestPracticesView: View {
             SuccessCard {
                 Text("Remember: Security is about layers of protection, not relying on any single tool.")
             }
-        }
-    }
-}
-
-struct ResourcesView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+            
+            // Additional Resources Section
             EducationHeader(
                 title: "Additional Resources",
                 icon: "book",
@@ -353,17 +329,10 @@ struct ResourcesView: View {
                     Text("Be aware of local laws regarding surveillance detection and reporting. Some jurisdictions have specific regulations about IMSI catcher detection.")
                 }
             }
-            
-            EducationCard {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Contact Information")
-                        .font(.headline)
-                    Text("For technical support or security concerns, please contact the app developer through the App Store.")
-                }
-            }
         }
     }
 }
+
 
 // MARK: - Supporting UI Components
 

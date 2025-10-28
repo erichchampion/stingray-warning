@@ -4,25 +4,20 @@ struct EventHistoryView: View {
     @StateObject private var eventStore = EventStore()
     @State private var selectedFilter: ThreatLevelFilter = .all
     @State private var selectedTimeRange: TimeRange = .day
-    @State private var showingExportSheet = false
     @State private var showingClearAlert = false
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Export and Clear buttons (pinned at top)
-                HStack {
-                    Button("Export") {
-                        showingExportSheet = true
-                    }
-                    .buttonStyle(.bordered)
-                    
-                    Spacer()
-                    
-                    Button("Clear", role: .destructive) {
+                // Clear button (centered under title)
+                VStack(spacing: 16) {
+                    ActionButton(
+                        title: "Clear",
+                        icon: "trash",
+                        color: .red
+                    ) {
                         showingClearAlert = true
                     }
-                    .buttonStyle(.bordered)
                 }
                 .padding()
                 .background(Color(.systemGray6))
@@ -81,9 +76,6 @@ struct EventHistoryView: View {
             }
             .navigationTitle("Event History")
             .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $showingExportSheet) {
-                ExportDataView(eventStore: eventStore)
-            }
             .alert("Clear All Data", isPresented: $showingClearAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button("Clear All", role: .destructive) {
@@ -99,8 +91,8 @@ struct EventHistoryView: View {
         var events = eventStore.events
         
         // Filter by threat level
-        if selectedFilter != .all, let threatLevel = selectedFilter.threatLevel {
-            events = events.filter { $0.threatLevel == threatLevel }
+        if selectedFilter == .threatsOnly {
+            events = events.filter { $0.threatLevel != .none }
         }
         
         // Filter by time range
@@ -114,8 +106,6 @@ struct EventHistoryView: View {
             startDate = now.addingTimeInterval(-86400)
         case .week:
             startDate = now.addingTimeInterval(-604800)
-        case .month:
-            startDate = now.addingTimeInterval(-2592000)
         case .all:
             startDate = Date.distantPast
         }
@@ -135,31 +125,12 @@ struct EventHistoryView: View {
 
 enum ThreatLevelFilter: CaseIterable {
     case all
-    case none
-    case low
-    case medium
-    case high
-    case critical
+    case threatsOnly
     
     var title: String {
         switch self {
         case .all: return "All"
-        case .none: return "None"
-        case .low: return "Low"
-        case .medium: return "Medium"
-        case .high: return "High"
-        case .critical: return "Critical"
-        }
-    }
-    
-    var threatLevel: NetworkThreatLevel? {
-        switch self {
-        case .all: return nil
-        case .none: return NetworkThreatLevel.none
-        case .low: return NetworkThreatLevel.low
-        case .medium: return NetworkThreatLevel.medium
-        case .high: return NetworkThreatLevel.high
-        case .critical: return NetworkThreatLevel.critical
+        case .threatsOnly: return "Threats Only"
         }
     }
 }
@@ -168,7 +139,6 @@ enum TimeRange: CaseIterable {
     case hour
     case day
     case week
-    case month
     case all
     
     var title: String {
@@ -176,7 +146,6 @@ enum TimeRange: CaseIterable {
         case .hour: return "1 Hour"
         case .day: return "1 Day"
         case .week: return "1 Week"
-        case .month: return "1 Month"
         case .all: return "All Time"
         }
     }
@@ -317,139 +286,6 @@ struct EmptyStateView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemBackground))
     }
-}
-
-struct ExportDataView: View {
-    let eventStore: EventStore
-    @Environment(\.dismiss) private var dismiss
-    @State private var exportFormat: ExportFormat = .json
-    @State private var includeAnomalies = true
-    @State private var showingShareSheet = false
-    @State private var exportData: String?
-    
-    enum ExportFormat: CaseIterable {
-        case json
-        case csv
-        
-        var title: String {
-            switch self {
-            case .json: return "JSON"
-            case .csv: return "CSV"
-            }
-        }
-    }
-    
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("Export Options")
-                        .font(.headline)
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Format")
-                            .font(.subheadline)
-                        Picker("Format", selection: $exportFormat) {
-                            ForEach(ExportFormat.allCases, id: \.self) { format in
-                                Text(format.title).tag(format)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-                    
-                    Toggle("Include Anomalies", isOn: $includeAnomalies)
-                    
-                    Text("Export includes all events and anomalies stored locally on your device. No personal information is included.")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding()
-                
-                Spacer()
-                
-                Button("Export Data") {
-                    exportData = generateExportData()
-                    showingShareSheet = true
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(exportData == nil)
-            }
-            .navigationTitle("Export Data")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
-            .sheet(isPresented: $showingShareSheet) {
-                if let data = exportData {
-                    ShareSheet(items: [data])
-                }
-            }
-        }
-    }
-    
-    private func generateExportData() -> String? {
-        switch exportFormat {
-        case .json:
-            return exportAsJSON()
-        case .csv:
-            return exportAsCSV()
-        }
-    }
-    
-    private func exportAsJSON() -> String? {
-        var exportObject: [String: Any] = [:]
-        
-        exportObject["events"] = eventStore.events
-        if includeAnomalies {
-            exportObject["anomalies"] = eventStore.anomalies
-        }
-        exportObject["exportDate"] = Date()
-        exportObject["appVersion"] = "1.0.0"
-        
-        do {
-            let data = try JSONSerialization.data(withJSONObject: exportObject, options: .prettyPrinted)
-            return String(data: data, encoding: .utf8)
-        } catch {
-            print("Failed to export as JSON: \(error)")
-            return nil
-        }
-    }
-    
-    private func exportAsCSV() -> String? {
-        var csv = "Timestamp,Threat Level,Description,Radio Technology,Carrier Name,MCC,MNC,Is 2G,Suspicious Carrier\n"
-        
-        for event in eventStore.events {
-            let row = [
-                ISO8601DateFormatter().string(from: event.timestamp),
-                event.threatLevel.rawValue,
-                "\"\(event.description.replacingOccurrences(of: "\"", with: "\"\""))\"",
-                event.radioTechnology ?? "",
-                event.carrierName ?? "",
-                event.carrierMobileCountryCode ?? "",
-                event.carrierMobileNetworkCode ?? "",
-                event.is2GConnection ? "Yes" : "No",
-                event.isSuspiciousCarrier ? "Yes" : "No"
-            ].joined(separator: ",")
-            
-            csv += row + "\n"
-        }
-        
-        return csv
-    }
-}
-
-struct ShareSheet: UIViewControllerRepresentable {
-    let items: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        UIActivityViewController(activityItems: items, applicationActivities: nil)
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 #Preview {
