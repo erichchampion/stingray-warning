@@ -51,22 +51,30 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     /// Start monitoring cellular network security
     func startMonitoring() {
+        print("🔄 startMonitoring() called - isMonitoring: \(isMonitoring), hasStartedMonitoring: \(hasStartedMonitoring)")
+        
         guard !isMonitoring else { 
+            print("⚠️ Already monitoring, checking if actual monitoring started...")
             // If already monitoring, ensure we have current data
             if !hasStartedMonitoring {
+                print("🔧 Starting actual monitoring (state was restored but monitoring never started)")
                 // Monitoring state was restored but actual monitoring never started
                 hasStartedMonitoring = true
                 performInitialCheck()
                 schedulePeriodicChecks()
+            } else {
+                print("✅ Monitoring already fully started")
             }
             return 
         }
         
+        print("🚀 Starting fresh monitoring...")
         isMonitoring = true
         hasStartedMonitoring = true
         saveMonitoringState()
         performInitialCheck()
         schedulePeriodicChecks()
+        print("✅ Monitoring started successfully")
     }
     
     /// Stop monitoring cellular network security
@@ -137,8 +145,14 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     private func schedulePeriodicChecks() {
+        print("📅 schedulePeriodicChecks() called")
         // Schedule background task for periodic monitoring
-        backgroundTaskManager?.startBackgroundMonitoring()
+        if let bgManager = backgroundTaskManager {
+            print("🔧 Starting background monitoring...")
+            bgManager.startBackgroundMonitoring()
+        } else {
+            print("❌ Background task manager not available!")
+        }
     }
     
     private func createNetworkEvent() -> NetworkEvent {
