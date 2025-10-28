@@ -67,7 +67,7 @@ struct DashboardView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 // Quick Actions Bar (pinned at top)
-                HStack(spacing: 12) {
+                HStack {
                     ActionButton(
                         title: cellularMonitor.isMonitoring ? "Stop" : "Start",
                         icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
@@ -80,6 +80,8 @@ struct DashboardView: View {
                         }
                     }
                     
+                    Spacer()
+                    
                     ActionButton(
                         title: "Check Now",
                         icon: "arrow.clockwise",
@@ -87,11 +89,45 @@ struct DashboardView: View {
                     ) {
                         cellularMonitor.performSecurityCheck()
                     }
-                    
-                    Spacer()
                 }
                 .padding()
                 .background(Color(.systemGray6))
+                
+                // Section Headers (pinned at top)
+                VStack(spacing: 0) {
+                    // Current Status Header
+                    HStack {
+                        Text("Current Status")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Threat Level Header
+                    HStack {
+                        Text("Threat Level")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Recent Activity Header
+                    HStack {
+                        Text("Recent Activity")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                }
                 
                 // Main Content
                 GeometryReader { geometry in
@@ -142,8 +178,6 @@ struct CurrentStatusCard: View {
             HStack {
                 Image(systemName: "antenna.radiowaves.left.and.right")
                     .foregroundColor(.blue)
-                Text("Current Status")
-                    .font(.headline)
                 Spacer()
                 StatusIndicator(isActive: cellularMonitor.isMonitoring)
             }
@@ -189,8 +223,6 @@ struct ThreatLevelCard: View {
             HStack {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(threatColor)
-                Text("Threat Level")
-                    .font(.headline)
                 Spacer()
             }
             
@@ -243,8 +275,6 @@ struct RecentEventsCard: View {
             HStack {
                 Image(systemName: "clock")
                     .foregroundColor(.blue)
-                Text("Recent Activity")
-                    .font(.headline)
                 Spacer()
                 Button("View All") {
                     // Navigate to history

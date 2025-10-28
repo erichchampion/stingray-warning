@@ -19,253 +19,284 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                // Section Headers (pinned at top)
+                VStack(spacing: 0) {
+                    // Monitoring Header
+                    HStack {
+                        Text("Monitoring")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Notifications Header
+                    HStack {
+                        Text("Notifications")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Important Notice Header
+                    HStack {
+                        Text("Important Notice")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Battery & Performance Header
+                    HStack {
+                        Text("Battery & Performance")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Background Tasks Header
+                    HStack {
+                        Text("Background Tasks")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // Data Management Header
+                    HStack {
+                        Text("Data Management")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                    
+                    // About Header
+                    HStack {
+                        Text("About")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(.systemGray6))
+                }
+                
                 // Main Content
                 GeometryReader { geometry in
                     ScrollView {
                         LazyVStack(spacing: 20) {
                             // Monitoring Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Monitoring")
-                                    .font(.headline)
-                                    .padding(.horizontal)
+                            VStack(spacing: 12) {
+                                Toggle("Enable Monitoring", isOn: Binding(
+                                    get: { cellularMonitor.isMonitoring },
+                                    set: { enabled in
+                                        if enabled {
+                                            cellularMonitor.startMonitoring()
+                                        } else {
+                                            cellularMonitor.stopMonitoring()
+                                        }
+                                    }
+                                ))
                                 
-                                VStack(spacing: 12) {
-                                    Toggle("Enable Monitoring", isOn: Binding(
-                                        get: { cellularMonitor.isMonitoring },
-                                        set: { enabled in
-                                            if enabled {
-                                                cellularMonitor.startMonitoring()
-                                            } else {
-                                                cellularMonitor.stopMonitoring()
-                                            }
+                                Toggle("Background Monitoring", isOn: $backgroundMonitoringEnabled)
+                                    .onChange(of: backgroundMonitoringEnabled) { enabled in
+                                        if enabled {
+                                            backgroundTaskManager.startBackgroundMonitoring()
+                                        } else {
+                                            backgroundTaskManager.stopBackgroundMonitoring()
                                         }
-                                    ))
-                                    
-                                    Toggle("Background Monitoring", isOn: $backgroundMonitoringEnabled)
-                                        .onChange(of: backgroundMonitoringEnabled) { enabled in
-                                            if enabled {
-                                                backgroundTaskManager.startBackgroundMonitoring()
-                                            } else {
-                                                backgroundTaskManager.stopBackgroundMonitoring()
-                                            }
-                                        }
-                                    
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        Text("Sensitivity Level")
-                                            .font(.headline)
-                                        HStack {
-                                            Text("Conservative")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                            Slider(value: $sensitivityLevel, in: 1...5, step: 1)
-                                            Text("Aggressive")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        }
-                                        Text(sensitivityDescription)
+                                    }
+                                
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Sensitivity Level")
+                                        .font(.headline)
+                                    HStack {
+                                        Text("Conservative")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        Slider(value: $sensitivityLevel, in: 1...5, step: 1)
+                                        Text("Aggressive")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
+                                    Text(sensitivityDescription)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
                             }
-                            .padding(.horizontal)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
                             
                             // Notifications Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Notifications")
-                                    .font(.headline)
-                                    .padding(.horizontal)
-                                
-                                VStack(spacing: 12) {
-                                    Toggle("Enable Notifications", isOn: $notificationEnabled)
-                                        .onChange(of: notificationEnabled) { enabled in
-                                            if enabled {
-                                                notificationManager.requestPermissions()
-                                            }
-                                        }
-                                    
-                                    if !notificationManager.hasPermissions {
-                                        Button("Grant Notification Permissions") {
+                            VStack(spacing: 12) {
+                                Toggle("Enable Notifications", isOn: $notificationEnabled)
+                                    .onChange(of: notificationEnabled) { enabled in
+                                        if enabled {
                                             notificationManager.requestPermissions()
                                         }
-                                        .foregroundColor(.blue)
                                     }
-                                    
-                                    NavigationLink("Notification Settings") {
-                                        NotificationSettingsView()
+                                
+                                if !notificationManager.hasPermissions {
+                                    Button("Grant Notification Permissions") {
+                                        notificationManager.requestPermissions()
                                     }
+                                    .foregroundColor(.blue)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
+                                
+                                NavigationLink("Notification Settings") {
+                                    NotificationSettingsView()
+                                }
                             }
-                            .padding(.horizontal)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
                             
                             // iOS 16+ Warning Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Important Notice")
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("⚠️ Carrier information is not available in iOS 16+")
                                     .font(.headline)
-                                    .padding(.horizontal)
+                                    .foregroundColor(.orange)
                                 
-                                VStack(alignment: .leading, spacing: 12) {
-                                    Text("⚠️ Carrier information is not available in iOS 16+")
-                                        .font(.headline)
-                                        .foregroundColor(.orange)
-                                    
-                                    Text("Apple has deprecated carrier information APIs in iOS 16+. The app now focuses on radio technology detection (2G/3G/4G/5G) which is still functional for security monitoring.")
-                                        .font(.body)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text("The app will still detect:")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                    
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text("• 2G network connections (high risk)")
-                                        Text("• Rapid technology changes")
-                                        Text("• Network downgrades")
-                                        Text("• Unusual connection patterns")
-                                    }
-                                    .font(.caption)
+                                Text("Apple has deprecated carrier information APIs in iOS 16+. The app now focuses on radio technology detection (2G/3G/4G/5G) which is still functional for security monitoring.")
+                                    .font(.body)
                                     .foregroundColor(.secondary)
+                                
+                                Text("The app will still detect:")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("• 2G network connections (high risk)")
+                                    Text("• Rapid technology changes")
+                                    Text("• Network downgrades")
+                                    Text("• Unusual connection patterns")
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                             }
-                            .padding(.horizontal)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
                             
                             // Battery & Performance Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Battery & Performance")
-                                    .font(.headline)
-                                    .padding(.horizontal)
+                            VStack(spacing: 12) {
+                                Toggle("Battery Optimization", isOn: $batteryOptimizationEnabled)
                                 
-                                VStack(spacing: 12) {
-                                    Toggle("Battery Optimization", isOn: $batteryOptimizationEnabled)
-                                    
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        Text("Data Retention")
-                                            .font(.headline)
-                                        HStack {
-                                            Text("1 day")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                            Slider(value: $dataRetentionDays, in: 1...30, step: 1)
-                                            Text("30 days")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        }
-                                        Text("Keep data for \(Int(dataRetentionDays)) days")
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Data Retention")
+                                        .font(.headline)
+                                    HStack {
+                                        Text("1 day")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        Slider(value: $dataRetentionDays, in: 1...30, step: 1)
+                                        Text("30 days")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
+                                    Text("Keep data for \(Int(dataRetentionDays)) days")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
                             }
-                            .padding(.horizontal)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
                             
                             // Background Tasks Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Background Tasks")
-                                    .font(.headline)
-                                    .padding(.horizontal)
-                                
-                                VStack(spacing: 12) {
-                                    HStack {
-                                        Text("Status")
-                                        Spacer()
-                                        Text(backgroundTaskManager.isBackgroundTaskRegistered ? "Registered" : "Not Registered")
-                                            .foregroundColor(backgroundTaskManager.isBackgroundTaskRegistered ? .green : .red)
-                                    }
-                                    
-                                    HStack {
-                                        Text("Background Refresh")
-                                        Spacer()
-                                        Text(backgroundTaskManager.backgroundRefreshStatusDescription)
-                                            .foregroundColor(backgroundTaskManager.isBackgroundAppRefreshEnabled ? .green : .red)
-                                    }
-                                    
-                                    if let lastExecution = backgroundTaskManager.lastBackgroundExecution {
-                                        HStack {
-                                            Text("Last Execution")
-                                            Spacer()
-                                            Text(lastExecution, style: .relative)
-                                                .foregroundColor(.secondary)
-                                        }
-                                    }
-                                    
-                                    Button("Test Background Task") {
-                                        backgroundTaskManager.requestBackgroundProcessingTime { success in
-                                            print("Background task test: \(success)")
-                                        }
-                                    }
+                            VStack(spacing: 12) {
+                                HStack {
+                                    Text("Status")
+                                    Spacer()
+                                    Text(backgroundTaskManager.isBackgroundTaskRegistered ? "Registered" : "Not Registered")
+                                        .foregroundColor(backgroundTaskManager.isBackgroundTaskRegistered ? .green : .red)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
-                            }
-                            .padding(.horizontal)
-                            
-                            // Data Management Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Data Management")
-                                    .font(.headline)
-                                    .padding(.horizontal)
                                 
-                                VStack(spacing: 12) {
-                                    NavigationLink("Event History") {
-                                        EventHistoryView()
-                                    }
-                                    
-                                    Button("Export Data") {
-                                        exportData()
-                                    }
-                                    
-                                    Button("Clear All Data", role: .destructive) {
-                                        clearAllData()
-                                    }
+                                HStack {
+                                    Text("Background Refresh")
+                                    Spacer()
+                                    Text(backgroundTaskManager.backgroundRefreshStatusDescription)
+                                        .foregroundColor(backgroundTaskManager.isBackgroundAppRefreshEnabled ? .green : .red)
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
-                            }
-                            .padding(.horizontal)
-                            
-                            // About Section
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("About")
-                                    .font(.headline)
-                                    .padding(.horizontal)
                                 
-                                VStack(spacing: 12) {
+                                if let lastExecution = backgroundTaskManager.lastBackgroundExecution {
                                     HStack {
-                                        Text("Version")
+                                        Text("Last Execution")
                                         Spacer()
-                                        Text("1.0.0")
+                                        Text(lastExecution, style: .relative)
                                             .foregroundColor(.secondary)
                                     }
-                                    
-                                    NavigationLink("Privacy Policy") {
-                                        PrivacyPolicyView()
-                                    }
-                                    
-                                    NavigationLink("Terms of Service") {
-                                        TermsOfServiceView()
+                                }
+                                
+                                Button("Test Background Task") {
+                                    backgroundTaskManager.requestBackgroundProcessingTime { success in
+                                        print("Background task test: \(success)")
                                     }
                                 }
-                                .padding()
-                                .background(Color(.systemGray6))
-                                .cornerRadius(12)
                             }
-                            .padding(.horizontal)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                            
+                            // Data Management Section
+                            VStack(spacing: 12) {
+                                NavigationLink("Event History") {
+                                    EventHistoryView()
+                                }
+                                
+                                Button("Export Data") {
+                                    exportData()
+                                }
+                                
+                                Button("Clear All Data", role: .destructive) {
+                                    clearAllData()
+                                }
+                            }
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                            
+                            // About Section
+                            VStack(spacing: 12) {
+                                HStack {
+                                    Text("Version")
+                                    Spacer()
+                                    Text("1.0.0")
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                NavigationLink("Privacy Policy") {
+                                    PrivacyPolicyView()
+                                }
+                                
+                                NavigationLink("Terms of Service") {
+                                    TermsOfServiceView()
+                                }
+                            }
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
                         }
-                        .padding(.vertical)
+                        .padding()
                         .frame(minHeight: geometry.size.height)
                     }
                 }
