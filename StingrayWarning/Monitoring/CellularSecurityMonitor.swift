@@ -21,6 +21,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     private var recentEvents: [NetworkEvent] = []
     private var activeAnomalies: [NetworkAnomaly] = []
     private weak var eventStore: EventStore?
+    private var hasStartedMonitoring = false // Track if monitoring has actually been started
     
     private let maxRecentEvents = 100
     private let anomalyDetectionWindow: TimeInterval = 300 // 5 minutes
@@ -44,9 +45,19 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     /// Start monitoring cellular network security
     func startMonitoring() {
-        guard !isMonitoring else { return }
+        guard !isMonitoring else { 
+            // If already monitoring, ensure we have current data
+            if !hasStartedMonitoring {
+                // Monitoring state was restored but actual monitoring never started
+                hasStartedMonitoring = true
+                performInitialCheck()
+                schedulePeriodicChecks()
+            }
+            return 
+        }
         
         isMonitoring = true
+        hasStartedMonitoring = true
         saveMonitoringState()
         performInitialCheck()
         schedulePeriodicChecks()
@@ -55,6 +66,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     /// Stop monitoring cellular network security
     func stopMonitoring() {
         isMonitoring = false
+        hasStartedMonitoring = false
         saveMonitoringState()
         // Cancel any scheduled checks
     }
@@ -107,9 +119,9 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     private func restoreMonitoringState() {
-        // Don't set isMonitoring here - let startMonitoring() handle it
-        // This just restores the preference, not the actual monitoring state
-        _ = UserDefaults.standard.bool(forKey: "monitoringEnabled")
+        let wasMonitoring = UserDefaults.standard.bool(forKey: "monitoringEnabled")
+        isMonitoring = wasMonitoring
+        // Don't set hasStartedMonitoring here - that will be set when startMonitoring() actually runs
     }
     
     private func performInitialCheck() {
