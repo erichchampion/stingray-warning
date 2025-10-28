@@ -65,23 +65,25 @@ struct DashboardView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    // Current Status Card
-                    CurrentStatusCard()
-                    
-                    // Threat Level Indicator
-                    ThreatLevelCard()
-                    
-                    // Quick Actions
-                    QuickActionsCard()
-                    
-                    // Recent Events
-                    RecentEventsCard()
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        // Current Status Card
+                        CurrentStatusCard()
+                        
+                        // Threat Level Indicator
+                        ThreatLevelCard()
+                        
+                        // Quick Actions
+                        QuickActionsCard()
+                        
+                        // Recent Events
+                        RecentEventsCard()
+                    }
+                    .padding()
+                    .frame(minHeight: geometry.size.height)
                 }
-                .padding()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("Stingray Warning")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {

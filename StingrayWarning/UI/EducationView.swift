@@ -16,26 +16,28 @@ struct EducationView: View {
                 .padding()
                 
                 // Content
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 20) {
-                        switch selectedSection {
-                        case .whatIsIMSI:
-                            WhatIsIMSICatcherView()
-                        case .howAppProtects:
-                            HowAppProtectsView()
-                        case .limitations:
-                            LimitationsView()
-                        case .detectionTypes:
-                            DetectionTypesView()
-                        case .bestPractices:
-                            BestPracticesView()
-                        case .resources:
-                            ResourcesView()
+                GeometryReader { geometry in
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 20) {
+                            switch selectedSection {
+                            case .whatIsIMSI:
+                                WhatIsIMSICatcherView()
+                            case .howAppProtects:
+                                HowAppProtectsView()
+                            case .limitations:
+                                LimitationsView()
+                            case .detectionTypes:
+                                DetectionTypesView()
+                            case .bestPractices:
+                                BestPracticesView()
+                            case .resources:
+                                ResourcesView()
+                            }
                         }
+                        .padding()
+                        .frame(minHeight: geometry.size.height)
                     }
-                    .padding()
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("Learn")
             .navigationBarTitleDisplayMode(.large)
