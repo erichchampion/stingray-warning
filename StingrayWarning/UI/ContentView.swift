@@ -83,54 +83,36 @@ struct DashboardView: View {
                 .padding()
                 .background(Color(.systemGray6))
                 
-                // Section Headers (pinned at top)
-                VStack(spacing: 0) {
-                    // Current Status Header
-                    HStack {
-                        Text("Current Status")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .background(Color(.systemGray6))
-                    
-                    // Threat Level Header
-                    HStack {
-                        Text("Threat Level")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .background(Color(.systemGray6))
-                    
-                    // Recent Activity Header
-                    HStack {
-                        Text("Recent Activity")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .background(Color(.systemGray6))
-                }
-                
                 // Main Content
                 GeometryReader { geometry in
                     ScrollView {
                         LazyVStack(spacing: 20) {
-                            // Current Status Card
-                            CurrentStatusCard()
+                            // Current Status Section
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Current Status")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                
+                                CurrentStatusCard()
+                            }
                             
-                            // Threat Level Indicator
-                            ThreatLevelCard()
+                            // Threat Level Section
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Threat Level")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                
+                                ThreatLevelCard()
+                            }
                             
-                            // Recent Events
-                            RecentEventsCard()
+                            // Recent Activity Section
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Recent Activity")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                
+                                RecentEventsCard()
+                            }
                         }
                         .padding()
                         .frame(minHeight: geometry.size.height)
