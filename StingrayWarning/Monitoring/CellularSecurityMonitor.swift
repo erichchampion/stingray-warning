@@ -254,7 +254,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         return components.joined(separator: " • ")
     }
     
-    private func processNetworkEvent(_ event: NetworkEvent) {
+    func processNetworkEvent(_ event: NetworkEvent) {
         // Check if this event should be filtered out to reduce noise
         if shouldFilterEvent(event) {
             // Still update current state for UI, but don't store the event

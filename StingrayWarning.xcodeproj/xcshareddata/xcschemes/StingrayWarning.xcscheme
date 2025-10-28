@@ -20,6 +20,20 @@
                ReferencedContainer = "container:StingrayWarning.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "60A3A4A143F9D28719B78DA4"
+               BuildableName = "Stingray WarningTests.xctest"
+               BlueprintName = "StingrayWarningTests"
+               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

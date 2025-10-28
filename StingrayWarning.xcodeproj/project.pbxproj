@@ -19,8 +19,19 @@
 		9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */; };
 		ACDA759DCBF9E2EF1A3F9393 /* NetworkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD088A9D4AFD3A1D849E5743 /* NetworkEvent.swift */; };
 		EBD6DD41655DE568B8B8BF5F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3651317AF433E6A99A3128A /* SettingsView.swift */; };
+		F9F8873DBCE3EBF6C8C71665 /* CellularSecurityMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2E50758293E3DBCBCA587D /* CellularSecurityMonitorTests.swift */; };
 		FE3E9538FFDD04C007E267CB /* EventHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE4E08D40677032D627DE6B /* EventHistoryView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C166809BFA839275592A90E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E6E02EBF28640902F39123D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BB59D2C1EB60399A2EECA90;
+			remoteInfo = StingrayWarning;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		22C6ED74E463AF33FFC777E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,8 +43,10 @@
 		907DFC29C03779BCD772FE12 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B31D16F1756C4DC9C0DE53A5 /* NetworkAnomaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAnomaly.swift; sourceTree = "<group>"; };
 		CD79B36D4F563C6D85229EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CEE164819A97352B20EF3C79 /* StingrayWarningTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StingrayWarningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StingrayWarningApp.swift; sourceTree = "<group>"; };
 		DD088A9D4AFD3A1D849E5743 /* NetworkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEvent.swift; sourceTree = "<group>"; };
+		DF2E50758293E3DBCBCA587D /* CellularSecurityMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularSecurityMonitorTests.swift; sourceTree = "<group>"; };
 		E3651317AF433E6A99A3128A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E8A9CDCB81EA2F553A3F76B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA0AF80C7A6D9C26A063234E /* CellularSecurityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularSecurityMonitor.swift; sourceTree = "<group>"; };
@@ -68,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				3E89E1FB530642CCE9CB95EF /* StingrayWarning */,
+				AE7D80AA47D010DEC517A3DE /* StingrayWarningTests */,
 				B2B68A3DD783626C60EB6A5D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,10 +95,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		AE7D80AA47D010DEC517A3DE /* StingrayWarningTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF2E50758293E3DBCBCA587D /* CellularSecurityMonitorTests.swift */,
+			);
+			path = StingrayWarningTests;
+			sourceTree = "<group>";
+		};
 		B2B68A3DD783626C60EB6A5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				FBA60EC00BB209434A555397 /* StingrayWarning.app */,
+				CEE164819A97352B20EF3C79 /* StingrayWarningTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +144,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		60A3A4A143F9D28719B78DA4 /* StingrayWarningTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0CA0914772BE77B6057A12F /* Build configuration list for PBXNativeTarget "StingrayWarningTests" */;
+			buildPhases = (
+				1CC8B7F38A77CF76DB525C70 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2ACC17EF3A8E63E0D146AB1 /* PBXTargetDependency */,
+			);
+			name = StingrayWarningTests;
+			packageProductDependencies = (
+			);
+			productName = StingrayWarningTests;
+			productReference = CEE164819A97352B20EF3C79 /* StingrayWarningTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7BB59D2C1EB60399A2EECA90 /* StingrayWarning */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22A18CEC8B9A8192A2157086 /* Build configuration list for PBXNativeTarget "StingrayWarning" */;
@@ -148,6 +189,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					60A3A4A143F9D28719B78DA4 = {
+						DevelopmentTeam = KA5A6NN3PD;
+						ProvisioningStyle = Automatic;
+					};
 					7BB59D2C1EB60399A2EECA90 = {
 						DevelopmentTeam = KA5A6NN3PD;
 						ProvisioningStyle = Automatic;
@@ -169,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				7BB59D2C1EB60399A2EECA90 /* StingrayWarning */,
+				60A3A4A143F9D28719B78DA4 /* StingrayWarningTests */,
 			);
 		};
 /* End PBXProject section */
@@ -185,6 +231,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1CC8B7F38A77CF76DB525C70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9F8873DBCE3EBF6C8C71665 /* CellularSecurityMonitorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29DEA7E81D4676FF374807D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +259,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2ACC17EF3A8E63E0D146AB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BB59D2C1EB60399A2EECA90 /* StingrayWarning */;
+			targetProxy = C166809BFA839275592A90E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		13A7E9014DC3C61F905CDFD9 /* Debug */ = {
@@ -372,6 +434,50 @@
 			};
 			name = Debug;
 		};
+		A67A8AB797776D4222CEEC9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KA5A6NN3PD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = us.defroster.stingraywarningTests;
+				PRODUCT_NAME = "Stingray WarningTests";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stingray Warning.app/Stingray Warning";
+			};
+			name = Release;
+		};
+		B8499FE6F64ADCF66D728A13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KA5A6NN3PD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = us.defroster.stingraywarningTests;
+				PRODUCT_NAME = "Stingray WarningTests";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stingray Warning.app/Stingray Warning";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -389,6 +495,15 @@
 			buildConfigurations = (
 				13A7E9014DC3C61F905CDFD9 /* Debug */,
 				27B03BF65D56DECBC3998DE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B0CA0914772BE77B6057A12F /* Build configuration list for PBXNativeTarget "StingrayWarningTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8499FE6F64ADCF66D728A13 /* Debug */,
+				A67A8AB797776D4222CEEC9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

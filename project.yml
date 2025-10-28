@@ -50,11 +50,30 @@ targets:
         NSLocationWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
         NSLocationAlwaysAndWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
 
+  StingrayWarningTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - StingrayWarningTests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarningTests
+      PRODUCT_NAME: Stingray WarningTests
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: KA5A6NN3PD
+      GENERATE_INFOPLIST_FILE: YES
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Stingray Warning.app/Stingray Warning
+      BUNDLE_LOADER: $(TEST_HOST)
+    dependencies:
+      - target: StingrayWarning
+
 schemes:
   StingrayWarning:
     build:
       targets:
         StingrayWarning: all
+        StingrayWarningTests: all
     run:
       config: Debug
     test:
