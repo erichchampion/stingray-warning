@@ -3,31 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		05E1D5BB097802013D03402A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C20002072EE7AD830937D1B /* NotificationManager.swift */; };
+		36E2A43DA79D0982F6EDFA30 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B44C7C94AAF207AD15637CD /* EducationView.swift */; };
 		3AEB430C9D031972EC94F392 /* NetworkThreatLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B9B6F1E8047E663AB18D8 /* NetworkThreatLevel.swift */; };
+		445703BAC739B98360210C21 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DFC29C03779BCD772FE12 /* EventStore.swift */; };
 		485985FCC5B30AA80397B5A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9CDCB81EA2F553A3F76B3 /* ContentView.swift */; };
 		498BE4D64D0668149353A892 /* CellularSecurityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0AF80C7A6D9C26A063234E /* CellularSecurityMonitor.swift */; };
 		4AF17BCB67751BF7CFE844D0 /* NetworkAnomaly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31D16F1756C4DC9C0DE53A5 /* NetworkAnomaly.swift */; };
 		55BD03034B2BD8F898B5C163 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C6ED74E463AF33FFC777E4 /* LaunchScreen.storyboard */; };
+		80334BF9458D9AEA0B419E1C /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42C53F47CA932FFB613CAD /* BackgroundTaskManager.swift */; };
 		9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */; };
 		ACDA759DCBF9E2EF1A3F9393 /* NetworkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD088A9D4AFD3A1D849E5743 /* NetworkEvent.swift */; };
+		EBD6DD41655DE568B8B8BF5F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3651317AF433E6A99A3128A /* SettingsView.swift */; };
+		FE3E9538FFDD04C007E267CB /* EventHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE4E08D40677032D627DE6B /* EventHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22C6ED74E463AF33FFC777E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2AE4E08D40677032D627DE6B /* EventHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryView.swift; sourceTree = "<group>"; };
+		2B44C7C94AAF207AD15637CD /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
+		3A42C53F47CA932FFB613CAD /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		5C20002072EE7AD830937D1B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		821B9B6F1E8047E663AB18D8 /* NetworkThreatLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkThreatLevel.swift; sourceTree = "<group>"; };
+		907DFC29C03779BCD772FE12 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B31D16F1756C4DC9C0DE53A5 /* NetworkAnomaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAnomaly.swift; sourceTree = "<group>"; };
 		CD79B36D4F563C6D85229EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StingrayWarningApp.swift; sourceTree = "<group>"; };
 		DD088A9D4AFD3A1D849E5743 /* NetworkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEvent.swift; sourceTree = "<group>"; };
+		E3651317AF433E6A99A3128A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E8A9CDCB81EA2F553A3F76B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA0AF80C7A6D9C26A063234E /* CellularSecurityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularSecurityMonitor.swift; sourceTree = "<group>"; };
-		FBA60EC00BB209434A555397 /* Stingray Warning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stingray Warning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA60EC00BB209434A555397 /* StingrayWarning.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StingrayWarning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -46,7 +56,9 @@
 		698DA8C6687CC6D508FBF9CA /* Monitoring */ = {
 			isa = PBXGroup;
 			children = (
+				3A42C53F47CA932FFB613CAD /* BackgroundTaskManager.swift */,
 				EA0AF80C7A6D9C26A063234E /* CellularSecurityMonitor.swift */,
+				907DFC29C03779BCD772FE12 /* EventStore.swift */,
 				5C20002072EE7AD830937D1B /* NotificationManager.swift */,
 			);
 			path = Monitoring;
@@ -72,7 +84,7 @@
 		B2B68A3DD783626C60EB6A5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FBA60EC00BB209434A555397 /* Stingray Warning.app */,
+				FBA60EC00BB209434A555397 /* StingrayWarning.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				E8A9CDCB81EA2F553A3F76B3 /* ContentView.swift */,
+				2B44C7C94AAF207AD15637CD /* EducationView.swift */,
+				2AE4E08D40677032D627DE6B /* EventHistoryView.swift */,
+				E3651317AF433E6A99A3128A /* SettingsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -121,7 +136,7 @@
 			packageProductDependencies = (
 			);
 			productName = StingrayWarning;
-			productReference = FBA60EC00BB209434A555397 /* Stingray Warning.app */;
+			productReference = FBA60EC00BB209434A555397 /* StingrayWarning.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -134,6 +149,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7BB59D2C1EB60399A2EECA90 = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -148,6 +164,7 @@
 			);
 			mainGroup = A90E7234C4F6635E9FE0CE6A;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -172,12 +189,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80334BF9458D9AEA0B419E1C /* BackgroundTaskManager.swift in Sources */,
 				498BE4D64D0668149353A892 /* CellularSecurityMonitor.swift in Sources */,
 				485985FCC5B30AA80397B5A4 /* ContentView.swift in Sources */,
+				36E2A43DA79D0982F6EDFA30 /* EducationView.swift in Sources */,
+				FE3E9538FFDD04C007E267CB /* EventHistoryView.swift in Sources */,
+				445703BAC739B98360210C21 /* EventStore.swift in Sources */,
 				4AF17BCB67751BF7CFE844D0 /* NetworkAnomaly.swift in Sources */,
 				ACDA759DCBF9E2EF1A3F9393 /* NetworkEvent.swift in Sources */,
 				3AEB430C9D031972EC94F392 /* NetworkThreatLevel.swift in Sources */,
 				05E1D5BB097802013D03402A /* NotificationManager.swift in Sources */,
+				EBD6DD41655DE568B8B8BF5F /* SettingsView.swift in Sources */,
 				9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KA5A6NN3PD;
+				DEVELOPMENT_TEAM = "";
 				DISPLAY_NAME = "Stingray Warning";
 				INFOPLIST_FILE = StingrayWarning/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -325,8 +347,17 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				UILaunchStoryboardName = LaunchScreen;
-				UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				"UISupportedInterfaceOrientations~ipad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				UISupportedInterfaceOrientations = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				"UISupportedInterfaceOrientations~ipad" = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
 			};
 			name = Release;
 		};
@@ -336,7 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KA5A6NN3PD;
+				DEVELOPMENT_TEAM = "";
 				DISPLAY_NAME = "Stingray Warning";
 				INFOPLIST_FILE = StingrayWarning/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -351,8 +382,17 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				UILaunchStoryboardName = LaunchScreen;
-				UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				"UISupportedInterfaceOrientations~ipad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				UISupportedInterfaceOrientations = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
+				"UISupportedInterfaceOrientations~ipad" = (
+					UIInterfaceOrientationPortrait,
+					UIInterfaceOrientationPortraitUpsideDown,
+					UIInterfaceOrientationLandscapeLeft,
+					UIInterfaceOrientationLandscapeRight,
+				);
 			};
 			name = Debug;
 		};

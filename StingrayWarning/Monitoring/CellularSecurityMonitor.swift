@@ -20,6 +20,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     private var baselineData: NetworkBaseline?
     private var recentEvents: [NetworkEvent] = []
     private var activeAnomalies: [NetworkAnomaly] = []
+    private weak var eventStore: EventStore?
     
     private let maxRecentEvents = 100
     private let anomalyDetectionWindow: TimeInterval = 300 // 5 minutes
@@ -31,6 +32,11 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         setupLocationManager()
         loadBaselineData()
         setupNotificationObserver()
+    }
+    
+    /// Set the event store reference
+    func setEventStore(_ store: EventStore) {
+        self.eventStore = store
     }
     
     // MARK: - Public Methods
@@ -224,6 +230,9 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         if recentEvents.count > maxRecentEvents {
             recentEvents.removeFirst(recentEvents.count - maxRecentEvents)
         }
+        
+        // Add to event store
+        eventStore?.addEvent(event)
         
         // Update current state
         currentNetworkInfo = event

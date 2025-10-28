@@ -3,6 +3,8 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
     @EnvironmentObject var notificationManager: NotificationManager
+    @StateObject private var backgroundTaskManager = BackgroundTaskManager()
+    @StateObject private var eventStore = EventStore()
     @State private var selectedTab = 0
     
     var body: some View {
@@ -36,6 +38,24 @@ struct ContentView: View {
                 .tag(3)
         }
         .accentColor(.blue)
+        .environmentObject(backgroundTaskManager)
+        .environmentObject(eventStore)
+        .onAppear {
+            setupApp()
+        }
+    }
+    
+    private func setupApp() {
+        // Set up background task manager
+        backgroundTaskManager.setCellularMonitor(cellularMonitor)
+        
+        // Set up event store
+        cellularMonitor.setEventStore(eventStore)
+        
+        // Start background monitoring if enabled
+        if UserDefaults.standard.bool(forKey: "backgroundMonitoringEnabled") {
+            backgroundTaskManager.startBackgroundMonitoring()
+        }
     }
 }
 
@@ -383,34 +403,6 @@ struct ThreatLevelBadge: View {
     }
 }
 
-// MARK: - Placeholder Views
-
-struct EventHistoryView: View {
-    var body: some View {
-        NavigationView {
-            Text("Event History")
-                .navigationTitle("History")
-        }
-    }
-}
-
-struct SettingsView: View {
-    var body: some View {
-        NavigationView {
-            Text("Settings")
-                .navigationTitle("Settings")
-        }
-    }
-}
-
-struct EducationView: View {
-    var body: some View {
-        NavigationView {
-            Text("Education")
-                .navigationTitle("Learn")
-        }
-    }
-}
 
 #Preview {
     ContentView()

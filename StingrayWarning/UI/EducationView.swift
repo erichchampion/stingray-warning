@@ -1,0 +1,454 @@
+import SwiftUI
+
+struct EducationView: View {
+    @State private var selectedSection: EducationSection = .whatIsIMSI
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Section Picker
+                Picker("Education Section", selection: $selectedSection) {
+                    ForEach(EducationSection.allCases, id: \.self) { section in
+                        Text(section.title).tag(section)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                // Content
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        switch selectedSection {
+                        case .whatIsIMSI:
+                            WhatIsIMSICatcherView()
+                        case .howAppProtects:
+                            HowAppProtectsView()
+                        case .limitations:
+                            LimitationsView()
+                        case .detectionTypes:
+                            DetectionTypesView()
+                        case .bestPractices:
+                            BestPracticesView()
+                        case .resources:
+                            ResourcesView()
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .navigationTitle("Learn")
+            .navigationBarTitleDisplayMode(.large)
+        }
+    }
+}
+
+enum EducationSection: CaseIterable {
+    case whatIsIMSI
+    case howAppProtects
+    case limitations
+    case detectionTypes
+    case bestPractices
+    case resources
+    
+    var title: String {
+        switch self {
+        case .whatIsIMSI: return "IMSI Catchers"
+        case .howAppProtects: return "Protection"
+        case .limitations: return "Limitations"
+        case .detectionTypes: return "Detection"
+        case .bestPractices: return "Best Practices"
+        case .resources: return "Resources"
+        }
+    }
+}
+
+// MARK: - Education Content Views
+
+struct WhatIsIMSICatcherView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "What is an IMSI Catcher?",
+                icon: "antenna.radiowaves.left.and.right",
+                color: .red
+            )
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("IMSI Catcher Definition")
+                        .font(.headline)
+                    Text("An IMSI Catcher (also known as a Stingray, Cell Site Simulator, or Fake Base Station) is a surveillance device that mimics a legitimate cell tower to intercept mobile communications.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("How They Work")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("1. Device broadcasts a stronger signal than nearby towers")
+                        Text("2. Your phone connects to the fake tower")
+                        Text("3. Device intercepts calls, texts, and data")
+                        Text("4. May downgrade your connection to vulnerable protocols")
+                    }
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Common Uses")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• Law enforcement surveillance")
+                        Text("• Corporate espionage")
+                        Text("• Criminal activity monitoring")
+                        Text("• Mass surveillance operations")
+                    }
+                }
+            }
+            
+            WarningCard {
+                Text("IMSI Catchers can intercept your communications, track your location, and compromise your privacy without your knowledge.")
+            }
+        }
+    }
+}
+
+struct HowAppProtectsView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "How This App Protects You",
+                icon: "shield.checkered",
+                color: .blue
+            )
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Real-Time Monitoring")
+                        .font(.headline)
+                    Text("Continuously monitors your cellular connection for suspicious patterns and anomalies that may indicate surveillance equipment.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("2G Detection")
+                        .font(.headline)
+                    Text("Alerts you when connected to 2G networks, which are vulnerable to interception and commonly used by IMSI catchers.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Carrier Validation")
+                        .font(.headline)
+                    Text("Checks for unknown or suspicious carriers that may indicate fake base stations.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Pattern Analysis")
+                        .font(.headline)
+                    Text("Detects unusual network behavior patterns like rapid technology changes that may indicate active surveillance.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Background Monitoring")
+                        .font(.headline)
+                    Text("Runs monitoring in the background to detect threats even when the app isn't actively open.")
+                }
+            }
+            
+            SuccessCard {
+                Text("All analysis is performed locally on your device - no data is sent to external servers.")
+            }
+        }
+    }
+}
+
+struct LimitationsView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "App Limitations",
+                icon: "exclamationmark.triangle",
+                color: .orange
+            )
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Detection Capabilities")
+                        .font(.headline)
+                    Text("This app has significantly limited detection capabilities compared to dedicated SDR (Software Defined Radio) hardware used by security professionals.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Sophisticated Attacks")
+                        .font(.headline)
+                    Text("Advanced IMSI catchers may be undetectable by consumer apps. Professional-grade equipment can mimic legitimate carriers perfectly.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("False Positives")
+                        .font(.headline)
+                    Text("The app may generate false alarms due to legitimate network conditions like poor coverage or carrier maintenance.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("iOS Limitations")
+                        .font(.headline)
+                    Text("iOS restricts access to low-level cellular information, limiting the app's ability to detect sophisticated threats.")
+                }
+            }
+            
+            WarningCard {
+                Text("This app should be used as a security awareness tool, not as your sole protection against surveillance.")
+            }
+        }
+    }
+}
+
+struct DetectionTypesView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "Detection Types",
+                icon: "magnifyingglass",
+                color: .green
+            )
+            
+            ForEach(AnomalyType.allCases, id: \.self) { anomalyType in
+                EducationCard {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(anomalyType.description)
+                            .font(.headline)
+                        Text(anomalyType.detailedDescription)
+                            .font(.body)
+                        
+                        HStack {
+                            Text("Recommended Action:")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        Text(anomalyType.recommendedAction)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct BestPracticesView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "Security Best Practices",
+                icon: "checkmark.shield",
+                color: .green
+            )
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("General Security")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• Use VPN when possible")
+                        Text("• Avoid public WiFi for sensitive activities")
+                        Text("• Keep your device updated")
+                        Text("• Use encrypted messaging apps")
+                        Text("• Be cautious with app permissions")
+                    }
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("When Alerts Occur")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• Switch to airplane mode")
+                        Text("• Move to a different location")
+                        Text("• Avoid sensitive communications")
+                        Text("• Wait for normal network conditions")
+                        Text("• Report suspicious activity if appropriate")
+                    }
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Physical Security")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• Be aware of your surroundings")
+                        Text("• Avoid predictable patterns")
+                        Text("• Use Faraday bags for sensitive devices")
+                        Text("• Consider professional security assessments")
+                    }
+                }
+            }
+            
+            SuccessCard {
+                Text("Remember: Security is about layers of protection, not relying on any single tool.")
+            }
+        }
+    }
+}
+
+struct ResourcesView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            EducationHeader(
+                title: "Additional Resources",
+                icon: "book",
+                color: .blue
+            )
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Technical Resources")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• Electronic Frontier Foundation (EFF)")
+                        Text("• Privacy International")
+                        Text("• GSM Security Research")
+                        Text("• Mobile Security Best Practices")
+                    }
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Professional Tools")
+                        .font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("• SDR-based detection systems")
+                        Text("• Professional security assessments")
+                        Text("• Faraday shielding solutions")
+                        Text("• Encrypted communication tools")
+                    }
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Legal Considerations")
+                        .font(.headline)
+                    Text("Be aware of local laws regarding surveillance detection and reporting. Some jurisdictions have specific regulations about IMSI catcher detection.")
+                }
+            }
+            
+            EducationCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Contact Information")
+                        .font(.headline)
+                    Text("For technical support or security concerns, please contact the app developer through the App Store.")
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Supporting UI Components
+
+struct EducationHeader: View {
+    let title: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(color)
+            Text(title)
+                .font(.title2)
+                .fontWeight(.bold)
+            Spacer()
+        }
+    }
+}
+
+struct EducationCard<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            content
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+}
+
+struct WarningCard<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(.orange)
+            content
+                .font(.body)
+                .fontWeight(.medium)
+        }
+        .padding()
+        .background(Color.orange.opacity(0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+        )
+    }
+}
+
+struct SuccessCard<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundColor(.green)
+            content
+                .font(.body)
+                .fontWeight(.medium)
+        }
+        .padding()
+        .background(Color.green.opacity(0.1))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.green.opacity(0.3), lineWidth: 1)
+        )
+    }
+}
+
+#Preview {
+    EducationView()
+}
