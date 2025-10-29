@@ -1,6 +1,5 @@
 import Foundation
 import CoreTelephony
-import CoreLocation
 import UserNotifications
 
 /// Main class for monitoring cellular network security
@@ -14,7 +13,6 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     // MARK: - Private Properties
     private let networkInfo = CTTelephonyNetworkInfo()
-    private let locationManager = CLLocationManager()
     private let notificationCenter = UNUserNotificationCenter.current()
     
     private var baselineData: NetworkBaseline?
@@ -31,7 +29,6 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     // MARK: - Initialization
     override init() {
         super.init()
-        setupLocationManager()
         loadBaselineData()
         setupNotificationObserver()
         restoreMonitoringState()
@@ -108,10 +105,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     
     // MARK: - Private Methods
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = AppConstants.LocationSettings.desiredAccuracy
-    }
+    
     
     private func setupNotificationObserver() {
         NotificationCenter.default.addObserver(
@@ -305,8 +299,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
             carrierMobileCountryCode: event.carrierMobileCountryCode,
             carrierMobileNetworkCode: event.carrierMobileNetworkCode,
             threatLevel: finalThreatLevel,
-            description: event.description,
-            locationContext: event.locationContext
+            description: event.description
         )
         
         // Check if this event should be filtered out to reduce noise
@@ -423,15 +416,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
 }
 
 // MARK: - CLLocationManagerDelegate
-extension CellularSecurityMonitor: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Handle location updates for context
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Handle location errors
-    }
-}
+ 
 
 // MARK: - Supporting Types
 struct NetworkBaseline: Codable {

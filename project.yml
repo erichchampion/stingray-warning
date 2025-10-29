@@ -33,7 +33,6 @@ targets:
     frameworks:
       - CoreTelephony
       - UserNotifications
-      - CoreLocation
       - BackgroundTasks
     info:
       path: StingrayWarning/Resources/Info.plist
@@ -54,9 +53,6 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UILaunchStoryboardName: LaunchScreen
-        NSUserTrackingUsageDescription: "This app monitors cellular network security to detect potential IMSI catchers and other threats."
-        NSLocationWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
-        NSLocationAlwaysAndWhenInUseUsageDescription: "Location is used to provide context for network security alerts and help identify suspicious patterns."
         TermsOfServiceURL: "https://stingraywarning.defroster.us/terms"
         SupportURL: "https://stingraywarning.defroster.us"
         PrivacyPolicyURL: "https://stingraywarning.defroster.us/privacy"

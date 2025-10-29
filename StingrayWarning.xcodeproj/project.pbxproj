@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,7 +31,6 @@
 		5783FB375008B61DD4CAE0E9 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C16B5FD38CBF69E1D81E7 /* NotificationManagerTests.swift */; };
 		645B830ACA869DBF4C28AB12 /* BackgroundTaskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92175180C500AE1BD708DB2 /* BackgroundTaskManagerTests.swift */; };
 		72858DE80D89F19FDEAAE994 /* UserDefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB7A534A5318A07F512996B /* UserDefaultsManagerTests.swift */; };
-		7D4CE17D872C5EB1E21F5E68 /* LocationContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787EB4F3B1E08AF06FE7789 /* LocationContextTests.swift */; };
 		7E1991F65998678E5F8B9DE4 /* AppMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D118FB04F5D62E4568867E /* AppMetadataTests.swift */; };
 		80334BF9458D9AEA0B419E1C /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42C53F47CA932FFB613CAD /* BackgroundTaskManager.swift */; };
 		9F43F16A0FFAE3A89B1F2C6A /* StingrayWarningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */; };
@@ -63,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1787EB4F3B1E08AF06FE7789 /* LocationContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContextTests.swift; sourceTree = "<group>"; };
 		22C6ED74E463AF33FFC777E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AE4E08D40677032D627DE6B /* EventHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryView.swift; sourceTree = "<group>"; };
 		2B44C7C94AAF207AD15637CD /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
@@ -90,7 +88,7 @@
 		B31D16F1756C4DC9C0DE53A5 /* NetworkAnomaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAnomaly.swift; sourceTree = "<group>"; };
 		C6D5991EE89736B927ED8391 /* ConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTests.swift; sourceTree = "<group>"; };
 		CD79B36D4F563C6D85229EC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CEE164819A97352B20EF3C79 /* StingrayWarningTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StingrayWarningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE164819A97352B20EF3C79 /* StingrayWarningTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = file; name = StingrayWarningTests.xctest; path = "Stingray WarningTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1BC4F62D9B625534A96E990 /* TestDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataFactory.swift; sourceTree = "<group>"; };
 		D67C465FFDDF338CDF7CF35D /* MockObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockObjects.swift; sourceTree = "<group>"; };
 		D72CC73CEC9EF0671F0ECD48 /* StingrayWarningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StingrayWarningApp.swift; sourceTree = "<group>"; };
@@ -99,10 +97,10 @@
 		E3651317AF433E6A99A3128A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E8A9CDCB81EA2F553A3F76B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA0AF80C7A6D9C26A063234E /* CellularSecurityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularSecurityMonitor.swift; sourceTree = "<group>"; };
-		EE42417C69B80255B2260876 /* StingrayWarningUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StingrayWarningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE42417C69B80255B2260876 /* StingrayWarningUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper; name = StingrayWarningUITests.xctest; path = "Stingray WarningUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC5741E810DF02980C90E87 /* NetworkAnomalyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAnomalyTests.swift; sourceTree = "<group>"; };
 		F92175180C500AE1BD708DB2 /* BackgroundTaskManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManagerTests.swift; sourceTree = "<group>"; };
-		FBA60EC00BB209434A555397 /* StingrayWarning.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StingrayWarning.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA60EC00BB209434A555397 /* StingrayWarning.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = StingrayWarning.app; path = "Stingray Warning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -117,7 +115,6 @@
 		2D31CF1FB12BC6986047E8BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1787EB4F3B1E08AF06FE7789 /* LocationContextTests.swift */,
 				EFC5741E810DF02980C90E87 /* NetworkAnomalyTests.swift */,
 				B043E9DDBE9D7019316161B0 /* NetworkEventTests.swift */,
 				511381B2EC116468B14E7AD5 /* NetworkThreatLevelTests.swift */,
@@ -371,7 +368,6 @@
 			);
 			mainGroup = A90E7234C4F6635E9FE0CE6A;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -405,7 +401,6 @@
 				F9F8873DBCE3EBF6C8C71665 /* CellularSecurityMonitorTests.swift in Sources */,
 				A28D4003C0AE93880F0CFFB8 /* ConstantsTests.swift in Sources */,
 				3F50AC80B91BFAB6F8AB150C /* EventStoreTests.swift in Sources */,
-				7D4CE17D872C5EB1E21F5E68 /* LocationContextTests.swift in Sources */,
 				3D52359CCC5C30DC25327E16 /* MockObjects.swift in Sources */,
 				3F9A504A930A9564623772A2 /* NetworkAnomalyTests.swift in Sources */,
 				318BFFAA20D17E96A964BF82 /* NetworkEventTests.swift in Sources */,

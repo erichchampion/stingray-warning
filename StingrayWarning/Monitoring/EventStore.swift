@@ -103,8 +103,7 @@ class EventStore: ObservableObject {
                 severity: updatedAnomaly.severity,
                 description: updatedAnomaly.description,
                 relatedEvents: updatedAnomaly.relatedEvents,
-                confidence: updatedAnomaly.confidence,
-                locationContext: updatedAnomaly.locationContext
+                confidence: updatedAnomaly.confidence
             )
             anomalies[index] = updatedAnomaly
             saveAnomalies()

@@ -1,5 +1,4 @@
 import XCTest
-import CoreLocation
 @testable import Stingray_Warning
 
 /// Unit tests for AppConstants
@@ -191,24 +190,6 @@ class ConstantsTests: XCTestCase {
         XCTAssertTrue(AppConstants.AppInfo.version.contains("."))
     }
     
-    // MARK: - Location Accuracy Tests
-    
-    func testLocationAccuracy() {
-        // Given & When & Then
-        XCTAssertEqual(AppConstants.LocationSettings.desiredAccuracy, kCLLocationAccuracyHundredMeters)
-    }
-    
-    func testLocationAccuracyValue() {
-        // Given & When & Then
-        XCTAssertEqual(AppConstants.LocationSettings.desiredAccuracy, 100.0)
-    }
-    
-    func testLocationAccuracyConsistency() {
-        // Given & When & Then
-        XCTAssertGreaterThan(AppConstants.LocationSettings.desiredAccuracy, 0)
-        XCTAssertLessThan(AppConstants.LocationSettings.desiredAccuracy, 1000)
-    }
-    
     // MARK: - Edge Cases
     
     func testConstantsWithZeroValues() {
@@ -247,7 +228,6 @@ class ConstantsTests: XCTestCase {
                 _ = AppConstants.UserDefaultsKeys.storedNetworkEvents
                 _ = AppConstants.BackgroundTaskIdentifiers.securityMonitoring
                 _ = AppConstants.AppInfo.bundleIdentifier
-                _ = AppConstants.LocationSettings.desiredAccuracy
             }
         }
     }
@@ -273,7 +253,6 @@ class ConstantsTests: XCTestCase {
         let userDefaultsKeys = AppConstants.UserDefaultsKeys.self
         let backgroundTaskIdentifiers = AppConstants.BackgroundTaskIdentifiers.self
         let appInfo = AppConstants.AppInfo.self
-        let locationSettings = AppConstants.LocationSettings.self
         
         // Then
         // All constant groups should be accessible
@@ -283,7 +262,6 @@ class ConstantsTests: XCTestCase {
         XCTAssertNotNil(userDefaultsKeys)
         XCTAssertNotNil(backgroundTaskIdentifiers)
         XCTAssertNotNil(appInfo)
-        XCTAssertNotNil(locationSettings)
     }
     
     func testConstantsWithRealUsage() {
@@ -332,7 +310,6 @@ class ConstantsTests: XCTestCase {
         XCTAssertFalse(AppConstants.UserDefaultsKeys.storedNetworkEvents.isEmpty)
         XCTAssertFalse(AppConstants.BackgroundTaskIdentifiers.securityMonitoring.isEmpty)
         XCTAssertFalse(AppConstants.AppInfo.bundleIdentifier.isEmpty)
-        XCTAssertTrue(AppConstants.LocationSettings.desiredAccuracy > 0)
     }
     
     func testConstantsTypeSafety() {
@@ -344,6 +321,5 @@ class ConstantsTests: XCTestCase {
         XCTAssertEqual(AppConstants.UserDefaultsKeys.storedNetworkEvents, "StoredNetworkEvents")
         XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.securityMonitoring, "us.defroster.stingraywarning.security-monitoring")
         XCTAssertEqual(AppConstants.AppInfo.bundleIdentifier, "us.defroster.stingraywarning")
-        XCTAssertEqual(AppConstants.LocationSettings.desiredAccuracy, kCLLocationAccuracyHundredMeters)
     }
 }

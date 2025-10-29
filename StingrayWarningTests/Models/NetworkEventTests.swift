@@ -20,7 +20,6 @@ class NetworkEventTests: XCTestCase {
         XCTAssertEqual(event.carrierMobileNetworkCode, "260")
         XCTAssertEqual(event.threatLevel, .none)
         XCTAssertEqual(event.description, "Test network event")
-        XCTAssertNil(event.locationContext)
     }
     
     func testInitializationWithNilValues() {
@@ -45,25 +44,6 @@ class NetworkEventTests: XCTestCase {
         XCTAssertNil(event.carrierMobileNetworkCode)
         XCTAssertEqual(event.threatLevel, .critical)
         XCTAssertEqual(event.description, "Test with nil values")
-        XCTAssertNil(event.locationContext)
-    }
-    
-    func testInitializationWithLocationContext() {
-        // Given
-        let locationContext = TestDataFactory.createLocationContext()
-        
-        // When
-        let event = TestDataFactory.createNetworkEvent(
-            threatLevel: .medium,
-            description: "Test with location",
-            locationContext: locationContext
-        )
-        
-        // Then
-        XCTAssertNotNil(event.locationContext)
-        XCTAssertEqual(event.locationContext?.latitude, 37.7749)
-        XCTAssertEqual(event.locationContext?.longitude, -122.4194)
-        XCTAssertEqual(event.locationContext?.accuracy, 10.0)
     }
     
     func testUUIDGeneration() {

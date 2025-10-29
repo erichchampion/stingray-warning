@@ -1,5 +1,5 @@
 import Foundation
-import CoreLocation
+ 
 
 /// Centralized constants for the Stingray Warning app
 struct AppConstants {
@@ -77,10 +77,7 @@ struct AppConstants {
         static let criticalThreshold = 4
     }
     
-    // MARK: - Location Settings
-    struct LocationSettings {
-        static let desiredAccuracy = kCLLocationAccuracyHundredMeters
-    }
+    
     
     // MARK: - App Information
     struct AppInfo {

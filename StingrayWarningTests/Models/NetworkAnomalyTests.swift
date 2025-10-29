@@ -19,13 +19,11 @@ class NetworkAnomalyTests: XCTestCase {
         XCTAssertEqual(anomaly.description, "Test anomaly")
         XCTAssertEqual(anomaly.relatedEvents, [])
         XCTAssertEqual(anomaly.confidence, 0.8)
-        XCTAssertNil(anomaly.locationContext)
     }
     
     func testInitializationWithAllParameters() {
         // Given
         let relatedEvents = [UUID(), UUID()]
-        let locationContext = TestDataFactory.createLocationContext()
         
         // When
         let anomaly = TestDataFactory.createNetworkAnomaly(
@@ -33,8 +31,7 @@ class NetworkAnomalyTests: XCTestCase {
             severity: .critical,
             description: "Critical anomaly",
             relatedEvents: relatedEvents,
-            confidence: 0.95,
-            locationContext: locationContext
+            confidence: 0.95
         )
         
         // Then
@@ -46,7 +43,6 @@ class NetworkAnomalyTests: XCTestCase {
         XCTAssertEqual(anomaly.description, "Critical anomaly")
         XCTAssertEqual(anomaly.relatedEvents, relatedEvents)
         XCTAssertEqual(anomaly.confidence, 0.95)
-        XCTAssertNotNil(anomaly.locationContext)
     }
     
     func testUUIDGeneration() {
@@ -88,27 +84,6 @@ class NetworkAnomalyTests: XCTestCase {
         XCTAssertEqual(decodedAnomaly?.description, originalAnomaly.description)
         XCTAssertEqual(decodedAnomaly?.relatedEvents, originalAnomaly.relatedEvents)
         XCTAssertEqual(decodedAnomaly?.confidence, originalAnomaly.confidence)
-    }
-    
-    func testCodableWithLocationContext() {
-        // Given
-        let locationContext = TestDataFactory.createLocationContext()
-        let originalAnomaly = TestDataFactory.createNetworkAnomaly(
-            locationContext: locationContext
-        )
-        
-        // When
-        let encodedData = try? JSONEncoder().encode(originalAnomaly)
-        XCTAssertNotNil(encodedData)
-        
-        let decodedAnomaly = try? JSONDecoder().decode(NetworkAnomaly.self, from: encodedData!)
-        XCTAssertNotNil(decodedAnomaly)
-        
-        // Then
-        XCTAssertNotNil(decodedAnomaly?.locationContext)
-        XCTAssertEqual(decodedAnomaly?.locationContext?.latitude, locationContext.latitude)
-        XCTAssertEqual(decodedAnomaly?.locationContext?.longitude, locationContext.longitude)
-        XCTAssertEqual(decodedAnomaly?.locationContext?.accuracy, locationContext.accuracy)
     }
     
     // MARK: - Computed Properties Tests

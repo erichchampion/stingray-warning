@@ -12,7 +12,7 @@ struct NetworkEvent: Codable, Identifiable {
     let carrierMobileNetworkCode: String?
     let threatLevel: NetworkThreatLevel
     let description: String
-    let locationContext: LocationContext?
+    
     
     init(
         radioTechnology: String? = nil,
@@ -21,8 +21,7 @@ struct NetworkEvent: Codable, Identifiable {
         carrierMobileCountryCode: String? = nil,
         carrierMobileNetworkCode: String? = nil,
         threatLevel: NetworkThreatLevel,
-        description: String,
-        locationContext: LocationContext? = nil
+        description: String
     ) {
         self.id = UUID()
         self.timestamp = Date()
@@ -33,7 +32,6 @@ struct NetworkEvent: Codable, Identifiable {
         self.carrierMobileNetworkCode = carrierMobileNetworkCode
         self.threatLevel = threatLevel
         self.description = description
-        self.locationContext = locationContext
     }
     
     /// Human-readable summary of the event
@@ -72,22 +70,4 @@ struct NetworkEvent: Codable, Identifiable {
     }
 }
 
-/// Location context for network events
-struct LocationContext: Codable {
-    let latitude: Double?
-    let longitude: Double?
-    let accuracy: Double?
-    let timestamp: Date
-    
-    init(latitude: Double? = nil, longitude: Double? = nil, accuracy: Double? = nil) {
-        self.latitude = latitude
-        self.longitude = longitude
-        self.accuracy = accuracy
-        self.timestamp = Date()
-    }
-    
-    /// Whether location data is available
-    var hasLocation: Bool {
-        return latitude != nil && longitude != nil
-    }
-}
+ 

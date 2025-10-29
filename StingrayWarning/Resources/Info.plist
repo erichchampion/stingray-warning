@@ -27,12 +27,6 @@
 	<string>https://stingraywarning.defroster.us/contact</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2024 Stingray Warning. All rights reserved.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location is used to provide context for network security alerts and help identify suspicious patterns.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is used to provide context for network security alerts and help identify suspicious patterns.</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>This app monitors cellular network security to detect potential IMSI catchers and other threats.</string>
 	<key>PrivacyPolicyURL</key>
 	<string>https://stingraywarning.defroster.us/privacy</string>
 	<key>SupportURL</key>

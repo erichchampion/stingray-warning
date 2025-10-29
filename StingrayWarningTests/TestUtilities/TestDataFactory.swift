@@ -1,7 +1,6 @@
 import Foundation
 import XCTest
 import CoreTelephony
-import CoreLocation
 import UserNotifications
 import BackgroundTasks
 @testable import Stingray_Warning
@@ -19,9 +18,8 @@ class TestDataFactory {
         carrierCountryCode: String? = "US",
         carrierMobileCountryCode: String? = "310",
         carrierMobileNetworkCode: String? = "260",
-        threatLevel: NetworkThreatLevel = .none,
-        description: String? = nil,
-        locationContext: LocationContext? = nil
+        threatLevel: NetworkThreatLevel = NetworkThreatLevel.none,
+        description: String? = nil
     ) -> NetworkEvent {
         return NetworkEvent(
             radioTechnology: radioTechnology,
@@ -30,15 +28,14 @@ class TestDataFactory {
             carrierMobileCountryCode: carrierMobileCountryCode,
             carrierMobileNetworkCode: carrierMobileNetworkCode,
             threatLevel: threatLevel,
-            description: description ?? "Test network event",
-            locationContext: locationContext
+            description: description ?? "Test network event"
         )
     }
     
     static func create2GNetworkEvent() -> NetworkEvent {
         return createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyGSM",
-            threatLevel: .medium,
+            threatLevel: NetworkThreatLevel.medium,
             description: "2G network detected"
         )
     }
@@ -46,7 +43,7 @@ class TestDataFactory {
     static func create5GNetworkEvent() -> NetworkEvent {
         return createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyNRNSA",
-            threatLevel: .none,
+            threatLevel: NetworkThreatLevel.none,
             description: "5G network detected"
         )
     }
@@ -55,7 +52,7 @@ class TestDataFactory {
         return createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyGSM",
             carrierName: "Unknown Carrier",
-            threatLevel: .high,
+            threatLevel: NetworkThreatLevel.high,
             description: "Suspicious network detected"
         )
     }
@@ -63,95 +60,63 @@ class TestDataFactory {
     // MARK: - NetworkAnomaly Creation
     
     static func createNetworkAnomaly(
-        anomalyType: AnomalyType = .suspicious2GConnection,
-        severity: NetworkThreatLevel = .medium,
+        anomalyType: AnomalyType = AnomalyType.suspicious2GConnection,
+        severity: NetworkThreatLevel = NetworkThreatLevel.medium,
         description: String? = nil,
         relatedEvents: [UUID] = [],
-        confidence: Double = 0.8,
-        locationContext: LocationContext? = nil
+        confidence: Double = 0.8
     ) -> NetworkAnomaly {
         return NetworkAnomaly(
             anomalyType: anomalyType,
             severity: severity,
             description: description ?? "Test anomaly",
             relatedEvents: relatedEvents,
-            confidence: confidence,
-            locationContext: locationContext
+            confidence: confidence
         )
     }
     
     static func createActiveAnomaly() -> NetworkAnomaly {
         return createNetworkAnomaly(
-            anomalyType: .imsiCatcherSuspected,
-            severity: .critical,
+            anomalyType: AnomalyType.imsiCatcherSuspected,
+            severity: NetworkThreatLevel.critical,
             description: "Active IMSI catcher detected"
         )
     }
     
     static func createCompletedAnomaly() -> NetworkAnomaly {
         let anomaly = createNetworkAnomaly(
-            anomalyType: .rapidTechnologyChange,
-            severity: .high,
+            anomalyType: AnomalyType.rapidTechnologyChange,
+            severity: NetworkThreatLevel.high,
             description: "Completed rapid technology change"
         )
         // Note: We can't modify endTime directly, so this represents a completed anomaly conceptually
         return anomaly
     }
     
-    // MARK: - LocationContext Creation
-    
-    static func createLocationContext(
-        latitude: Double? = 37.7749,
-        longitude: Double? = -122.4194,
-        accuracy: Double? = 10.0
-    ) -> LocationContext {
-        return LocationContext(
-            latitude: latitude,
-            longitude: longitude,
-            accuracy: accuracy
-        )
-    }
-    
-    static func createPartialLocationContext() -> LocationContext {
-        return LocationContext(
-            latitude: 37.7749,
-            longitude: nil,
-            accuracy: 10.0
-        )
-    }
-    
-    static func createNilLocationContext() -> LocationContext {
-        return LocationContext(
-            latitude: nil,
-            longitude: nil,
-            accuracy: nil
-        )
-    }
-    
     // MARK: - Test Scenarios
     
     static func createRapidTechnologyChangeScenario() -> [NetworkEvent] {
         return [
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: .none),
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyGSM", threatLevel: .medium),
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: .low),
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyGSM", threatLevel: .high)
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: NetworkThreatLevel.none),
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyGSM", threatLevel: NetworkThreatLevel.medium),
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: NetworkThreatLevel.low),
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyGSM", threatLevel: NetworkThreatLevel.high)
         ]
     }
     
     static func createNormalNetworkScenario() -> [NetworkEvent] {
         return [
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: .none),
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: .none),
-            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: .none)
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: NetworkThreatLevel.none),
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: NetworkThreatLevel.none),
+            createNetworkEvent(radioTechnology: "CTRadioAccessTechnologyLTE", threatLevel: NetworkThreatLevel.none)
         ]
     }
     
     static func createSuspiciousCarrierScenario() -> [NetworkEvent] {
         return [
-            createNetworkEvent(carrierName: "Verizon", threatLevel: .none),
-            createNetworkEvent(carrierName: "Unknown Carrier", threatLevel: .high),
-            createNetworkEvent(carrierName: "Verizon", threatLevel: .none)
+            createNetworkEvent(carrierName: "Verizon", threatLevel: NetworkThreatLevel.none),
+            createNetworkEvent(carrierName: "Unknown Carrier", threatLevel: NetworkThreatLevel.high),
+            createNetworkEvent(carrierName: "Verizon", threatLevel: NetworkThreatLevel.none)
         ]
     }
 }
@@ -280,11 +245,11 @@ class MockDataGenerators {
     }
     
     static func randomThreatLevel() -> NetworkThreatLevel {
-        return NetworkThreatLevel.allCases.randomElement() ?? .none
+        return NetworkThreatLevel.allCases.randomElement() ?? NetworkThreatLevel.none
     }
     
     static func randomAnomalyType() -> AnomalyType {
-        return AnomalyType.allCases.randomElement() ?? .suspicious2GConnection
+        return AnomalyType.allCases.randomElement() ?? AnomalyType.suspicious2GConnection
     }
     
     // MARK: - Realistic Test Data
@@ -310,32 +275,24 @@ class MockDataGenerators {
         )
     }
     
-    static func generateRealisticLocationContext() -> LocationContext {
-        return TestDataFactory.createLocationContext(
-            latitude: Double.random(in: -90...90),
-            longitude: Double.random(in: -180...180),
-            accuracy: Double.random(in: 1...100)
-        )
-    }
-    
     // MARK: - Edge Case Data
     
     static func generateEdgeCaseNetworkEvent() -> NetworkEvent {
         return TestDataFactory.createNetworkEvent(
             radioTechnology: nil,
             carrierName: "",
-            carrierCountryCode: nil,
+            carrierCountryCode: nil as String?,
             carrierMobileCountryCode: "",
-            carrierMobileNetworkCode: nil,
-            threatLevel: .critical,
+            carrierMobileNetworkCode: nil as String?,
+            threatLevel: NetworkThreatLevel.critical,
             description: ""
         )
     }
     
     static func generateEdgeCaseAnomaly() -> NetworkAnomaly {
         return TestDataFactory.createNetworkAnomaly(
-            anomalyType: .imsiCatcherSuspected,
-            severity: .critical,
+            anomalyType: AnomalyType.imsiCatcherSuspected,
+            severity: NetworkThreatLevel.critical,
             description: "",
             relatedEvents: [],
             confidence: 0.0

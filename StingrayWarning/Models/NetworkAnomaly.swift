@@ -10,15 +10,13 @@ struct NetworkAnomaly: Codable, Identifiable {
     let description: String
     let relatedEvents: [UUID] // References to NetworkEvent IDs
     let confidence: Double // 0.0 to 1.0
-    let locationContext: LocationContext?
     
     init(
         anomalyType: AnomalyType,
         severity: NetworkThreatLevel,
         description: String,
         relatedEvents: [UUID] = [],
-        confidence: Double = 0.5,
-        locationContext: LocationContext? = nil
+        confidence: Double = 0.5
     ) {
         self.id = UUID()
         self.startTime = Date()
@@ -28,7 +26,6 @@ struct NetworkAnomaly: Codable, Identifiable {
         self.description = description
         self.relatedEvents = relatedEvents
         self.confidence = confidence
-        self.locationContext = locationContext
     }
     
     /// Duration of the anomaly (if ended)
