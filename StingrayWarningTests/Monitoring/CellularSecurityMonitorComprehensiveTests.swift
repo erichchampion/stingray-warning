@@ -323,8 +323,8 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         // Then
         // Should detect suspicious carrier anomaly
         // First event (Verizon, .none) and second event (Unknown Carrier, .high) should be stored
-        // Third event (Verizon, .none) should be filtered out as duplicate
-        XCTAssertEqual(mockEventStore.addedEvents.count, 2)
+        // Third event (Verizon, .none) should also be stored since it's not identical to the previous event
+        XCTAssertEqual(mockEventStore.addedEvents.count, 3)
         // Should create anomaly for suspicious carrier
     }
     

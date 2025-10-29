@@ -174,13 +174,12 @@ class UserDefaultsManagerTests: XCTestCase {
         let key = "codable_key"
         let originalEvent = TestDataFactory.createNetworkEvent()
         
-        UserDefaultsManager.setCodableAsync(originalEvent, forKey: key) { _ in }
-        
-        // Wait for async operation to complete
         let expectation = XCTestExpectation(description: "Async operation completed")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        UserDefaultsManager.setCodableAsync(originalEvent, forKey: key) { result in
             expectation.fulfill()
         }
+        
+        // Wait for async operation to complete
         wait(for: [expectation], timeout: 1.0)
         
         // When

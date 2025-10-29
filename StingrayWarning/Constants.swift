@@ -23,8 +23,8 @@ struct AppConstants {
     // MARK: - Data Limits
     struct Limits {
         static let maxRecentEvents = 1000
-        static let maxStoredEvents = 1000
-        static let maxStoredAnomalies = 500
+        static let maxStoredEvents = 2000
+        static let maxStoredAnomalies = 1500
         static let rapidChangeThreshold = 3
         static let eventRetentionDays = 7
         static let maxRecentEventsForAnomalyDetection = 100

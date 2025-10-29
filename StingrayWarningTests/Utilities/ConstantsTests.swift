@@ -47,9 +47,9 @@ class ConstantsTests: XCTestCase {
     
     func testDataLimits() {
         // Given & When & Then
-        XCTAssertEqual(AppConstants.Limits.maxRecentEvents, 100)
-        XCTAssertEqual(AppConstants.Limits.maxStoredEvents, 1000)
-        XCTAssertEqual(AppConstants.Limits.maxStoredAnomalies, 500)
+        XCTAssertEqual(AppConstants.Limits.maxRecentEvents, 1000)
+        XCTAssertEqual(AppConstants.Limits.maxStoredEvents, 2000)
+        XCTAssertEqual(AppConstants.Limits.maxStoredAnomalies, 1500)
         XCTAssertEqual(AppConstants.Limits.rapidChangeThreshold, 3)
         XCTAssertEqual(AppConstants.Limits.eventRetentionDays, 7)
         XCTAssertEqual(AppConstants.Limits.maxRecentEventsForAnomalyDetection, 100)

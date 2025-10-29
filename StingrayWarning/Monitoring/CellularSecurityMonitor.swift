@@ -353,11 +353,14 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         // Check if radio technology is the same
         let sameTechnology = event.radioTechnology == lastEvent.radioTechnology
         
+        // Check if carrier name is the same
+        let sameCarrier = event.carrierName == lastEvent.carrierName
+        
         // Check if threat level is the same
         let sameThreatLevel = event.threatLevel == lastEvent.threatLevel
         
-        // Filter out if both technology and threat level are the same
-        return sameTechnology && sameThreatLevel
+        // Filter out if technology, carrier, and threat level are all the same
+        return sameTechnology && sameCarrier && sameThreatLevel
     }
     
     private func detectAnomalies(for event: NetworkEvent) {
