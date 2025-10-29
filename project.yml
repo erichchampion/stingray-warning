@@ -14,18 +14,22 @@ targets:
     sources:
       - StingrayWarning
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarning
-      PRODUCT_NAME: Stingray Warning
-      DISPLAY_NAME: Stingray Warning
-      INFOPLIST_FILE: StingrayWarning/Resources/Info.plist
-      SWIFT_VERSION: "5.0"
-      CODE_SIGN_STYLE: Automatic
-      DEVELOPMENT_TEAM: KA5A6NN3PD
-      ENABLE_TESTABILITY: YES
-      LSApplicationCategoryType: public.app-category.utilities
-      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-      TARGETED_DEVICE_FAMILY: "1,2"
-      LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "@executable_path/Frameworks"]
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarning
+        PRODUCT_NAME: Stingray Warning
+        DISPLAY_NAME: Stingray Warning
+        INFOPLIST_FILE: StingrayWarning/Resources/Info.plist
+        SWIFT_VERSION: "5.0"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: KA5A6NN3PD
+        ENABLE_TESTABILITY: YES
+        LSApplicationCategoryType: public.app-category.utilities
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
+        LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "@executable_path/Frameworks"]
+      configs:
+        Release:
+          ENABLE_TESTABILITY: YES
     frameworks:
       - CoreTelephony
       - UserNotifications
@@ -99,8 +103,16 @@ schemes:
     build:
       targets:
         StingrayWarning: all
-        StingrayWarningTests: all
-        StingrayWarningUITests: all
+        StingrayWarningTests:
+          - run
+          - test
+          - profile
+          - analyze
+        StingrayWarningUITests:
+          - run
+          - test
+          - profile
+          - analyze
     run:
       config: Debug
     test:

@@ -391,7 +391,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         }
         
         // Check for baseline mismatches
-        if let baseline = baselineData, !matchesBaseline(radioTechnology: event.radioTechnology) {
+        if let _ = baselineData, !matchesBaseline(radioTechnology: event.radioTechnology) {
             let anomaly = NetworkAnomaly(
                 anomalyType: .unusualSignalPattern,
                 severity: .low,
