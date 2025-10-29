@@ -12,6 +12,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        
+        // Clear UserDefaults to ensure clean state for each test
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
         monitor = CellularSecurityMonitor()
         mockEventStore = MockEventStore()
         mockBackgroundTaskManager = MockBackgroundTaskManager()

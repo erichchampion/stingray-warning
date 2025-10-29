@@ -288,17 +288,23 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     func processNetworkEvent(_ event: NetworkEvent) {
-        // Re-evaluate threat level based on radio technology and carrier name
-        let evaluatedThreatLevel = evaluateThreatLevel(radioTechnology: event.radioTechnology, carrierName: event.carrierName)
+        // Use the original threat level if it's explicitly set to something other than .none
+        // Otherwise, re-evaluate based on radio technology and carrier name
+        let finalThreatLevel: NetworkThreatLevel
+        if event.threatLevel != .none {
+            finalThreatLevel = event.threatLevel
+        } else {
+            finalThreatLevel = evaluateThreatLevel(radioTechnology: event.radioTechnology, carrierName: event.carrierName)
+        }
         
-        // Create updated event with correct threat level
+        // Create updated event with final threat level
         let updatedEvent = NetworkEvent(
             radioTechnology: event.radioTechnology,
             carrierName: event.carrierName,
             carrierCountryCode: event.carrierCountryCode,
             carrierMobileCountryCode: event.carrierMobileCountryCode,
             carrierMobileNetworkCode: event.carrierMobileNetworkCode,
-            threatLevel: evaluatedThreatLevel,
+            threatLevel: finalThreatLevel,
             description: event.description,
             locationContext: event.locationContext
         )
@@ -336,7 +342,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
     }
     
     private func shouldFilterEvent(_ event: NetworkEvent) -> Bool {
-        // Don't store events if they are the same as the previous event and threat level is none
+        // Don't store events if they are identical to the previous event
         guard let lastEvent = recentEvents.last else { return false }
         
         // Special case: don't filter events with nil radio technology
@@ -347,11 +353,11 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         // Check if radio technology is the same
         let sameTechnology = event.radioTechnology == lastEvent.radioTechnology
         
-        // Check if threat level is none
-        let isNoThreat = event.threatLevel == .none
+        // Check if threat level is the same
+        let sameThreatLevel = event.threatLevel == lastEvent.threatLevel
         
-        // Filter out if both conditions are true
-        return sameTechnology && isNoThreat
+        // Filter out if both technology and threat level are the same
+        return sameTechnology && sameThreatLevel
     }
     
     private func detectAnomalies(for event: NetworkEvent) {
