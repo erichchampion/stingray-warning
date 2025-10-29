@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>us.defroster.stingraywarning.security-monitoring</string>
+		<string>us.defroster.stingraywarning.background-refresh</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -18,21 +23,26 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ContactURL</key>
+	<string>https://stingraywarning.defroster.us/contact</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2024 Stingray Warning. All rights reserved.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location is used to provide context for network security alerts and help identify suspicious patterns.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is used to provide context for network security alerts and help identify suspicious patterns.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This app monitors cellular network security to detect potential IMSI catchers and other threats.</string>
+	<key>PrivacyPolicyURL</key>
+	<string>https://stingraywarning.defroster.us/privacy</string>
+	<key>SupportURL</key>
+	<string>https://stingraywarning.defroster.us</string>
+	<key>TermsOfServiceURL</key>
+	<string>https://stingraywarning.defroster.us/terms</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>processing</string>
 		<string>fetch</string>
-	</array>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>us.defroster.stingraywarning.security-monitoring</string>
-		<string>us.defroster.stingraywarning.background-refresh</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

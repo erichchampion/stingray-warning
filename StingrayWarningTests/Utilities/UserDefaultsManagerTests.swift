@@ -269,8 +269,9 @@ class UserDefaultsManagerTests: XCTestCase {
         let key = "invalid_codable_key"
         let expectation = XCTestExpectation(description: "Invalid codable get completed")
         
-        // Set invalid data
-        UserDefaultsManager.set("invalid_data", forKey: key)
+        // Set invalid data (actual Data object that can't be decoded as NetworkEvent)
+        let invalidData = "invalid_data".data(using: .utf8)!
+        UserDefaultsManager.set(invalidData, forKey: key)
         
         // When
         UserDefaultsManager.getCodableAsync(NetworkEvent.self, forKey: key) { result in

@@ -42,6 +42,10 @@ class LocationContextTests: XCTestCase {
     func testTimestampGeneration() {
         // Given & When
         let locationContext1 = TestDataFactory.createLocationContext()
+        
+        // Add a small delay to ensure different timestamps
+        Thread.sleep(forTimeInterval: 0.001)
+        
         let locationContext2 = TestDataFactory.createLocationContext()
         
         // Then

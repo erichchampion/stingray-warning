@@ -383,8 +383,8 @@ class MockEventStore: EventStore {
         return mockEvents
     }
     
-    override func getRecentEvents() -> [NetworkEvent] {
-        return Array(mockEvents.suffix(100))
+    override func getRecentEvents(limit: Int = 3) -> [NetworkEvent] {
+        return Array(mockEvents.suffix(limit))
     }
     
     override func clearAllData() {

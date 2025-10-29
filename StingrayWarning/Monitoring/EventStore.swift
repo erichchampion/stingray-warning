@@ -49,10 +49,9 @@ class EventStore: ObservableObject {
         }
     }
     
-    /// Get recent events (last 24 hours)
-    func getRecentEvents() -> [NetworkEvent] {
-        let oneDayAgo = Date().addingTimeInterval(-AppConstants.TimeIntervals.day)
-        return events.filter { $0.timestamp >= oneDayAgo }
+    /// Get recent events (last N events, default 3)
+    func getRecentEvents(limit: Int = 3) -> [NetworkEvent] {
+        return Array(events.suffix(limit))
     }
     
     /// Get events count by threat level

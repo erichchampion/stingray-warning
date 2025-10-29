@@ -246,9 +246,10 @@ struct SettingsView: View {
                                     }
                                     .foregroundColor(.blue)
                                     
-                                    NavigationLink("Terms of Service") {
-                                        TermsOfServiceView()
+                                    Button("Terms of Service") {
+                                        AppMetadata.openTermsOfServiceURL()
                                     }
+                                    .foregroundColor(.blue)
                                 }
                                 .padding()
                                 .background(Color(.systemGray6))
@@ -349,38 +350,6 @@ struct PrivacyPolicyView: View {
     }
 }
 
-struct TermsOfServiceView: View {
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Terms of Service")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-                Text("Last updated: \(Date(), style: .date)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                
-                Group {
-                    Text("Disclaimer")
-                        .font(.headline)
-                    Text("This app is designed as a security awareness tool with significant limitations. It should not be solely relied upon for protection against sophisticated cellular attacks.")
-                    
-                    Text("Limitations")
-                        .font(.headline)
-                    Text("Detection capabilities are limited compared to dedicated SDR hardware. The app provides general security awareness and should be used in conjunction with other security measures.")
-                    
-                    Text("User Responsibility")
-                        .font(.headline)
-                    Text("Users are responsible for their own security decisions and should not rely solely on this app for protection.")
-                }
-            }
-            .padding()
-        }
-        .navigationTitle("Terms of Service")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
 
 #Preview {
     SettingsView()

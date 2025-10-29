@@ -30,6 +30,30 @@ class AppMetadata {
         return URL(string: urlString)
     }
     
+    /// Terms of Service URL from Info.plist
+    static var termsOfServiceURL: URL? {
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "TermsOfServiceURL") as? String else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+    
+    /// Marketing URL from Info.plist
+    static var marketingURL: URL? {
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "MarketingURL") as? String else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+    
+    /// App Store URL from Info.plist
+    static var appStoreURL: URL? {
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "AppStoreURL") as? String else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+    
     // MARK: - App Information
     
     /// App version string
@@ -75,6 +99,24 @@ class AppMetadata {
     /// Opens the contact URL in Safari
     static func openContactURL() {
         guard let url = contactURL else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    /// Opens the terms of service URL in Safari
+    static func openTermsOfServiceURL() {
+        guard let url = termsOfServiceURL else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    /// Opens the marketing URL in Safari
+    static func openMarketingURL() {
+        guard let url = marketingURL else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    /// Opens the App Store URL in Safari
+    static func openAppStoreURL() {
+        guard let url = appStoreURL else { return }
         UIApplication.shared.open(url)
     }
     

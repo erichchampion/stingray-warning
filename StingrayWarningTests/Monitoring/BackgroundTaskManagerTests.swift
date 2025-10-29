@@ -33,7 +33,8 @@ class BackgroundTaskManagerTests: XCTestCase {
         
         // Then
         XCTAssertNotNil(manager)
-        XCTAssertTrue(manager.isBackgroundTaskRegistered)
+        XCTAssertFalse(manager.isBackgroundTaskRegistered) // Initially false - registration is deferred
+        XCTAssertNil(manager.lastBackgroundExecution) // Initially nil
     }
     
     func testSetCellularMonitor() {
@@ -56,10 +57,10 @@ class BackgroundTaskManagerTests: XCTestCase {
         let manager = BackgroundTaskManager()
         
         // When
-        // Registration happens in init
+        // Registration is deferred until explicitly requested
         
         // Then
-        XCTAssertTrue(manager.isBackgroundTaskRegistered)
+        XCTAssertFalse(manager.isBackgroundTaskRegistered) // Initially false - registration is deferred
     }
     
     func testTaskIdentifierValidation() {
@@ -71,7 +72,8 @@ class BackgroundTaskManagerTests: XCTestCase {
         
         // Then
         // Identifiers should match those defined in AppConstants
-        XCTAssertTrue(manager.isBackgroundTaskRegistered)
+        XCTAssertEqual(manager.testBackgroundTaskIdentifier, AppConstants.BackgroundTaskIdentifiers.securityMonitoring)
+        XCTAssertEqual(manager.testBackgroundRefreshIdentifier, AppConstants.BackgroundTaskIdentifiers.backgroundRefresh)
     }
     
     // MARK: - Task Scheduling Tests

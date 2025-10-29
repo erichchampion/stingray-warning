@@ -42,7 +42,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
     }
     
     func testVisualRegressionEventHistory() throws {
-        navigateToTab("Event History")
+        navigateToTab("History")
         waitForViewToLoad()
         
         let baselineScreenshot = screenshotManager.takeScreenshot(named: "EventHistory_Baseline")
@@ -99,7 +99,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
             simulateDeviceSize(size)
             
             // Take screenshots for each tab
-            for tabName in ["Dashboard", "Event History", "Learn", "Settings"] {
+            for tabName in ["Dashboard", "History", "Learn", "Settings"] {
                 navigateToTab(tabName)
                 waitForViewToLoad()
                 
@@ -125,7 +125,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         }
         
         // Take screenshots in dark mode
-        for tabName in ["Dashboard", "Event History", "Learn", "Settings"] {
+        for tabName in ["Dashboard", "History", "Learn", "Settings"] {
             navigateToTab(tabName)
             waitForViewToLoad()
             
@@ -144,7 +144,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         // Enable accessibility features
         enableAccessibilityFeatures()
         
-        for tabName in ["Dashboard", "Event History", "Learn", "Settings"] {
+        for tabName in ["Dashboard", "History", "Learn", "Settings"] {
             navigateToTab(tabName)
             waitForViewToLoad()
             
@@ -163,7 +163,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         // Test with different data states
         
         // 1. Empty state
-        navigateToTab("Event History")
+        navigateToTab("History")
         waitForViewToLoad()
         let _ = screenshotManager.takeScreenshot(named: "EventHistory_Empty")
         
@@ -172,7 +172,7 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         addTestData()
         
         // 3. Screenshot with data
-        navigateToTab("Event History")
+        navigateToTab("History")
         waitForViewToLoad()
         let _ = screenshotManager.takeScreenshot(named: "EventHistory_WithData")
         
@@ -264,8 +264,9 @@ class StingrayWarningAdvancedUITests: XCTestCase {
     }
     
     private func waitForViewToLoad(timeout: TimeInterval = 5.0) {
-        let mainContent = app.otherElements["ContentView"]
-        XCTAssertTrue(mainContent.waitForExistence(timeout: timeout))
+        // Wait for the TabView to load instead of looking for "ContentView"
+        let tabView = app.tabBars.firstMatch
+        XCTAssertTrue(tabView.waitForExistence(timeout: timeout))
     }
     
     private func simulateDeviceSize(_ size: CGSize) {

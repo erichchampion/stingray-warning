@@ -223,7 +223,7 @@ class StingrayWarningUITests: XCTestCase {
     
     func testTakeScreenshotOfEventHistoryTab() throws {
         // Navigate to Event History tab
-        navigateToTab("Event History")
+        navigateToTab("History")
         
         // Take screenshot of empty state
         takeScreenshot(named: "05_EventHistoryTab_Empty", description: "Event History tab with no events")
@@ -391,7 +391,7 @@ class StingrayWarningUITests: XCTestCase {
     
     func testTakeScreenshotOfThreatLevelBadges() throws {
         // Navigate to Event History tab
-        navigateToTab("Event History")
+        navigateToTab("History")
         
         // Look for threat level badges
         let threatBadges = app.otherElements.matching(identifier: "ThreatLevelBadge")
@@ -457,7 +457,7 @@ class StingrayWarningUITests: XCTestCase {
     
     func testTakeScreenshotOfEmptyStateView() throws {
         // Navigate to Event History tab
-        navigateToTab("Event History")
+        navigateToTab("History")
         
         // Look for empty state view
         let emptyStateView = app.otherElements.matching(identifier: "EmptyStateView")
@@ -478,7 +478,7 @@ class StingrayWarningUITests: XCTestCase {
         takeScreenshot(named: "35_Dashboard_Portrait", description: "Dashboard in portrait orientation")
         
         // Take screenshot of Event History in portrait
-        navigateToTab("Event History")
+        navigateToTab("History")
         takeScreenshot(named: "36_EventHistory_Portrait", description: "Event History in portrait orientation")
         
         // Take screenshot of Learn in portrait
@@ -500,7 +500,7 @@ class StingrayWarningUITests: XCTestCase {
         takeScreenshot(named: "39_Dashboard_Landscape", description: "Dashboard in landscape orientation")
         
         // Take screenshot of Event History in landscape
-        navigateToTab("Event History")
+        navigateToTab("History")
         takeScreenshot(named: "40_EventHistory_Landscape", description: "Event History in landscape orientation")
         
         // Take screenshot of Learn in landscape
@@ -524,7 +524,7 @@ class StingrayWarningUITests: XCTestCase {
         takeScreenshot(named: "43_Dashboard_\(sizeDescription)", description: "Dashboard on \(sizeDescription) device")
         
         // Take screenshot of Event History
-        navigateToTab("Event History")
+        navigateToTab("History")
         takeScreenshot(named: "44_EventHistory_\(sizeDescription)", description: "Event History on \(sizeDescription) device")
         
         // Take screenshot of Learn
@@ -547,7 +547,7 @@ class StingrayWarningUITests: XCTestCase {
         takeScreenshot(named: "47_Dashboard_Accessibility", description: "Dashboard with accessibility features")
         
         // Take screenshot of Event History with accessibility
-        navigateToTab("Event History")
+        navigateToTab("History")
         takeScreenshot(named: "48_EventHistory_Accessibility", description: "Event History with accessibility features")
         
         // Take screenshot of Learn with accessibility
@@ -602,7 +602,7 @@ class StingrayWarningUITests: XCTestCase {
         takeScreenshot(named: "54_Flow_Dashboard", description: "Dashboard tab")
         
         // 3. Event History
-        navigateToTab("Event History")
+        navigateToTab("History")
         takeScreenshot(named: "55_Flow_EventHistory", description: "Event History tab")
         
         // 4. Learn

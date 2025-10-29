@@ -60,7 +60,8 @@ struct NetworkEvent: Codable, Identifiable {
     /// Whether this event represents a 2G connection
     var is2GConnection: Bool {
         guard let tech = radioTechnology else { return false }
-        return tech.contains("2G") || tech.contains("GSM") || tech.contains("EDGE")
+        let twoGTechnologies = ["CTRadioAccessTechnologyGSM", "CTRadioAccessTechnologyGPRS", "CTRadioAccessTechnologyEdge"]
+        return twoGTechnologies.contains(tech)
     }
     
     /// Whether this event represents a suspicious carrier

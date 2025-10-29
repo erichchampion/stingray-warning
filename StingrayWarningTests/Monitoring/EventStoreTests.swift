@@ -208,7 +208,7 @@ class EventStoreTests: XCTestCase {
         }
         
         // When
-        let recentEvents = eventStore.getRecentEvents()
+        let recentEvents = eventStore.getRecentEvents(limit: 5)
         
         // Then
         XCTAssertEqual(recentEvents.count, 5)
@@ -320,7 +320,9 @@ class EventStoreTests: XCTestCase {
         XCTAssertNotNil(jsonData)
         
         // Verify JSON can be decoded
-        let decodedEvents = try? JSONDecoder().decode([NetworkEvent].self, from: jsonData!.data(using: .utf8)!)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let decodedEvents = try? decoder.decode([NetworkEvent].self, from: jsonData!.data(using: .utf8)!)
         XCTAssertNotNil(decodedEvents)
         XCTAssertEqual(decodedEvents?.count, 3)
     }
@@ -359,7 +361,9 @@ class EventStoreTests: XCTestCase {
         XCTAssertNotNil(jsonData)
         
         // Verify JSON can be decoded
-        let decodedAnomalies = try? JSONDecoder().decode([NetworkAnomaly].self, from: jsonData!.data(using: .utf8)!)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let decodedAnomalies = try? decoder.decode([NetworkAnomaly].self, from: jsonData!.data(using: .utf8)!)
         XCTAssertNotNil(decodedAnomalies)
         XCTAssertEqual(decodedAnomalies?.count, 2)
     }

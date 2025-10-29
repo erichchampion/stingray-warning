@@ -24,6 +24,11 @@ class StingrayWarningIntegrationTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        // Clear UserDefaults to ensure clean state for each test
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
         // Create mock objects
         mockNetworkInfo = MockCTTelephonyNetworkInfo()
         mockLocationManager = MockCLLocationManager()

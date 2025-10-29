@@ -5,8 +5,12 @@ class UserDefaultsManager {
     
     // MARK: - Synchronous Operations (for critical data)
     
-    static func set<T>(_ value: T, forKey key: String) {
-        UserDefaults.standard.set(value, forKey: key)
+    static func set<T>(_ value: T?, forKey key: String) {
+        if let value = value {
+            UserDefaults.standard.set(value, forKey: key)
+        } else {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
     }
     
     static func get<T>(forKey key: String, defaultValue: T) -> T {

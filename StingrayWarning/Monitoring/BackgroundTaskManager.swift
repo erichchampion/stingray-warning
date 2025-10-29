@@ -8,6 +8,16 @@ class BackgroundTaskManager: ObservableObject {
     private let backgroundTaskIdentifier = AppConstants.BackgroundTaskIdentifiers.securityMonitoring
     private let backgroundRefreshIdentifier = AppConstants.BackgroundTaskIdentifiers.backgroundRefresh
     
+    #if DEBUG
+    internal var testBackgroundTaskIdentifier: String {
+        return backgroundTaskIdentifier
+    }
+    
+    internal var testBackgroundRefreshIdentifier: String {
+        return backgroundRefreshIdentifier
+    }
+    #endif
+    
     @Published var isBackgroundTaskRegistered = false
     @Published var lastBackgroundExecution: Date?
     

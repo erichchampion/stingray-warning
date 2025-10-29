@@ -22,7 +22,7 @@ struct AppConstants {
     
     // MARK: - Data Limits
     struct Limits {
-        static let maxRecentEvents = 100
+        static let maxRecentEvents = 1000
         static let maxStoredEvents = 1000
         static let maxStoredAnomalies = 500
         static let rapidChangeThreshold = 3
@@ -68,6 +68,7 @@ struct AppConstants {
         static let twoGConnectionScore = 3
         static let rapidChangeScore = 2
         static let baselineMismatchScore = 1
+        static let suspiciousCarrierScore = 4 // Base score for suspicious carriers
         
         static let noneThreshold = 0
         static let lowThreshold = 1
