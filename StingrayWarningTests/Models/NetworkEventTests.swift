@@ -69,6 +69,10 @@ class NetworkEventTests: XCTestCase {
     func testUUIDGeneration() {
         // Given & When
         let event1 = TestDataFactory.createNetworkEvent()
+        
+        // Add small delay to ensure different timestamps
+        Thread.sleep(forTimeInterval: 0.001)
+        
         let event2 = TestDataFactory.createNetworkEvent()
         
         // Then

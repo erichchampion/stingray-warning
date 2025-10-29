@@ -52,6 +52,10 @@ class NetworkAnomalyTests: XCTestCase {
     func testUUIDGeneration() {
         // Given & When
         let anomaly1 = TestDataFactory.createNetworkAnomaly()
+        
+        // Add small delay to ensure different timestamps
+        Thread.sleep(forTimeInterval: 0.001)
+        
         let anomaly2 = TestDataFactory.createNetworkAnomaly()
         
         // Then
