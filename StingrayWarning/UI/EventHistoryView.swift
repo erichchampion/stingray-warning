@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EventHistoryView: View {
     @StateObject private var eventStore = EventStore()
-    @State private var selectedFilter: ThreatLevelFilter = .all
+    @State private var selectedFilter: IssueLevelFilter = .all
     @State private var selectedTimeRange: TimeRange = .day
     @State private var showingClearAlert = false
     
@@ -24,9 +24,9 @@ struct EventHistoryView: View {
                 
                 // Filter Controls
                 VStack(spacing: 12) {
-                    // Threat Level Filter
-                    Picker("Threat Level", selection: $selectedFilter) {
-                        ForEach(ThreatLevelFilter.allCases, id: \.self) { filter in
+                    // Issue Level Filter
+                    Picker("Issue Level", selection: $selectedFilter) {
+                        ForEach(IssueLevelFilter.allCases, id: \.self) { filter in
                             Text(filter.title).tag(filter)
                         }
                     }
@@ -90,8 +90,8 @@ struct EventHistoryView: View {
     private var filteredEvents: [NetworkEvent] {
         var events = eventStore.events
         
-        // Filter by threat level
-        if selectedFilter == .threatsOnly {
+        // Filter by issue level
+        if selectedFilter == .issuesOnly {
             events = events.filter { $0.threatLevel != .none }
         }
         
@@ -123,14 +123,14 @@ struct EventHistoryView: View {
     }
 }
 
-enum ThreatLevelFilter: CaseIterable {
+enum IssueLevelFilter: CaseIterable {
     case all
-    case threatsOnly
+    case issuesOnly
     
     var title: String {
         switch self {
         case .all: return "All"
-        case .threatsOnly: return "Threats Only"
+        case .issuesOnly: return "Issues Only"
         }
     }
 }
@@ -174,8 +174,8 @@ struct StatisticsSummaryView: View {
                 )
                 
                 StatisticItem(
-                    title: "Threats Detected",
-                    value: "\(threatEvents.count)",
+                    title: "Issues Detected",
+                    value: "\(issueEvents.count)",
                     color: .red
                 )
                 
@@ -191,7 +191,7 @@ struct StatisticsSummaryView: View {
         .cornerRadius(12)
     }
     
-    private var threatEvents: [NetworkEvent] {
+    private var issueEvents: [NetworkEvent] {
         events.filter { $0.threatLevel != .none }
     }
     
@@ -226,7 +226,7 @@ struct EventRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                                        SharedUIComponents.ThreatLevelBadge(level: event.threatLevel)
+                                        SharedUIComponents.IssueLevelBadge(level: event.threatLevel)
                 Spacer()
                 Text(event.timestamp, style: .relative)
                     .font(.caption)

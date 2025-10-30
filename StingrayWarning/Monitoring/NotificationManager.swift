@@ -108,7 +108,7 @@ class NotificationManager: NSObject, ObservableObject {
         
         let content = UNMutableNotificationContent()
         content.title = "Stingray Warning"
-        content.body = "Security monitoring is active"
+        content.body = "Monitoring is active"
         content.sound = .default
         
         // Schedule for 24 hours from now

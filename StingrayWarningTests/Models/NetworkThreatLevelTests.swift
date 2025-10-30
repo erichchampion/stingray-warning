@@ -21,11 +21,11 @@ class NetworkThreatLevelTests: XCTestCase {
     
     func testThreatLevelDescriptions() {
         // Given & When & Then
-        XCTAssertEqual(NetworkThreatLevel.none.description, "No Threat Detected")
+        XCTAssertEqual(NetworkThreatLevel.none.description, "No Issue Detected")
         XCTAssertEqual(NetworkThreatLevel.low.description, "Low Risk")
         XCTAssertEqual(NetworkThreatLevel.medium.description, "Medium Risk")
         XCTAssertEqual(NetworkThreatLevel.high.description, "High Risk")
-        XCTAssertEqual(NetworkThreatLevel.critical.description, "Critical Threat")
+        XCTAssertEqual(NetworkThreatLevel.critical.description, "Critical Risk")
     }
     
     func testThreatLevelRawValues() {

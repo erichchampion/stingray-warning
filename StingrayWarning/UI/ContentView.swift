@@ -104,13 +104,13 @@ struct DashboardView: View {
                                 CurrentStatusCard()
                             }
                             
-                            // Threat Level Section
+                            // Issue Level Section
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Threat Level")
+                                Text("Issue Level")
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 
-                                ThreatLevelCard()
+                                IssueLevelCard()
                             }
                             
                             // Recent Activity Section
@@ -194,14 +194,14 @@ struct CurrentStatusCard: View {
     }
 }
 
-struct ThreatLevelCard: View {
+struct IssueLevelCard: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
     
     var body: some View {
         VStack(spacing: 12) {
             HStack {
                 Image(systemName: "exclamationmark.triangle")
-                    .foregroundColor(threatColor)
+                    .foregroundColor(issueColor)
                 Spacer()
             }
             
@@ -209,12 +209,12 @@ struct ThreatLevelCard: View {
                 Text(cellularMonitor.currentThreatLevel.description)
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(threatColor)
+                    .foregroundColor(issueColor)
                 Spacer()
-                ThreatLevelIcon(level: cellularMonitor.currentThreatLevel)
+                IssueLevelIcon(level: cellularMonitor.currentThreatLevel)
             }
             
-            Text(threatDescription)
+            Text(issueDescription)
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.leading)
@@ -224,7 +224,7 @@ struct ThreatLevelCard: View {
         .cornerRadius(12)
     }
     
-    private var threatColor: Color {
+    private var issueColor: Color {
         switch cellularMonitor.currentThreatLevel {
         case .none: return .green
         case .low: return .yellow
@@ -234,13 +234,13 @@ struct ThreatLevelCard: View {
         }
     }
     
-    private var threatDescription: String {
+    private var issueDescription: String {
         switch cellularMonitor.currentThreatLevel {
-        case .none: return "No security threats detected"
-        case .low: return "Minor security concerns detected"
-        case .medium: return "Moderate security risk present"
-        case .high: return "High security threat detected"
-        case .critical: return "Critical security threat - immediate action recommended"
+        case .none: return "No network issues detected"
+        case .low: return "Minor network concerns detected"
+        case .medium: return "Moderate network issues present"
+        case .high: return "High network issue detected"
+        case .critical: return "Critical network issue - immediate attention recommended"
         }
     }
 }
@@ -291,7 +291,7 @@ struct StatusRow: View {
     }
 }
 
-struct ThreatLevelIcon: View {
+struct IssueLevelIcon: View {
     let level: NetworkThreatLevel
     
     var body: some View {
@@ -358,13 +358,13 @@ struct EventRow: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            SharedUIComponents.ThreatLevelBadge(level: event.threatLevel)
+            SharedUIComponents.IssueLevelBadge(level: event.threatLevel)
         }
         .padding(.vertical, 4)
     }
 }
 
-struct ThreatLevelBadge: View {
+struct IssueLevelBadge: View {
     let level: NetworkThreatLevel
     
     var body: some View {

@@ -176,8 +176,8 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         waitForViewToLoad()
         let _ = screenshotManager.takeScreenshot(named: "EventHistory_WithData")
         
-        // 4. Test different threat levels
-        testDifferentThreatLevels()
+        // 4. Test different issue levels
+        testDifferentIssueLevels()
     }
     
     // MARK: - Interactive Element Screenshots
@@ -284,8 +284,8 @@ class StingrayWarningAdvancedUITests: XCTestCase {
         // This would depend on the app's data injection capabilities
     }
     
-    private func testDifferentThreatLevels() {
-        // Test different threat levels if possible
+    private func testDifferentIssueLevels() {
+        // Test different issue levels if possible
         // This would depend on the app's testing capabilities
     }
     

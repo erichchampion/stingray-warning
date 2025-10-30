@@ -276,7 +276,7 @@ class CellularSecurityMonitor: NSObject, ObservableObject {
         }
         
         // Note: Carrier information removed due to deprecated APIs in iOS 16+
-        components.append("Threat: \(threatLevel.description)")
+        components.append("Issue: \(threatLevel.description)")
         
         return components.joined(separator: " • ")
     }

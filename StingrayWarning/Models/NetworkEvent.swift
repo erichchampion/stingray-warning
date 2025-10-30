@@ -50,7 +50,7 @@ struct NetworkEvent: Codable, Identifiable {
             components.append("MCC/MNC: \(mcc)/\(mnc)")
         }
         
-        components.append("Threat: \(threatLevel.description)")
+        components.append("Issue: \(threatLevel.description)")
         
         return components.joined(separator: " • ")
     }

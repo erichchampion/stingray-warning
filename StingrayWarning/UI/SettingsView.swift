@@ -123,7 +123,7 @@ struct SettingsView: View {
                                         .font(.headline)
                                         .foregroundColor(.orange)
                                     
-                                    Text("Apple has deprecated carrier information APIs in iOS 16+. The app now focuses on radio technology detection (2G/3G/4G/5G) which is still functional for security monitoring.")
+                                    Text("Apple has deprecated carrier information APIs in iOS 16+. The app now focuses on radio technology detection (2G/3G/4G/5G) which is still functional for performance monitoring.")
                                         .font(.body)
                                         .foregroundColor(.secondary)
                                     
@@ -132,7 +132,7 @@ struct SettingsView: View {
                                         .fontWeight(.semibold)
                                     
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text("• 2G network connections (high risk)")
+                                        Text("• 2G network connections (high performance risk)")
                                         Text("• Rapid technology changes")
                                         Text("• Network downgrades")
                                         Text("• Unusual connection patterns")
@@ -270,11 +270,11 @@ struct SettingsView: View {
     
     private var sensitivityDescription: String {
         switch Int(sensitivityLevel) {
-        case 1: return "Only alerts for critical threats"
-        case 2: return "Alerts for high and critical threats"
-        case 3: return "Alerts for medium, high, and critical threats"
-        case 4: return "Alerts for low, medium, high, and critical threats"
-        case 5: return "Alerts for all detected threats"
+        case 1: return "Only alerts for critical issues"
+        case 2: return "Alerts for high and critical issues"
+        case 3: return "Alerts for medium, high, and critical issues"
+        case 4: return "Alerts for low, medium, high, and critical issues"
+        case 5: return "Alerts for all detected issues"
         default: return "Standard sensitivity"
         }
     }
@@ -296,7 +296,7 @@ struct NotificationSettingsView: View {
     
     var body: some View {
         List {
-            Section("Threat Level Notifications") {
+            Section("Issue Level Notifications") {
                 Toggle("Low Risk", isOn: $lowThreatNotifications)
                 Toggle("Medium Risk", isOn: $mediumThreatNotifications)
                 Toggle("High Risk", isOn: $highThreatNotifications)

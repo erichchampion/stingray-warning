@@ -139,10 +139,10 @@ class StingrayWarningUITests: XCTestCase {
             takeScreenshot(named: "08_DashboardTab_StatusIndicator", description: "Dashboard status indicator")
         }
         
-        // Test threat level display
-        let threatLevelBadge = app.otherElements.matching(identifier: "ThreatLevelBadge")
-        if threatLevelBadge.count > 0 {
-            takeScreenshot(named: "09_DashboardTab_ThreatLevelBadge", description: "Dashboard threat level badge")
+        // Test issue level display
+        let issueLevelBadge = app.otherElements.matching(identifier: "IssueLevelBadge")
+        if issueLevelBadge.count > 0 {
+            takeScreenshot(named: "09_DashboardTab_IssueLevelBadge", description: "Dashboard issue level badge")
         }
         
         // Test action buttons
@@ -177,8 +177,8 @@ class StingrayWarningUITests: XCTestCase {
             // 5. Monitoring active - status details
             takeScreenshot(named: "Monitoring_04_Active_Status", description: "Dashboard with monitoring active - status details")
             
-            // 6. Monitoring active - threat level
-            takeScreenshot(named: "Monitoring_05_Active_ThreatLevel", description: "Dashboard with monitoring active - threat level display")
+            // 6. Monitoring active - issue level
+            takeScreenshot(named: "Monitoring_05_Active_IssueLevel", description: "Dashboard with monitoring active - issue level display")
             
             // 7. Stop monitoring
             let stopButton = app.buttons["Stop Monitoring"]
@@ -192,8 +192,8 @@ class StingrayWarningUITests: XCTestCase {
                 // 9. Monitoring stopped - status details
                 takeScreenshot(named: "Monitoring_07_Stopped_Status", description: "Dashboard with monitoring stopped - status details")
                 
-                // 10. Monitoring stopped - threat level
-                takeScreenshot(named: "Monitoring_08_Stopped_ThreatLevel", description: "Dashboard with monitoring stopped - threat level display")
+                // 10. Monitoring stopped - issue level
+                takeScreenshot(named: "Monitoring_08_Stopped_IssueLevel", description: "Dashboard with monitoring stopped - issue level display")
             }
         }
         
@@ -213,11 +213,11 @@ class StingrayWarningUITests: XCTestCase {
             takeScreenshot(named: "Monitoring_StatusIndicator_\(i)", description: "Status indicator \(i)")
         }
         
-        // Test threat level badges
-        let threatBadges = app.otherElements.matching(identifier: "ThreatLevelBadge")
-        for i in 0..<threatBadges.count {
-            let _ = threatBadges.element(boundBy: i)
-            takeScreenshot(named: "Monitoring_ThreatBadge_\(i)", description: "Threat level badge \(i)")
+        // Test issue level badges
+        let issueBadges = app.otherElements.matching(identifier: "IssueLevelBadge")
+        for i in 0..<issueBadges.count {
+            let _ = issueBadges.element(boundBy: i)
+            takeScreenshot(named: "Monitoring_IssueBadge_\(i)", description: "Issue level badge \(i)")
         }
     }
     
@@ -230,7 +230,7 @@ class StingrayWarningUITests: XCTestCase {
         
         // Test filter buttons
         let allButton = app.buttons["All"]
-        let threatsOnlyButton = app.buttons["Threats Only"]
+        let issuesOnlyButton = app.buttons["Issues Only"]
         
         if allButton.exists {
             allButton.tap()
@@ -238,10 +238,10 @@ class StingrayWarningUITests: XCTestCase {
             takeScreenshot(named: "06_EventHistoryTab_AllFilter", description: "Event History with All filter selected")
         }
         
-        if threatsOnlyButton.exists {
-            threatsOnlyButton.tap()
+        if issuesOnlyButton.exists {
+            issuesOnlyButton.tap()
             Thread.sleep(forTimeInterval: 0.5)
-            takeScreenshot(named: "07_EventHistoryTab_ThreatsOnlyFilter", description: "Event History with Threats Only filter selected")
+            takeScreenshot(named: "07_EventHistoryTab_IssuesOnlyFilter", description: "Event History with Issues Only filter selected")
         }
         
         // Test time range filters
@@ -280,48 +280,17 @@ class StingrayWarningUITests: XCTestCase {
         // Navigate to Learn tab
         navigateToTab("Learn")
         
-        // Take screenshot of main Learn view
-        takeScreenshot(named: "12_LearnTab_Main", description: "Learn tab main view")
+        // Take screenshot of main Learn view (now simplified with network monitoring content)
+        takeScreenshot(named: "12_LearnTab_Main", description: "Learn tab main view - Network Monitoring")
         
-        // Test Protection section
-        let protectionButton = app.buttons["Protection"]
-        if protectionButton.exists {
-            protectionButton.tap()
-            Thread.sleep(forTimeInterval: 1.0)
-            takeScreenshot(named: "13_LearnTab_Protection", description: "Learn tab Protection section")
-            
-            // Scroll through protection content
-            app.swipeUp()
-            Thread.sleep(forTimeInterval: 0.5)
-            takeScreenshot(named: "14_LearnTab_Protection_Scrolled", description: "Learn tab Protection section scrolled")
-            
-            // Go back
-            let backButton = app.buttons["Learn"]
-            if backButton.exists {
-                backButton.tap()
-                Thread.sleep(forTimeInterval: 0.5)
-            }
-        }
+        // Scroll through the content to see all sections
+        app.swipeUp()
+        Thread.sleep(forTimeInterval: 0.5)
+        takeScreenshot(named: "13_LearnTab_Scrolled", description: "Learn tab scrolled to show all content")
         
-        // Test Best Practices section
-        let bestPracticesButton = app.buttons["Best Practices"]
-        if bestPracticesButton.exists {
-            bestPracticesButton.tap()
-            Thread.sleep(forTimeInterval: 1.0)
-            takeScreenshot(named: "15_LearnTab_BestPractices", description: "Learn tab Best Practices section")
-            
-            // Scroll through best practices content
-            app.swipeUp()
-            Thread.sleep(forTimeInterval: 0.5)
-            takeScreenshot(named: "16_LearnTab_BestPractices_Scrolled", description: "Learn tab Best Practices section scrolled")
-            
-            // Go back
-            let backButton = app.buttons["Learn"]
-            if backButton.exists {
-                backButton.tap()
-                Thread.sleep(forTimeInterval: 0.5)
-            }
-        }
+        // Scroll back
+        app.swipeDown()
+        Thread.sleep(forTimeInterval: 0.5)
     }
     
     func testTakeScreenshotOfSettingsTab() throws {
@@ -389,14 +358,14 @@ class StingrayWarningUITests: XCTestCase {
     
     // MARK: - Detailed UI Component Screenshots
     
-    func testTakeScreenshotOfThreatLevelBadges() throws {
+    func testTakeScreenshotOfIssueLevelBadges() throws {
         // Navigate to Event History tab
         navigateToTab("History")
         
-        // Look for threat level badges
-        let threatBadges = app.otherElements.matching(identifier: "ThreatLevelBadge")
-        if threatBadges.count > 0 {
-            takeScreenshot(named: "28_ThreatLevelBadges", description: "Threat level badges in Event History")
+        // Look for issue level badges
+        let issueBadges = app.otherElements.matching(identifier: "IssueLevelBadge")
+        if issueBadges.count > 0 {
+            takeScreenshot(named: "28_IssueLevelBadges", description: "Issue level badges in Event History")
         }
     }
     

@@ -140,7 +140,7 @@ class NetworkEventTests: XCTestCase {
         XCTAssertTrue(summary.contains("Technology: CTRadioAccessTechnologyLTE"))
         XCTAssertTrue(summary.contains("Carrier: Verizon"))
         XCTAssertTrue(summary.contains("MCC/MNC: 310/260"))
-        XCTAssertTrue(summary.contains("Threat: High Risk"))
+        XCTAssertTrue(summary.contains("Issue: High Risk"))
     }
     
     func testSummaryWithPartialData() {
@@ -161,7 +161,7 @@ class NetworkEventTests: XCTestCase {
         XCTAssertTrue(summary.contains("Technology: CTRadioAccessTechnologyLTE"))
         XCTAssertFalse(summary.contains("Carrier:"))
         XCTAssertFalse(summary.contains("MCC/MNC:"))
-        XCTAssertTrue(summary.contains("Threat: No Threat Detected"))
+        XCTAssertTrue(summary.contains("Issue: No Issue Detected"))
     }
     
     func testSummaryWithNilTechnology() {
@@ -182,7 +182,7 @@ class NetworkEventTests: XCTestCase {
         XCTAssertFalse(summary.contains("Technology:"))
         XCTAssertTrue(summary.contains("Carrier: Verizon"))
         XCTAssertTrue(summary.contains("MCC/MNC: 310/260"))
-        XCTAssertTrue(summary.contains("Threat: Medium Risk"))
+        XCTAssertTrue(summary.contains("Issue: Medium Risk"))
     }
     
     // MARK: - 2G Connection Tests

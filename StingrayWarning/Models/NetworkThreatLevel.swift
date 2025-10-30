@@ -12,7 +12,7 @@ enum NetworkThreatLevel: String, CaseIterable, Codable {
     var description: String {
         switch self {
         case .none:
-            return "No Threat Detected"
+            return "No Issue Detected"
         case .low:
             return "Low Risk"
         case .medium:
@@ -20,7 +20,7 @@ enum NetworkThreatLevel: String, CaseIterable, Codable {
         case .high:
             return "High Risk"
         case .critical:
-            return "Critical Threat"
+            return "Critical Risk"
         }
     }
     

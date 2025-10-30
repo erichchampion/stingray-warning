@@ -180,9 +180,9 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         XCTAssertEqual(mockEventStore.addedEvents.first?.radioTechnology, "")
     }
     
-    // MARK: - Threat Detection Tests
+    // MARK: - Issue Detection Tests
     
-    func testThreatDetectionWith2GNetwork() {
+    func testIssueDetectionWith2GNetwork() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyGSM",
@@ -193,12 +193,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect 2G as medium threat
+        // Should detect 2G as medium issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, .medium)
     }
     
-    func testThreatDetectionWithEdgeNetwork() {
+    func testIssueDetectionWithEdgeNetwork() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyEdge",
@@ -209,12 +209,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect Edge as medium threat
+        // Should detect Edge as medium issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, .medium)
     }
     
-    func testThreatDetectionWithLTENetwork() {
+    func testIssueDetectionWithLTENetwork() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyLTE",
@@ -225,12 +225,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect LTE as no threat
+        // Should detect LTE as no issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, NetworkThreatLevel.none)
     }
     
-    func testThreatDetectionWith5GNetwork() {
+    func testIssueDetectionWith5GNetwork() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             radioTechnology: "CTRadioAccessTechnologyNRNSA",
@@ -241,12 +241,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect 5G as no threat
+        // Should detect 5G as no issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, NetworkThreatLevel.none)
     }
     
-    func testThreatDetectionWithUnknownCarrier() {
+    func testIssueDetectionWithUnknownCarrier() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             carrierName: "Unknown Carrier",
@@ -257,12 +257,12 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect unknown carrier as high threat
+        // Should detect unknown carrier as high issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, .high)
     }
     
-    func testThreatDetectionWithRogueCarrier() {
+    func testIssueDetectionWithRogueCarrier() {
         // Given
         let event = TestDataFactory.createNetworkEvent(
             carrierName: "Rogue Base Station",
@@ -273,7 +273,7 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(event)
         
         // Then
-        // Should detect rogue carrier as critical threat
+        // Should detect rogue carrier as critical issue
         XCTAssertEqual(mockEventStore.addedEvents.count, 1)
         XCTAssertEqual(mockEventStore.addedEvents.first?.threatLevel, .critical)
     }
@@ -339,7 +339,7 @@ class CellularSecurityMonitorComprehensiveTests: XCTestCase {
         monitor.processNetworkEvent(highThreatEvent)
         
         // Then
-        // Current threat level should be updated
+        // Current issue level should be updated
         XCTAssertEqual(monitor.currentThreatLevel, .high)
     }
     

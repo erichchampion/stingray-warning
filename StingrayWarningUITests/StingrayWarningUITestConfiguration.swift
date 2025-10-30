@@ -230,16 +230,16 @@ class TestDataConfiguration {
         app.launchEnvironment["ANOMALY_COUNT"] = "5"
     }
     
-    static func configureWithHighThreatEvents() {
+    static func configureWithHighIssueEvents() {
         let app = XCUIApplication()
-        app.launchEnvironment["HIGH_THREAT_EVENTS"] = "1"
-        app.launchEnvironment["THREAT_LEVEL"] = "high"
+        app.launchEnvironment["HIGH_ISSUE_EVENTS"] = "1"
+        app.launchEnvironment["ISSUE_LEVEL"] = "high"
     }
     
-    static func configureWithCriticalThreatEvents() {
+    static func configureWithCriticalIssueEvents() {
         let app = XCUIApplication()
-        app.launchEnvironment["CRITICAL_THREAT_EVENTS"] = "1"
-        app.launchEnvironment["THREAT_LEVEL"] = "critical"
+        app.launchEnvironment["CRITICAL_ISSUE_EVENTS"] = "1"
+        app.launchEnvironment["ISSUE_LEVEL"] = "critical"
     }
     
     static func configureWith2GEvents() {

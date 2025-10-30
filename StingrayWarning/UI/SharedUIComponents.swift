@@ -3,8 +3,8 @@ import SwiftUI
 /// Shared UI components used across the app to maintain consistency and reduce duplication
 struct SharedUIComponents {
     
-    // MARK: - Threat Level Badge
-    struct ThreatLevelBadge: View {
+    // MARK: - Issue Level Badge
+    struct IssueLevelBadge: View {
         let level: NetworkThreatLevel
         
         var body: some View {
@@ -177,7 +177,7 @@ struct SharedUIComponents {
         let title: String
         let message: String
         
-        init(icon: String = "clock", title: String = "No Events Found", message: String = "No events match your current filters. Try adjusting the time range or threat level filter.") {
+        init(icon: String = "clock", title: String = "No Events Found", message: String = "No events match your current filters. Try adjusting the time range or issue level filter.") {
             self.icon = icon
             self.title = title
             self.message = message
