@@ -180,13 +180,55 @@ struct AboutCard: View {
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("About This App")
+                Text("About this App")
                     .font(.headline)
                     .foregroundColor(.primary)
                 
                 Text("This application monitors your cellular network connection and notifies you when you are switched to a 2G network.")
                     .font(.body)
                     .foregroundColor(.secondary)
+                
+                Divider()
+                    .padding(.vertical, 4)
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    if let supportURL = AppMetadata.supportURL {
+                        Link(destination: supportURL) {
+                            HStack {
+                                Image(systemName: "questionmark.circle")
+                                    .foregroundColor(.blue)
+                                Text("Support")
+                                    .foregroundColor(.blue)
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+                    if let privacyURL = AppMetadata.privacyPolicyURL {
+                        Link(destination: privacyURL) {
+                            HStack {
+                                Image(systemName: "hand.raised")
+                                    .foregroundColor(.blue)
+                                Text("Privacy Policy")
+                                    .foregroundColor(.blue)
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+                    if let contactURL = AppMetadata.contactURL {
+                        Link(destination: contactURL) {
+                            HStack {
+                                Image(systemName: "envelope")
+                                    .foregroundColor(.blue)
+                                Text("Contact")
+                                    .foregroundColor(.blue)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                .font(.subheadline)
             }
         }
         .padding()
