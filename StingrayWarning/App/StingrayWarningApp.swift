@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct StingrayWarningApp: App {
+struct TwoGApp: App {
     @StateObject private var cellularMonitor = CellularSecurityMonitor()
     @StateObject private var notificationManager = NotificationManager()
     @StateObject private var backgroundTaskManager = BackgroundTaskManager()
@@ -32,9 +32,12 @@ struct StingrayWarningApp: App {
         // Request notification permissions
         notificationManager.requestPermissions()
         
-        // Start monitoring if it was previously enabled (notifications are optional)
-        if cellularMonitor.shouldAutoStartMonitoring() {
-            cellularMonitor.startMonitoring()
+        // Automatically start monitoring on startup
+        cellularMonitor.startMonitoring()
+        
+        // Start background monitoring if permission has been granted
+        if backgroundTaskManager.isBackgroundAppRefreshEnabled {
+            backgroundTaskManager.startBackgroundMonitoring()
         }
     }
 }

@@ -1,4 +1,4 @@
-name: StingrayWarning
+name: TwoG
 options:
   bundleIdPrefix: us.defroster
   deploymentTarget:
@@ -7,7 +7,7 @@ options:
   xcodeVersion: "15.0"
 
 targets:
-  StingrayWarning:
+  TwoG:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
@@ -15,9 +15,10 @@ targets:
       - StingrayWarning
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarning
-        PRODUCT_NAME: Stingray Warning
-        DISPLAY_NAME: Stingray Warning
+        PRODUCT_BUNDLE_IDENTIFIER: us.defroster.twog
+        PRODUCT_NAME: 2G
+        PRODUCT_MODULE_NAME: TwoG
+        DISPLAY_NAME: 2G
         INFOPLIST_FILE: StingrayWarning/Resources/Info.plist
         SWIFT_VERSION: "5.0"
         CODE_SIGN_STYLE: Automatic
@@ -41,10 +42,11 @@ targets:
           - processing
           - fetch
         BGTaskSchedulerPermittedIdentifiers:
-          - us.defroster.stingraywarning.security-monitoring
-          - us.defroster.stingraywarning.background-refresh
+          - us.defroster.twog.security-monitoring
+          - us.defroster.twog.background-refresh
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UISupportedInterfaceOrientations~ipad:
@@ -53,58 +55,58 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UILaunchStoryboardName: LaunchScreen
-        TermsOfServiceURL: "https://stingraywarning.defroster.us/terms"
-        SupportURL: "https://stingraywarning.defroster.us"
-        PrivacyPolicyURL: "https://stingraywarning.defroster.us/privacy"
-        ContactURL: "https://stingraywarning.defroster.us/contact"
-        NSHumanReadableCopyright: "© 2024 Stingray Warning. All rights reserved."
+        TermsOfServiceURL: "https://2g.defroster.us/terms"
+        SupportURL: "https://2g.defroster.us"
+        PrivacyPolicyURL: "https://2g.defroster.us/privacy"
+        ContactURL: "https://2g.defroster.us/contact"
+        NSHumanReadableCopyright: "© 2024 2G. All rights reserved."
 
-  StingrayWarningTests:
+  TwoGTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "16.0"
     sources:
       - StingrayWarningTests
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarningTests
-      PRODUCT_NAME: Stingray WarningTests
+      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.twogTests
+      PRODUCT_NAME: 2GTests
       SWIFT_VERSION: "5.0"
       CODE_SIGN_STYLE: Automatic
       DEVELOPMENT_TEAM: KA5A6NN3PD
       GENERATE_INFOPLIST_FILE: YES
-      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Stingray Warning.app/Stingray Warning
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/2G.app/2G
       BUNDLE_LOADER: $(TEST_HOST)
     dependencies:
-      - target: StingrayWarning
+      - target: TwoG
 
-  StingrayWarningUITests:
+  TwoGUITests:
     type: bundle.ui-testing
     platform: iOS
     deploymentTarget: "16.0"
     sources:
       - StingrayWarningUITests
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.stingraywarningUITests
-      PRODUCT_NAME: Stingray WarningUITests
+      PRODUCT_BUNDLE_IDENTIFIER: us.defroster.twogUITests
+      PRODUCT_NAME: 2GUITests
       SWIFT_VERSION: "5.0"
       CODE_SIGN_STYLE: Automatic
       DEVELOPMENT_TEAM: KA5A6NN3PD
       GENERATE_INFOPLIST_FILE: YES
-      TEST_TARGET_NAME: StingrayWarning
+      TEST_TARGET_NAME: TwoG
     dependencies:
-      - target: StingrayWarning
+      - target: TwoG
 
 schemes:
-  StingrayWarning:
+  TwoG:
     build:
       targets:
-        StingrayWarning: all
-        StingrayWarningTests:
+        TwoG: all
+        TwoGTests:
           - run
           - test
           - profile
           - analyze
-        StingrayWarningUITests:
+        TwoGUITests:
           - run
           - test
           - profile
@@ -114,8 +116,8 @@ schemes:
     test:
       config: Debug
       targets:
-        - StingrayWarningTests
-        - StingrayWarningUITests
+        - TwoGTests
+        - TwoGUITests
     profile:
       config: Release
     analyze:
@@ -124,4 +126,4 @@ schemes:
       config: Release
       build:
         targets:
-          StingrayWarning: all
+          TwoG: all

@@ -3,7 +3,7 @@ import CoreTelephony
 import CoreLocation
 import UserNotifications
 import BackgroundTasks
-@testable import Stingray_Warning
+@testable import TwoG
 
 // MARK: - Mock UserDefaults
 

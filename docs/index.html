@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stingray Warning - Cellular Performance Monitor</title>
+    <title>2G - Detect 2G Connections</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -40,9 +40,6 @@
             border-radius: 8px;
             border-left: 4px solid #3498db;
         }
-        .feature-list strong {
-            color: #2c3e50;
-        }
         .tech-details {
             background: #f8f9fa;
             padding: 20px;
@@ -63,14 +60,6 @@
             border-radius: 8px;
             margin: 20px 0;
         }
-        .app-store-badge {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .app-store-badge img {
-            height: 60px;
-            border-radius: 8px;
-        }
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -89,43 +78,41 @@
 </head>
 <body>
     <div class="container">
-        <h1>📱 Stingray Warning iOS App</h1>
+        <h1>📱 2G</h1>
         
-        <p>A cellular performance monitoring iOS app that tracks your network connection and alerts you when you experience network issues that may impact device performance, such as frequent network switching or connections to slower 2G networks.</p>
+        <p>A simple iOS app that monitors your cellular connection and alerts you when you're connected to a 2G network.</p>
         
-        <div class="app-store-badge">
-            <p><strong>Coming Soon to the App Store</strong></p>
-            <p>Download for iOS 16.0+</p>
+        <div class="info-box">
+            <p><strong>Automatically monitors your connection.</strong> The app starts monitoring when you launch it and runs in the background to keep track of 2G connections.</p>
         </div>
 
         <h2>✨ Features</h2>
         <ul class="feature-list">
-            <li><strong>Real-time Network Monitoring</strong>: Continuously monitors cellular radio technology and connection quality</li>
-            <li><strong>2G Network Detection</strong>: Alerts you when connected to 2G networks, which can cause poor performance and slow data speeds</li>
-            <li><strong>Network Switching Alerts</strong>: Notifies you when your device frequently switches between networks, which may indicate connection problems</li>
-            <li><strong>Background Monitoring</strong>: Runs monitoring in the background with battery optimization</li>
-            <li><strong>Educational Content</strong>: Learn about network technologies and how they affect your device's performance</li>
+            <li><strong>Automatic Monitoring</strong>: Starts monitoring immediately when you open the app</li>
+            <li><strong>2G Detection</strong>: Detects and alerts you when connected to 2G networks (GSM, GPRS, EDGE)</li>
+            <li><strong>Recent Connections</strong>: View a list of recent 2G connection events</li>
+            <li><strong>Background Monitoring</strong>: Continues monitoring in the background</li>
         </ul>
 
         <h2>🔧 Technical Details</h2>
         <div class="tech-details">
             <ul>
-                <li><strong>Platform</strong>: iOS 14.0+</li>
+                <li><strong>Platform</strong>: iOS 16.0+</li>
                 <li><strong>Frameworks</strong>: CoreTelephony, UserNotifications, BackgroundTasks</li>
-                <li><strong>Architecture</strong>: SwiftUI with MVVM pattern</li>
+                <li><strong>Architecture</strong>: SwiftUI</li>
                 <li><strong>Privacy</strong>: No personal data collection, local analysis only</li>
             </ul>
         </div>
 
-        <h2>📊 Why Monitor Network Performance?</h2>
+        <h2>📊 About 2G Networks</h2>
         <div class="info-box">
-            <p><strong>Network conditions can significantly impact your device's performance.</strong></p>
+            <p>2G networks (GSM, GPRS, EDGE) provide very slow data speeds compared to modern 4G and 5G networks. When your device connects to a 2G network, you may experience:</p>
             <ul>
-                <li><strong>2G Networks</strong>: Very slow data speeds and limited functionality compared to modern 4G and 5G networks</li>
-                <li><strong>Frequent Network Switching</strong>: Can cause connection issues, dropped calls, and poor data performance</li>
-                <li><strong>Network Downgrades</strong>: Unexpected drops to slower network technologies can result in slower internet speeds and reduced app performance</li>
+                <li>Significantly slower internet speeds</li>
+                <li>Longer loading times</li>
+                <li>Reduced app performance</li>
             </ul>
-            <p>By monitoring these conditions, you can better understand when and why your device may experience performance issues.</p>
+            <p>This app helps you know when you're connected to a 2G network so you're aware of these limitations.</p>
         </div>
 
         <h2>🔒 Privacy First</h2>
@@ -134,21 +121,14 @@
             <p><a href="privacy.html">Read our complete Privacy Policy</a></p>
         </div>
 
-        <h2>🎯 Who Should Use This App?</h2>
-        <p>Perfect for anyone who wants to understand their cellular network connection quality and be notified about network conditions that may affect their device's performance. Whether you're troubleshooting connection issues, monitoring data speeds, or simply curious about your network status, this app provides valuable insights.</p>
-
-        <h2>📱 How It Works</h2>
-        <p>Stingray Warning monitors your device's cellular connection metadata to identify network performance issues. When it detects conditions that may impact performance—such as connections to 2G networks or frequent network switching—the app alerts you so you're aware of potential connectivity problems.</p>
-
         <div class="footer">
             <p>
                 <a href="https://github.com/erichchampion/stingray-warning">View Source Code</a> | 
                 <a href="privacy.html">Privacy Policy</a> | 
-                <a href="https://github.com/erichchampion/stingray-warning/issues">Contact Support</a>
+                <a href="terms.html">Terms of Service</a>
             </p>
-            <p>&copy; 2025 Stingray Warning. All rights reserved.</p>
+            <p>&copy; 2025 2G. All rights reserved.</p>
         </div>
     </div>
 </body>
 </html>
-

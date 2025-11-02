@@ -52,8 +52,8 @@ struct AppConstants {
     
     // MARK: - Background Task Identifiers
     struct BackgroundTaskIdentifiers {
-        static let securityMonitoring = "us.defroster.stingraywarning.security-monitoring"
-        static let backgroundRefresh = "us.defroster.stingraywarning.background-refresh"
+        static let securityMonitoring = "us.defroster.twog.security-monitoring"
+        static let backgroundRefresh = "us.defroster.twog.background-refresh"
     }
     
     // MARK: - Notification Identifiers
@@ -82,6 +82,6 @@ struct AppConstants {
     // MARK: - App Information
     struct AppInfo {
         static let version = "1.0.0"
-        static let bundleIdentifier = "us.defroster.stingraywarning"
+        static let bundleIdentifier = "us.defroster.twog"
     }
 }

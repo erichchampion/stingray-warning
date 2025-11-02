@@ -5,53 +5,16 @@ struct ContentView: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var backgroundTaskManager: BackgroundTaskManager
     @EnvironmentObject var eventStore: EventStore
-    @State private var selectedTab = 0
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            DashboardView()
-                .tabItem {
-                    Image(systemName: "shield.checkered")
-                    Text("Dashboard")
-                }
-                .tag(0)
-            
-            EventHistoryView()
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                    Text("History")
-                }
-                .tag(1)
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-                .tag(2)
-            
-            EducationView()
-                .tabItem {
-                    Image(systemName: "book")
-                    Text("Learn")
-                }
-                .tag(3)
-        }
-        .accentColor(.blue)
-        .onAppear {
-            setupApp()
-        }
-    }
-    
-    private func setupApp() {
-        // All setup is now handled at the app level in StingrayWarningApp.setupApp()
-        // This method is kept for any future ContentView-specific setup
+        DashboardView()
     }
 }
 
 struct DashboardView: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
     @EnvironmentObject var notificationManager: NotificationManager
+    @EnvironmentObject var eventStore: EventStore
     
     var body: some View {
         NavigationStack {
@@ -62,31 +25,6 @@ struct DashboardView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    // Quick Actions Bar
-                    HStack {
-                        SharedUIComponents.ActionButton(
-                            title: cellularMonitor.isMonitoring ? "Stop" : "Start",
-                            icon: cellularMonitor.isMonitoring ? "stop.circle" : "play.circle",
-                            color: cellularMonitor.isMonitoring ? .red : .green
-                        ) {
-                            if cellularMonitor.isMonitoring {
-                                cellularMonitor.stopMonitoring()
-                            } else {
-                                cellularMonitor.startMonitoring()
-                            }
-                        }
-                        
-                        Spacer()
-                        
-                        SharedUIComponents.ActionButton(
-                            title: "Check Now",
-                            icon: "arrow.clockwise",
-                            color: .blue
-                        ) {
-                            cellularMonitor.performSecurityCheck()
-                        }
-                    }
                 }
                 .padding()
                 .background(Color(.systemGray6))
@@ -104,22 +42,22 @@ struct DashboardView: View {
                                 CurrentStatusCard()
                             }
                             
-                            // Issue Level Section
+                            // Recent 2G Connections Section
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Issue Level")
+                                Text("Recent 2G Connections")
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 
-                                IssueLevelCard()
+                                Recent2GConnectionsCard()
                             }
                             
-                            // Recent Activity Section
+                            // About Section
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Recent Activity")
+                                Text("About")
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 
-                                RecentEventsCard()
+                                AboutCard()
                             }
                         }
                         .padding()
@@ -194,76 +132,61 @@ struct CurrentStatusCard: View {
     }
 }
 
-struct IssueLevelCard: View {
+
+
+struct Recent2GConnectionsCard: View {
     @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
+    @EnvironmentObject var eventStore: EventStore
+    
+    // Get only 2G connection events, sorted by most recent
+    private var twoGEvents: [NetworkEvent] {
+        eventStore.events
+            .filter { $0.is2GConnection }
+            .sorted { $0.timestamp > $1.timestamp }
+    }
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Image(systemName: "exclamationmark.triangle")
-                    .foregroundColor(issueColor)
+                Image(systemName: "antenna.radiowaves.left.and.right")
+                    .foregroundColor(.orange)
                 Spacer()
             }
             
-            HStack {
-                Text(cellularMonitor.currentThreatLevel.description)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(issueColor)
-                Spacer()
-                IssueLevelIcon(level: cellularMonitor.currentThreatLevel)
+            if twoGEvents.isEmpty {
+                Text("No 2G connections detected")
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 20)
+            } else {
+                ForEach(Array(twoGEvents.prefix(10))) { event in
+                    TwoGEventRow(event: event)
+                }
             }
-            
-            Text(issueDescription)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
         }
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(12)
     }
-    
-    private var issueColor: Color {
-        switch cellularMonitor.currentThreatLevel {
-        case .none: return .green
-        case .low: return .yellow
-        case .medium: return .orange
-        case .high: return .red
-        case .critical: return .purple
-        }
-    }
-    
-    private var issueDescription: String {
-        switch cellularMonitor.currentThreatLevel {
-        case .none: return "No network issues detected"
-        case .low: return "Minor network concerns detected"
-        case .medium: return "Moderate network issues present"
-        case .high: return "High network issue detected"
-        case .critical: return "Critical network issue - immediate attention recommended"
-        }
-    }
 }
 
-
-struct RecentEventsCard: View {
-    @EnvironmentObject var cellularMonitor: CellularSecurityMonitor
-    
+struct AboutCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Image(systemName: "clock")
+                Image(systemName: "info.circle")
                     .foregroundColor(.blue)
                 Spacer()
             }
             
-            if cellularMonitor.currentNetworkInfo != nil {
-                EventRow(event: cellularMonitor.currentNetworkInfo!)
-            } else {
-                Text("No recent activity")
+            VStack(alignment: .leading, spacing: 8) {
+                Text("About This App")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Text("This application monitors your cellular network connection and notifies you when you are switched to a 2G network.")
+                    .font(.body)
                     .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 20)
             }
         }
         .padding()
@@ -344,21 +267,46 @@ struct ActionButton: View {
     }
 }
 
-struct EventRow: View {
+struct TwoGEventRow: View {
     let event: NetworkEvent
+    
+    private func userFriendlyTechnologyName(_ technology: String?) -> String {
+        guard let tech = technology else { return "Unknown" }
+        
+        switch tech {
+        case "CTRadioAccessTechnologyGSM":
+            return "GSM"
+        case "CTRadioAccessTechnologyGPRS":
+            return "GPRS"
+        case "CTRadioAccessTechnologyEdge":
+            return "EDGE"
+        default:
+            return tech.replacingOccurrences(of: "CTRadioAccessTechnology", with: "")
+        }
+    }
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(event.description)
+                Text(userFriendlyTechnologyName(event.radioTechnology))
                     .font(.caption)
                     .fontWeight(.medium)
+                Text(event.radioTechnology ?? "Unknown")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
                 Text(event.timestamp, style: .relative)
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
             Spacer()
-            SharedUIComponents.IssueLevelBadge(level: event.threatLevel)
+            Text("2G")
+                .font(.caption2)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.orange)
+                .cornerRadius(4)
         }
         .padding(.vertical, 4)
     }

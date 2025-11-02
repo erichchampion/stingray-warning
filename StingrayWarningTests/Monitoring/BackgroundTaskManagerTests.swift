@@ -1,6 +1,6 @@
 import XCTest
 import BackgroundTasks
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Unit tests for BackgroundTaskManager
 class BackgroundTaskManagerTests: XCTestCase {

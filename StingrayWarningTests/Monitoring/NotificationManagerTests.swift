@@ -1,6 +1,6 @@
 import XCTest
 import UserNotifications
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Unit tests for NotificationManager
 class NotificationManagerTests: XCTestCase {

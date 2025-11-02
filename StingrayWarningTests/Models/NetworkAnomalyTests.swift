@@ -1,5 +1,5 @@
 import XCTest
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Unit tests for NetworkAnomaly model
 class NetworkAnomalyTests: XCTestCase {

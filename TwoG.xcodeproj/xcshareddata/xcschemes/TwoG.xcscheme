@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BB59D2C1EB60399A2EECA90"
-               BuildableName = "Stingray Warning.app"
-               BlueprintName = "StingrayWarning"
-               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+               BlueprintIdentifier = "702104D4A534201E6B2DA90F"
+               BuildableName = "2G.app"
+               BlueprintName = "TwoG"
+               ReferencedContainer = "container:TwoG.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60A3A4A143F9D28719B78DA4"
-               BuildableName = "Stingray WarningTests.xctest"
-               BlueprintName = "StingrayWarningTests"
-               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+               BlueprintIdentifier = "15715C1226285844E3354DFD"
+               BuildableName = "2GTests.xctest"
+               BlueprintName = "TwoGTests"
+               ReferencedContainer = "container:TwoG.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -42,10 +42,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B714180062909A559A8F52F3"
-               BuildableName = "Stingray WarningUITests.xctest"
-               BlueprintName = "StingrayWarningUITests"
-               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+               BlueprintIdentifier = "0BD5C45997ADCC71EE3DFC2D"
+               BuildableName = "2GUITests.xctest"
+               BlueprintName = "TwoGUITests"
+               ReferencedContainer = "container:TwoG.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,10 +58,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BB59D2C1EB60399A2EECA90"
-            BuildableName = "Stingray Warning.app"
-            BlueprintName = "StingrayWarning"
-            ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            BlueprintIdentifier = "702104D4A534201E6B2DA90F"
+            BuildableName = "2G.app"
+            BlueprintName = "TwoG"
+            ReferencedContainer = "container:TwoG.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -70,20 +70,20 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60A3A4A143F9D28719B78DA4"
-               BuildableName = "Stingray WarningTests.xctest"
-               BlueprintName = "StingrayWarningTests"
-               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+               BlueprintIdentifier = "15715C1226285844E3354DFD"
+               BuildableName = "2GTests.xctest"
+               BlueprintName = "TwoGTests"
+               ReferencedContainer = "container:TwoG.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B714180062909A559A8F52F3"
-               BuildableName = "Stingray WarningUITests.xctest"
-               BlueprintName = "StingrayWarningUITests"
-               ReferencedContainer = "container:StingrayWarning.xcodeproj">
+               BlueprintIdentifier = "0BD5C45997ADCC71EE3DFC2D"
+               BuildableName = "2GUITests.xctest"
+               BlueprintName = "TwoGUITests"
+               ReferencedContainer = "container:TwoG.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -102,10 +102,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BB59D2C1EB60399A2EECA90"
-            BuildableName = "Stingray Warning.app"
-            BlueprintName = "StingrayWarning"
-            ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            BlueprintIdentifier = "702104D4A534201E6B2DA90F"
+            BuildableName = "2G.app"
+            BlueprintName = "TwoG"
+            ReferencedContainer = "container:TwoG.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -119,10 +119,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BB59D2C1EB60399A2EECA90"
-            BuildableName = "Stingray Warning.app"
-            BlueprintName = "StingrayWarning"
-            ReferencedContainer = "container:StingrayWarning.xcodeproj">
+            BlueprintIdentifier = "702104D4A534201E6B2DA90F"
+            BuildableName = "2G.app"
+            BlueprintName = "TwoG"
+            ReferencedContainer = "container:TwoG.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

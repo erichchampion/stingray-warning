@@ -4,8 +4,8 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>us.defroster.stingraywarning.security-monitoring</string>
-		<string>us.defroster.stingraywarning.background-refresh</string>
+		<string>us.defroster.twog.security-monitoring</string>
+		<string>us.defroster.twog.background-refresh</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
@@ -24,15 +24,15 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>ContactURL</key>
-	<string>https://stingraywarning.defroster.us/contact</string>
+	<string>https://2g.defroster.us/contact</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2024 Stingray Warning. All rights reserved.</string>
+	<string>© 2024 2G. All rights reserved.</string>
 	<key>PrivacyPolicyURL</key>
-	<string>https://stingraywarning.defroster.us/privacy</string>
+	<string>https://2g.defroster.us/privacy</string>
 	<key>SupportURL</key>
-	<string>https://stingraywarning.defroster.us</string>
+	<string>https://2g.defroster.us</string>
 	<key>TermsOfServiceURL</key>
-	<string>https://stingraywarning.defroster.us/terms</string>
+	<string>https://2g.defroster.us/terms</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>processing</string>
@@ -43,6 +43,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>

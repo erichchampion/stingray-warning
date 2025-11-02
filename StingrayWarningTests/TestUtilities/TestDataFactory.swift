@@ -3,7 +3,7 @@ import XCTest
 import CoreTelephony
 import UserNotifications
 import BackgroundTasks
-@testable import Stingray_Warning
+@testable import TwoG
 
 // MARK: - Test Data Factory
 

@@ -1,29 +1,28 @@
-# Stingray Warning iOS App
+# 2G iOS App
 
-A security awareness iOS app that monitors cellular network conditions to detect potential IMSI catchers and other cellular security threats.
+A simple iOS app that monitors your cellular connection and alerts you when you're connected to a 2G network.
 
 ## Features
 
-- **Real-time Network Monitoring**: Continuously monitors cellular radio technology and carrier information
-- **2G Detection**: Alerts users when connected to potentially vulnerable 2G networks
-- **Anomaly Detection**: Identifies suspicious network behavior patterns
-- **Background Monitoring**: Runs monitoring in the background with battery optimization
-- **Educational Content**: Provides information about cellular security threats
+- **Automatic Monitoring**: Starts monitoring immediately when you open the app
+- **2G Detection**: Detects and alerts you when connected to 2G networks (GSM, GPRS, EDGE)
+- **Recent Connections**: View a list of recent 2G connection events
+- **Background Monitoring**: Continues monitoring in the background
 
 ## Technical Details
 
-- **Platform**: iOS 14.0+
-- **Frameworks**: CoreTelephony, UserNotifications, CoreLocation, BackgroundTasks
-- **Architecture**: SwiftUI with MVVM pattern
+- **Platform**: iOS 16.0+
+- **Frameworks**: CoreTelephony, UserNotifications, BackgroundTasks
+- **Architecture**: SwiftUI
 - **Privacy**: No personal data collection, local analysis only
 
 ## Development Status
 
-This project is currently in active development. See `TODO.md` for detailed implementation progress.
+This project is currently in active development.
 
 ## Disclaimer
 
-This app is designed as a security awareness tool with significant limitations. It should not be solely relied upon for protection against sophisticated cellular attacks. Detection capabilities are limited compared to dedicated SDR hardware.
+This app monitors your cellular connection to detect 2G networks. Detection capabilities are limited compared to dedicated hardware and should be used as an awareness tool.
 
 ## Privacy
 

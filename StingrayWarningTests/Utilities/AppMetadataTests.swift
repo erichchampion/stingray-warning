@@ -1,6 +1,6 @@
 import XCTest
 import UIKit
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Unit tests for AppMetadata utility
 class AppMetadataTests: XCTestCase {
@@ -14,7 +14,7 @@ class AppMetadataTests: XCTestCase {
         // Then
         // URL should be valid if configured in Info.plist
         if let url = supportURL {
-            XCTAssertTrue(url.absoluteString.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.absoluteString.contains("defroster.us"))
         }
     }
     
@@ -25,7 +25,7 @@ class AppMetadataTests: XCTestCase {
         // Then
         // URL should be valid if configured in Info.plist
         if let url = privacyURL {
-            XCTAssertTrue(url.absoluteString.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.absoluteString.contains("defroster.us"))
             XCTAssertTrue(url.absoluteString.contains("privacy"))
         }
     }
@@ -37,7 +37,7 @@ class AppMetadataTests: XCTestCase {
         // Then
         // URL should be valid if configured in Info.plist
         if let url = contactURL {
-            XCTAssertTrue(url.absoluteString.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.absoluteString.contains("defroster.us"))
             XCTAssertTrue(url.absoluteString.contains("contact"))
         }
     }
@@ -111,7 +111,7 @@ class AppMetadataTests: XCTestCase {
         // Then
         XCTAssertNotNil(appName)
         XCTAssertFalse(appName.isEmpty)
-        XCTAssertEqual(appName, "Stingray Warning")
+        XCTAssertEqual(appName, "2G")
     }
     
     func testCopyright() {
@@ -122,8 +122,8 @@ class AppMetadataTests: XCTestCase {
         XCTAssertNotNil(copyright)
         XCTAssertFalse(copyright.isEmpty)
         XCTAssertTrue(copyright.contains("©"))
-        XCTAssertTrue(copyright.contains("2024"))
-        XCTAssertTrue(copyright.contains("Stingray Warning"))
+        XCTAssertTrue(copyright.contains("2024") || copyright.contains("2025"))
+        XCTAssertTrue(copyright.contains("2G"))
     }
     
     // MARK: - URL Opening Tests
@@ -213,19 +213,19 @@ class AppMetadataTests: XCTestCase {
         // Then
         // These should be configured in Info.plist
         if let url = supportURL {
-            XCTAssertTrue(url.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.contains("defroster.us"))
         }
         if let url = privacyURL {
-            XCTAssertTrue(url.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.contains("defroster.us"))
             XCTAssertTrue(url.contains("privacy"))
         }
         if let url = contactURL {
-            XCTAssertTrue(url.contains("stingraywarning.defroster.us"))
+            XCTAssertTrue(url.contains("defroster.us"))
             XCTAssertTrue(url.contains("contact"))
         }
         if let copyright = copyright {
             XCTAssertTrue(copyright.contains("©"))
-            XCTAssertTrue(copyright.contains("2024"))
+            XCTAssertTrue(copyright.contains("2024") || copyright.contains("2025"))
         }
     }
     

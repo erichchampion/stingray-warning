@@ -33,7 +33,7 @@ struct NetworkMonitoringView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("About This App")
                         .font(.headline)
-                    Text("This application monitors your cellular network connection and notifies you about network conditions that may affect your device's performance.")
+                    Text("This application monitors your cellular network connection and notifies you when you are switched to a 2G network.")
                 }
             }
             

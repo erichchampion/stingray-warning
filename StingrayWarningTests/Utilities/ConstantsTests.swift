@@ -1,5 +1,5 @@
 import XCTest
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Unit tests for AppConstants
 class ConstantsTests: XCTestCase {
@@ -140,8 +140,8 @@ class ConstantsTests: XCTestCase {
     
     func testBackgroundTaskIdentifiers() {
         // Given & When & Then
-        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.securityMonitoring, "us.defroster.stingraywarning.security-monitoring")
-        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.backgroundRefresh, "us.defroster.stingraywarning.background-refresh")
+        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.securityMonitoring, "us.defroster.twog.security-monitoring")
+        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.backgroundRefresh, "us.defroster.twog.background-refresh")
     }
     
     func testBackgroundTaskIdentifierFormat() {
@@ -153,7 +153,7 @@ class ConstantsTests: XCTestCase {
         
         for identifier in identifiers {
             XCTAssertFalse(identifier.isEmpty)
-            XCTAssertTrue(identifier.contains("us.defroster.stingraywarning"))
+            XCTAssertTrue(identifier.contains("us.defroster.twog"))
             XCTAssertTrue(identifier.contains("-"))
         }
     }
@@ -174,7 +174,7 @@ class ConstantsTests: XCTestCase {
     
     func testAppInfo() {
         // Given & When & Then
-        XCTAssertEqual(AppConstants.AppInfo.bundleIdentifier, "us.defroster.stingraywarning")
+        XCTAssertEqual(AppConstants.AppInfo.bundleIdentifier, "us.defroster.twog")
         XCTAssertEqual(AppConstants.AppInfo.version, "1.0.0")
     }
     
@@ -319,7 +319,7 @@ class ConstantsTests: XCTestCase {
         XCTAssertEqual(AppConstants.Limits.maxRecentEvents, 1000)
         XCTAssertEqual(AppConstants.ThreatScoring.twoGConnectionScore, 3)
         XCTAssertEqual(AppConstants.UserDefaultsKeys.storedNetworkEvents, "StoredNetworkEvents")
-        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.securityMonitoring, "us.defroster.stingraywarning.security-monitoring")
-        XCTAssertEqual(AppConstants.AppInfo.bundleIdentifier, "us.defroster.stingraywarning")
+        XCTAssertEqual(AppConstants.BackgroundTaskIdentifiers.securityMonitoring, "us.defroster.twog.security-monitoring")
+        XCTAssertEqual(AppConstants.AppInfo.bundleIdentifier, "us.defroster.twog")
     }
 }

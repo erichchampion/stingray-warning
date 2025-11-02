@@ -1,7 +1,7 @@
 import XCTest
 import CoreTelephony
 import CoreLocation
-@testable import Stingray_Warning
+@testable import TwoG
 
 /// Comprehensive unit tests for CellularSecurityMonitor
 class CellularSecurityMonitorComprehensiveTests: XCTestCase {

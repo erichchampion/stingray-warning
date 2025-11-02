@@ -24,7 +24,7 @@ This document outlines the complete checklist for submitting the Stingray Warnin
   - `public/index.html` - Main app website
   - `public/privacy.html` - Comprehensive privacy policy
   - `docs/contact.html` - GitHub-based support system
-- **URL**: https://stingraywarning.defroster.us
+- **URL**: https://2g.defroster.us
 - **GitHub Pages**: Ready for deployment
 
 ### 3. **Info.plist URL Configuration** ✅
@@ -32,11 +32,11 @@ This document outlines the complete checklist for submitting the Stingray Warnin
 - **Added Keys**:
   ```xml
   <key>SupportURL</key>
-  <string>https://stingraywarning.defroster.us</string>
+  <string>https://2g.defroster.us</string>
   <key>PrivacyPolicyURL</key>
-  <string>https://stingraywarning.defroster.us/privacy</string>
+  <string>https://2g.defroster.us/privacy</string>
   <key>ContactURL</key>
-  <string>https://stingraywarning.defroster.us/contact</string>
+  <string>https://2g.defroster.us/contact</string>
   <key>NSHumanReadableCopyright</key>
   <string>© 2024 Stingray Warning. All rights reserved.</string>
   <key>LSApplicationCategoryType</key>
@@ -237,7 +237,7 @@ Perfect for security-conscious users, journalists, activists, and anyone concern
 
 ## 📞 Support Infrastructure
 
-### **Website**: https://stingraywarning.defroster.us
+### **Website**: https://2g.defroster.us
 - **Main Page**: App overview and features
 - **Privacy Policy**: Comprehensive privacy information
 - **Contact Support**: GitHub Issues integration
