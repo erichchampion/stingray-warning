@@ -31,7 +31,7 @@ struct NetworkMonitoringView: View {
             
             SharedUIComponents.EducationCard {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("About This App")
+                    Text("About this App")
                         .font(.headline)
                     Text("This application monitors your cellular network connection and notifies you when you are switched to a 2G network.")
                 }

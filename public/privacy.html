@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Stingray Warning</title>
+    <title>Privacy Policy - 2G</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -57,13 +57,6 @@
             border-radius: 8px;
             margin: 15px 0;
         }
-        .contact-info {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -91,12 +84,12 @@
         <h1>🔒 Privacy Policy</h1>
         
         <div class="last-updated">
-            <strong>Last Updated:</strong> December 28, 2024<br>
-            <strong>Effective Date:</strong> December 28, 2024
+            <strong>Last Updated:</strong> November 2025<br>
+            <strong>Effective Date:</strong> November 2025
         </div>
 
-        <h2>📱 About This App</h2>
-        <p>Stingray Warning is a security awareness iOS application designed to monitor cellular network conditions and detect potential IMSI catchers and other cellular security threats. This privacy policy explains how we handle your information when you use our app.</p>
+        <h2>📱 About this App</h2>
+        <p>2G is a simple iOS application that monitors your cellular connection to detect when you're connected to a 2G network. This privacy policy explains how we handle your information when you use our app.</p>
 
         <h2>🚫 Data We Do NOT Collect</h2>
         <div class="no-data">
@@ -104,7 +97,7 @@
             <ul>
                 <li>Name, email address, or contact information</li>
                 <li>Phone numbers or device identifiers</li>
-                <li>Location data (beyond what's necessary for network analysis)</li>
+                <li>Location data</li>
                 <li>Browsing history or app usage patterns</li>
                 <li>Photos, videos, or other media</li>
                 <li>Financial information or payment data</li>
@@ -114,22 +107,12 @@
         <h2>📊 Data We Access (Local Analysis Only)</h2>
         <div class="data-type">
             <h3>Cellular Network Information</h3>
-            <p><strong>Purpose:</strong> Security analysis and threat detection</p>
+            <p><strong>Purpose:</strong> To detect 2G network connections</p>
             <p><strong>Data Types:</strong></p>
             <ul>
-                <li>Radio access technology (2G, 3G, 4G, 5G)</li>
-                <li>Carrier information (MCC/MNC codes)</li>
-                <li>Signal strength and quality metrics</li>
-                <li>Network change events and timing</li>
+                <li>Radio access technology type (2G, 3G, 4G, 5G)</li>
             </ul>
-            <p><strong>Storage:</strong> All data is processed locally on your device and is not transmitted to external servers.</p>
-        </div>
-
-        <div class="data-type">
-            <h3>Location Data (Minimal)</h3>
-            <p><strong>Purpose:</strong> Providing context for security alerts</p>
-            <p><strong>Usage:</strong> Location data is used only to provide geographical context for network security alerts. This helps identify patterns and potential threats in specific areas.</p>
-            <p><strong>Storage:</strong> Location data is not stored permanently and is not transmitted to external servers.</p>
+            <p><strong>Storage:</strong> All data is processed locally on your device. 2G connection events are stored locally for display in the app. No data is transmitted to external servers.</p>
         </div>
 
         <h2>🔐 Data Security</h2>
@@ -138,20 +121,15 @@
                 <li><strong>Local Processing:</strong> All analysis is performed on your device</li>
                 <li><strong>No Cloud Storage:</strong> We do not store your data on external servers</li>
                 <li><strong>No Third-Party Services:</strong> We do not use analytics, tracking, or advertising services</li>
-                <li><strong>Encrypted Storage:</strong> Any temporary data is stored using iOS's secure storage mechanisms</li>
+                <li><strong>Encrypted Storage:</strong> Any data is stored using iOS's secure storage mechanisms</li>
             </ul>
         </div>
 
         <h2>📱 Permissions Explained</h2>
         <div class="section">
-            <h3>Location Permission</h3>
-            <p><strong>Why we need it:</strong> To provide geographical context for network security alerts</p>
-            <p><strong>How we use it:</strong> Only to correlate network events with location for better threat detection</p>
-            <p><strong>Your control:</strong> You can deny location permission, but this may reduce the app's effectiveness</p>
-
             <h3>Notifications Permission</h3>
-            <p><strong>Why we need it:</strong> To alert you when potential security threats are detected</p>
-            <p><strong>How we use it:</strong> To send immediate alerts about suspicious network activity</p>
+            <p><strong>Why we need it:</strong> To alert you when a 2G connection is detected</p>
+            <p><strong>How we use it:</strong> To send alerts when you're connected to a 2G network</p>
             <p><strong>Your control:</strong> You can disable notifications in iOS Settings</p>
         </div>
 
@@ -163,16 +141,15 @@
                 <li>We do not share data with third-party advertisers</li>
                 <li>We do not use analytics or tracking services</li>
                 <li>We do not transmit data to external servers</li>
-                <li>We do not participate in data broker networks</li>
             </ul>
         </div>
 
         <h2>👤 Your Rights</h2>
         <div class="section">
             <ul>
-                <li><strong>Access:</strong> You can view all data the app processes through the app's interface</li>
+                <li><strong>Access:</strong> You can view all 2G connection events through the app's interface</li>
                 <li><strong>Deletion:</strong> Uninstalling the app removes all associated data</li>
-                <li><strong>Control:</strong> You can disable monitoring and notifications at any time</li>
+                <li><strong>Control:</strong> You can disable notifications at any time</li>
                 <li><strong>Transparency:</strong> Our source code is available for review</li>
             </ul>
         </div>
@@ -180,20 +157,18 @@
         <h2>🔧 Technical Implementation</h2>
         <div class="section">
             <ul>
-                <li><strong>iOS Frameworks:</strong> CoreTelephony, CoreLocation, UserNotifications, BackgroundTasks</li>
-                <li><strong>Data Storage:</strong> UserDefaults for app settings, no persistent data storage</li>
+                <li><strong>iOS Frameworks:</strong> CoreTelephony, UserNotifications, BackgroundTasks</li>
+                <li><strong>Data Storage:</strong> UserDefaults for app settings and 2G connection history</li>
                 <li><strong>Network Access:</strong> No external network requests except for iOS system services</li>
                 <li><strong>Background Processing:</strong> Limited to iOS-approved background task types</li>
             </ul>
         </div>
 
         <h2>📞 Contact Information</h2>
-        <div class="contact-info">
+        <div class="section">
             <p>If you have questions about this privacy policy or our data practices, please contact us:</p>
             <ul>
-                <li><strong>Email:</strong> privacy@stingraywarning.app</li>
                 <li><strong>GitHub:</strong> <a href="https://github.com/erichchampion/stingray-warning">Project Repository</a></li>
-                <li><strong>Support:</strong> <a href="docs/contact.html">Contact & Support Page</a></li>
             </ul>
         </div>
 
@@ -203,28 +178,16 @@
             <ul>
                 <li>Posting the new privacy policy on this page</li>
                 <li>Updating the "Last Updated" date</li>
-                <li>Including a notice in the app if significant changes are made</li>
-            </ul>
-        </div>
-
-        <h2>⚖️ Legal Compliance</h2>
-        <div class="section">
-            <p>This privacy policy complies with:</p>
-            <ul>
-                <li>Apple App Store Review Guidelines</li>
-                <li>iOS Privacy Requirements</li>
-                <li>General Data Protection Regulation (GDPR) principles</li>
-                <li>California Consumer Privacy Act (CCPA) principles</li>
             </ul>
         </div>
 
         <div class="footer">
             <p>
                 <a href="index.html">← Back to Home</a> | 
-                <a href="https://github.com/erichchampion/stingray-warning">View Source Code</a> | 
-                <a href="docs/contact.html">Contact Support</a>
+                <a href="terms.html">Terms of Service</a> | 
+                <a href="https://github.com/erichchampion/stingray-warning">View Source Code</a>
             </p>
-            <p>&copy; 2024 Stingray Warning. All rights reserved.</p>
+            <p>&copy; 2025 2G. All rights reserved.</p>
         </div>
     </div>
 </body>
